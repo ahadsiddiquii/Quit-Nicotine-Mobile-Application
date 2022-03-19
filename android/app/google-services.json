@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "170289237809",
+    "project_id": "getridofnicotineapplication",
+    "storage_bucket": "getridofnicotineapplication.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170289237809:android:c01af334428e45c5746a10",
+        "android_client_info": {
+          "package_name": "com.getridofnicotine.getridofnicotineandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "170289237809-b69qp9nmck5srrmjg88de4inhe327h0l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcyTnnY8Uho2uJsFrddHAw6rYJckmgaeQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "170289237809-b69qp9nmck5srrmjg88de4inhe327h0l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -4,6 +4,7 @@ import 'package:nicotine/Constant.dart';
 import 'package:nicotine/Screens/signup_screen.dart';
 import 'package:sizer/sizer.dart';
 
+import '../resources/providers/LoginProvider.dart';
 import 'Home Screens/dash_bord.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -257,7 +258,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
                   color: Colors.black,
-                  onPressed: () {},
+                  onPressed: () {
+                    loginViaGoogle(context);
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -294,7 +297,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
                   color: Colors.black,
-                  onPressed: () {},
+                  onPressed: () {
+                    loginViaFacebook();
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,

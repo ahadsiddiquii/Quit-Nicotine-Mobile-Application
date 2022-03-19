@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="facebook_app_id">3125577821104077</string>
+    <string name="fb_login_protocol_scheme">fb3125577821104077</string>
+    <string name="facebook_client_token">fe1a7ae0580737f47cb50f924f865310</string>
+    <string name="app_name">Quit Nicotine 4 Life</string>
+</resources>
