@@ -23,22 +23,36 @@ class _ShopScreenState extends State<ShopScreen> {
         leading: Padding(
           padding: EdgeInsets.only(left: 5.sp),
           child: Container(
-            margin: EdgeInsets.only(top: 1.4.h, bottom: 1.4.h, left: 2.w, right: 2.w),
+            margin: EdgeInsets.only(
+                top: 1.4.h, bottom: 1.4.h, left: 2.w, right: 2.w),
             decoration: BoxDecoration(
               color: Colors.white.withOpacity(0.1),
               borderRadius: BorderRadius.circular(50),
             ),
-            child:  Builder(builder: (context) =>  IconButton(
-              onPressed: ()=> Navigator.pop(context),
-              icon: Icon(Icons.arrow_back_ios_rounded, size: 12.sp,),
-            ),),
+            child: Builder(
+              builder: (context) => IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: Icon(
+                  Icons.arrow_back_ios_rounded,
+                  size: 12.sp,
+                ),
+              ),
+            ),
           ),
         ),
         backgroundColor: Colors.black,
-        title: Text("Shop", style: TextStyle(fontSize: 16.sp),),
+        title: Text(
+          "Shop",
+          style: TextStyle(fontSize: 16.sp),
+        ),
         actions: [
-          Icon(Icons.more_horiz, size: 24.sp,),
-          SizedBox(width: 5.sp,),
+          Icon(
+            Icons.more_horiz,
+            size: 24.sp,
+          ),
+          SizedBox(
+            width: 5.sp,
+          ),
         ],
       ),
       body: Container(
@@ -46,18 +60,19 @@ class _ShopScreenState extends State<ShopScreen> {
         width: 100.w,
         color: Colors.black,
         child: ListView.builder(
-            itemCount: 3,
-            itemBuilder: (BuildContext context,int index){
+            itemCount: 1,
+            itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => ShopPayment()),);
-                  },
-                  child: ShopCard(),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ShopPayment()),
+                  );
+                },
+                child: ShopCard(),
               );
-            }
-        ),
+            }),
       ),
     );
   }
 }
-

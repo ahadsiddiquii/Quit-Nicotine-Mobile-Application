@@ -1,17 +1,55 @@
 class User {
-  late String email;
-  late String first_name;
-  late String last_name;
+  String? userId;
+  String? userEmail;
+  String? userName;
+  String? userPassword;
+  String? userImage;
+  int? userPoints;
+  List<String>? userMistakes;
+  bool? userQuestionsAsked;
 
-  User({
-    required this.email,
-    required this.first_name,
-    required this.last_name,
-  });
+  User(
+      {required this.userId,
+      required this.userEmail,
+      required this.userName,
+      required this.userPassword,
+      required this.userImage,
+      required this.userPoints,
+      required this.userMistakes,
+      required this.userQuestionsAsked});
 
   User.fromJson(Map<String, dynamic> json) {
-    this.email = json['email'] ?? '';
-    this.first_name = json['first_name'] ?? '';
-    this.last_name = json['last_name'] ?? '';
+    this.userId = json['userId'] ?? "";
+    this.userEmail = json['userEmail'] ?? "";
+    this.userName = json['userName'] ?? "";
+    this.userPassword = json['userPassword'] ?? "";
+    this.userImage = json['userImage'] ?? "";
+    this.userPoints =
+        json['userPoints'] != null ? (json['userPoints']).toInt() : 0;
+    final allUserMistakes = json['userMistakes'];
+
+    List<String> allMistakes = [];
+    if (allUserMistakes != null)
+      allUserMistakes.forEach((e) {
+        final currentMistake = e as String;
+        allMistakes.add(e);
+      });
+    this.userMistakes = allMistakes;
+
+    this.userQuestionsAsked = json['userQuestionsAsked'] ?? false;
+  }
+
+  Map<String, dynamic> toJson(User user) {
+    Map<String, dynamic> userMap = {
+      "userId": user.userId,
+      "userEmail": user.userEmail,
+      "userName": user.userName,
+      "userPassword": user.userPassword,
+      "userImage": user.userImage,
+      "userPoints": user.userPoints,
+      "userMistakes": user.userMistakes,
+      "userQuestionsAsked": user.userQuestionsAsked
+    };
+    return userMap;
   }
 }

@@ -19,8 +19,11 @@ class GoalsScreen extends StatelessWidget {
         color: Colors.black,
         child: Column(
           children: [
-            if(show_appbar == true)
-            CustomAppBar(title: "My Goals", icon: Icons.search_rounded,),
+            if (show_appbar == true)
+              CustomAppBar(
+                title: "My Goals",
+                icon: Icons.search_rounded,
+              ),
             // SizedBox(height: 3.h,),
             Tabbar(),
           ],

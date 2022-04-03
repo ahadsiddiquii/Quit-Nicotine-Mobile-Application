@@ -12,7 +12,9 @@ class ShopCard extends StatelessWidget {
     return Container(
       child: Column(
         children: [
-          SizedBox(height: 2.h,),
+          SizedBox(
+            height: 2.h,
+          ),
           Container(
             height: 20.h,
             width: 80.w,
@@ -30,8 +32,12 @@ class ShopCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15) ,
-                      child: Image.asset("assets/shop_img2.png", fit: BoxFit.fill,)),
+                      borderRadius: BorderRadius.circular(15),
+                      child: Image.asset(
+                        // "assets/shop_img2.png",
+                        "assets/Mask.png",
+                        fit: BoxFit.fill,
+                      )),
                 ),
                 Align(
                   alignment: Alignment.bottomRight,
@@ -43,7 +49,11 @@ class ShopCard extends StatelessWidget {
                       color: kSignupColor,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: Icon(Icons.shopping_cart_rounded, color: Colors.white, size: 22.sp,),
+                    child: Icon(
+                      Icons.shopping_cart_rounded,
+                      color: Colors.white,
+                      size: 22.sp,
+                    ),
                   ),
                 )
               ],
@@ -51,15 +61,28 @@ class ShopCard extends StatelessWidget {
           ),
           Container(
             width: 80.w,
-            child: Text("120-day Quit Nicotine 4 Life Programme", style: TextStyle(
-                color: Colors.white, fontSize: 10.sp, fontWeight: FontWeight.w400, height: 2
-            ),),
+            child: Text(
+              "120 Day nico programme"
+              // "120-day Quit Nicotine 4 Life Programme"
+              ,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 10.sp,
+                  fontWeight: FontWeight.w400,
+                  height: 2),
+            ),
           ),
           Container(
             width: 80.w,
-            child: Text("£120.00", style: TextStyle(
-                color: kSigninColor, fontSize: 11.sp, fontWeight: FontWeight.w400, height: 1.5
-            ),),
+            child: Text(
+              "£20.00",
+              // "£120.00",
+              style: TextStyle(
+                  color: kSigninColor,
+                  fontSize: 11.sp,
+                  fontWeight: FontWeight.w400,
+                  height: 1.5),
+            ),
           ),
         ],
       ),

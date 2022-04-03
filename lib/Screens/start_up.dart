@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../utils/local_storage.dart';
 import 'login_screen.dart';
 
 class StartUp extends StatefulWidget {
@@ -14,17 +15,27 @@ class StartUp extends StatefulWidget {
 }
 
 class _StartUpState extends State<StartUp> {
-
   void initState() {
-    // TODO: implement initState
-    Timer(Duration(milliseconds: 3000),(){Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>LoginScreen()));}
-    );
     super.initState();
+    initialize().then((e) {
+      setState(() {});
+    });
+
+    // TODO: implement initState
+    Timer(Duration(milliseconds: 3000), () {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => LoginScreen()));
+    });
   }
+
+  initialize() async {
+    await Storage.initialize();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(),
+        // appBar: AppBar(),
         body: Container(
             width: 100.w,
             height: 100.h,

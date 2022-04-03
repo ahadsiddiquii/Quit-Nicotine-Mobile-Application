@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:nicotine/Constant.dart';
 import 'package:sizer/sizer.dart';
 
+import 'Components/backButton.dart';
+import 'Home Screens/dash_bord.dart';
 import 'welldone_screen.dart';
 
 class PaymentsScreen extends StatefulWidget {
@@ -25,34 +27,42 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        leading: Padding(
-          padding: EdgeInsets.only(left: 5.sp),
-          child: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(Icons.arrow_back_ios),
-          ),
-        ),
-        backgroundColor: Colors.black,
+        leading: backButton(context),
+        backgroundColor: Colors.white,
         title: Text(
           "Payments",
-          style: TextStyle(fontSize: 16.sp),
+          style: TextStyle(fontSize: 16.sp, color: Colors.black),
         ),
         actions: [
-          Icon(
-            Icons.more_horiz,
-            size: 24.sp,
+          // Icon(
+          //   Icons.more_horiz,
+          //   size: 24.sp,
+          // ),
+          // SizedBox(
+          //   width: 5.sp,
+          // ),
+          Padding(
+            padding: const EdgeInsets.only(top: 16.0),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => DashBord()));
+              },
+              child: Text(
+                "Skip",
+                style: TextStyle(fontSize: 12.sp, color: Colors.black),
+              ),
+            ),
           ),
           SizedBox(
-            width: 5.sp,
+            width: 8.sp,
           ),
         ],
       ),
       body: Container(
         height: 100.h,
         width: 100.w,
-        color: Colors.black,
+        color: Colors.white,
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
@@ -64,7 +74,7 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                 "Payment for\n1. 120-day Quit Nicotine 4 Life Programme\n2. To include inner health scan\n3. Tissue cells salts\n4. Guide book",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     height: 1.5,
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w300),
@@ -73,7 +83,7 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                 height: 3.h,
               ),
               Text(
-                "£120.00",
+                "£220.00",
                 style: TextStyle(
                     color: kSigninColor,
                     fontWeight: FontWeight.bold,
@@ -113,12 +123,12 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                                     EdgeInsets.only(right: 50.sp, left: 5.sp),
                                 title: Icon(
                                   Icons.payment,
-                                  color: Colors.white,
+                                  color: Colors.black,
                                 ),
                                 subtitle: Text(
                                   "Card",
                                   style: TextStyle(
-                                      color: Colors.white, fontSize: 11.sp),
+                                      color: Colors.black, fontSize: 11.sp),
                                 ),
                               ),
                             ),
@@ -154,7 +164,7 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                                 subtitle: Text(
                                   "Paypal",
                                   style: TextStyle(
-                                      color: Colors.white, fontSize: 11.sp),
+                                      color: Colors.black, fontSize: 11.sp),
                                 ),
                               ),
                             ),
@@ -170,7 +180,7 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                               ),
                               child: Icon(
                                 Icons.more_horiz,
-                                color: Colors.white,
+                                color: Colors.black,
                                 size: 25.sp,
                               )),
                         ],
@@ -186,7 +196,7 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                             child: Text(
                               "Card number",
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.w300,
                                   fontSize: 12.sp),
                             ),
@@ -198,8 +208,8 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                             // color: Colors.pink,
                             child: TextFormField(
                               controller: c11,
-                              cursorColor: Colors.white,
-                              style: TextStyle(color: Colors.white),
+                              cursorColor: Colors.black,
+                              style: TextStyle(color: Colors.black),
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.text,
                               // validator: ,
@@ -208,7 +218,7 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                                 filled: true,
                                 hintText: "1234 1234 1234 1234",
                                 hintStyle: TextStyle(
-                                    color: Colors.white70,
+                                    color: Colors.black,
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.w300),
                                 // contentPadding: EdgeInsets.fromLTRB(15, 0, 0, 0),
@@ -249,7 +259,7 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                                   child: Text(
                                     "Expiry",
                                     style: TextStyle(
-                                        color: Colors.white,
+                                        color: Colors.black,
                                         fontWeight: FontWeight.w300,
                                         fontSize: 12.sp),
                                   ),
@@ -261,8 +271,8 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                                   // color: Colors.pink,
                                   child: TextFormField(
                                     controller: expiry,
-                                    cursorColor: Colors.white,
-                                    style: TextStyle(color: Colors.white),
+                                    cursorColor: Colors.black,
+                                    style: TextStyle(color: Colors.black),
                                     textInputAction: TextInputAction.next,
                                     keyboardType: TextInputType.datetime,
                                     // validator: ,
@@ -271,7 +281,7 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                                       filled: true,
                                       hintText: "MM/YY",
                                       hintStyle: TextStyle(
-                                          color: Colors.white70,
+                                          color: Colors.black,
                                           fontSize: 12.sp,
                                           fontWeight: FontWeight.w300),
                                       // contentPadding: EdgeInsets.fromLTRB(15, 0, 0, 0),
@@ -305,7 +315,7 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                                   child: Text(
                                     "CVV",
                                     style: TextStyle(
-                                        color: Colors.white,
+                                        color: Colors.black,
                                         fontWeight: FontWeight.w300,
                                         fontSize: 12.sp),
                                   ),
@@ -317,8 +327,8 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                                   // color: Colors.pink,
                                   child: TextFormField(
                                     controller: cvv,
-                                    cursorColor: Colors.white,
-                                    style: TextStyle(color: Colors.white),
+                                    cursorColor: Colors.black,
+                                    style: TextStyle(color: Colors.black),
                                     textInputAction: TextInputAction.next,
                                     keyboardType: TextInputType.number,
                                     // validator: ,
@@ -327,7 +337,7 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                                       filled: true,
                                       hintText: "CVV",
                                       hintStyle: TextStyle(
-                                          color: Colors.white70,
+                                          color: Colors.black,
                                           fontSize: 12.sp,
                                           fontWeight: FontWeight.w300),
                                       // contentPadding: EdgeInsets.fromLTRB(15, 0, 0, 0),
@@ -367,7 +377,7 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                             child: Text(
                               "Country",
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.w300,
                                   fontSize: 12.sp),
                             ),
@@ -380,8 +390,8 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                             child: TextFormField(
                               enabled: false,
                               controller: country,
-                              cursorColor: Colors.white,
-                              style: TextStyle(color: Colors.white),
+                              cursorColor: Colors.black,
+                              style: TextStyle(color: Colors.black),
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.text,
                               // validator: ,
@@ -444,7 +454,7 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                   child: Text(
                     "Pay Now",
                     style: TextStyle(
-                        color: Colors.white,
+                        color: Colors.black,
                         fontWeight: FontWeight.w600,
                         fontSize: 16.sp),
                   ),

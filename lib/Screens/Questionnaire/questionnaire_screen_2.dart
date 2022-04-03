@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../Constant.dart';
+import '../Components/backButton.dart';
 import 'questionnaire_screen3.dart';
 
 class QuestionnaireScreen2 extends StatefulWidget {
@@ -32,34 +33,26 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        leading: Padding(
-          padding: EdgeInsets.only(left: 5.sp),
-          child: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(Icons.arrow_back_ios),
-          ),
-        ),
-        backgroundColor: Colors.black,
+        leading: backButton(context),
+        backgroundColor: Colors.white,
         title: Text(
           "Questionnaire",
-          style: TextStyle(fontSize: 16.sp),
+          style: TextStyle(fontSize: 16.sp, color: Colors.black),
         ),
         actions: [
-          Icon(
-            Icons.more_horiz,
-            size: 24.sp,
-          ),
-          SizedBox(
-            width: 5.sp,
-          ),
+          // Icon(
+          //   Icons.more_horiz,
+          //   size: 24.sp,
+          // ),
+          // SizedBox(
+          //   width: 5.sp,
+          // ),
         ],
       ),
       body: Container(
         height: 100.h,
         width: 100.w,
-        color: Colors.black,
+        color: Colors.white,
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
@@ -83,7 +76,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 text:
                                     'What are your main reasons for wanting to stop Smoking? ',
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     fontWeight: FontWeight.w300,
                                     fontSize: 12.sp),
                                 children: <TextSpan>[
@@ -112,8 +105,8 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 return null;
                               },
                               controller: reason,
-                              cursorColor: Colors.white,
-                              style: TextStyle(color: Colors.white),
+                              cursorColor: Colors.black,
+                              style: TextStyle(color: Colors.black),
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.emailAddress,
                               maxLines: 5,
@@ -123,15 +116,20 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                     )),
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     width: 0.3.sp,
                                   ),
                                 ),
+                                disabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      color: Colors.black,
+                                    )),
                               ),
                             ),
                           ),
@@ -153,7 +151,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 text:
                                     'How many times have you tried to stop smoking in the last 5 years? ',
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     fontWeight: FontWeight.w300,
                                     fontSize: 12.sp),
                                 children: <TextSpan>[
@@ -167,7 +165,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 ],
                               ),
                             ),
-                            // Text("Name", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
+                            // Text("Name", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
                           ),
                           Container(
                             height: 7.h,
@@ -182,8 +180,8 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 return null;
                               },
                               controller: stop_smoking,
-                              cursorColor: Colors.white,
-                              style: TextStyle(color: Colors.white),
+                              cursorColor: Colors.black,
+                              style: TextStyle(color: Colors.black),
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.phone,
                               // validator: ,
@@ -193,15 +191,20 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                     )),
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     width: 0.3.sp,
                                   ),
                                 ),
+                                disabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      color: Colors.black,
+                                    )),
                               ),
                             ),
                           ),
@@ -223,7 +226,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 text:
                                     'What is the longest period of time you have achieved? ( Enter number of weeks )',
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     fontWeight: FontWeight.w300,
                                     fontSize: 12.sp),
                                 children: <TextSpan>[
@@ -237,7 +240,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 ],
                               ),
                             ),
-                            // Text("Name", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
+                            // Text("Name", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
                           ),
                           Container(
                             height: 7.h,
@@ -252,8 +255,8 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 return null;
                               },
                               controller: longes_period,
-                              cursorColor: Colors.white,
-                              style: TextStyle(color: Colors.white),
+                              cursorColor: Colors.black,
+                              style: TextStyle(color: Colors.black),
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.phone,
                               decoration: InputDecoration(
@@ -262,15 +265,20 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                     )),
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     width: 0.3.sp,
                                   ),
                                 ),
+                                disabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      color: Colors.black,
+                                    )),
                               ),
                             ),
                           ),
@@ -292,7 +300,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 text:
                                     'If you have managed to stop smoking in the past what do you think helped? ',
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     fontWeight: FontWeight.w300,
                                     fontSize: 12.sp),
                                 children: <TextSpan>[
@@ -306,7 +314,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 ],
                               ),
                             ),
-                            // Text("Name", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
+                            // Text("Name", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
                           ),
                           Container(
                             height: 7.h,
@@ -321,8 +329,8 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 return null;
                               },
                               controller: think_helped,
-                              cursorColor: Colors.white,
-                              style: TextStyle(color: Colors.white),
+                              cursorColor: Colors.black,
+                              style: TextStyle(color: Colors.black),
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.text,
                               // validator: ,
@@ -332,15 +340,20 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                     )),
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     width: 0.3.sp,
                                   ),
                                 ),
+                                disabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      color: Colors.black,
+                                    )),
                               ),
                             ),
                           ),
@@ -362,7 +375,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 text:
                                     'What do you feel was the main reason that you started again? ',
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     fontWeight: FontWeight.w300,
                                     fontSize: 12.sp),
                                 children: <TextSpan>[
@@ -391,8 +404,8 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 return null;
                               },
                               controller: started_again,
-                              cursorColor: Colors.white,
-                              style: TextStyle(color: Colors.white),
+                              cursorColor: Colors.black,
+                              style: TextStyle(color: Colors.black),
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.text,
                               // validator: ,
@@ -402,15 +415,20 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                     )),
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     width: 0.3.sp,
                                   ),
                                 ),
+                                disabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      color: Colors.black,
+                                    )),
                               ),
                             ),
                           ),
@@ -432,7 +450,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 text:
                                     'How many cigarettes do you smoke per day? ',
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     fontWeight: FontWeight.w300,
                                     fontSize: 12.sp),
                                 children: <TextSpan>[
@@ -461,8 +479,8 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 return null;
                               },
                               controller: cig_per_day,
-                              cursorColor: Colors.white,
-                              style: TextStyle(color: Colors.white),
+                              cursorColor: Colors.black,
+                              style: TextStyle(color: Colors.black),
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.phone,
                               // validator: ,
@@ -472,15 +490,20 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                     )),
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     width: 0.3.sp,
                                   ),
                                 ),
+                                disabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      color: Colors.black,
+                                    )),
                               ),
                             ),
                           ),
@@ -502,7 +525,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 text:
                                     'What do you think are the main reasons that you smoke? ',
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     fontWeight: FontWeight.w300,
                                     fontSize: 12.sp),
                                 children: <TextSpan>[
@@ -531,8 +554,8 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 return null;
                               },
                               controller: main_reasion,
-                              cursorColor: Colors.white,
-                              style: TextStyle(color: Colors.white),
+                              cursorColor: Colors.black,
+                              style: TextStyle(color: Colors.black),
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.text,
                               // validator: ,
@@ -542,15 +565,20 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                     )),
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     width: 0.3.sp,
                                   ),
                                 ),
+                                disabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      color: Colors.black,
+                                    )),
                               ),
                             ),
                           ),
@@ -569,7 +597,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                           text:
                               'How soon after waking do you have your first cigarette? ',
                           style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                               fontWeight: FontWeight.w300,
                               fontSize: 12.sp),
                           children: <TextSpan>[
@@ -618,7 +646,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                       ),
                                       Text("Less than 5 minutes",
                                           style: TextStyle(
-                                              color: Colors.white,
+                                              color: Colors.black,
                                               fontSize: 10.sp,
                                               fontWeight: FontWeight.w400)),
                                     ],
@@ -644,7 +672,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                       ),
                                       Text("Between 15-30 minutes",
                                           style: TextStyle(
-                                              color: Colors.white,
+                                              color: Colors.black,
                                               fontWeight: FontWeight.w400,
                                               fontSize: 10.sp)),
                                     ],
@@ -670,7 +698,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                       ),
                                       Text("Between 1-2 hours",
                                           style: TextStyle(
-                                              color: Colors.white,
+                                              color: Colors.black,
                                               fontWeight: FontWeight.w400,
                                               fontSize: 10.sp)),
                                     ],
@@ -704,7 +732,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                     ),
                                     Text("Between 5-15 minutes",
                                         style: TextStyle(
-                                            color: Colors.white,
+                                            color: Colors.black,
                                             fontSize: 10.sp,
                                             fontWeight: FontWeight.w400)),
                                   ],
@@ -730,7 +758,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                     ),
                                     Text("Between 30-60 minutes",
                                         style: TextStyle(
-                                            color: Colors.white,
+                                            color: Colors.black,
                                             fontWeight: FontWeight.w400,
                                             fontSize: 10.sp)),
                                   ],
@@ -756,7 +784,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                     ),
                                     Text("Over 2 hours",
                                         style: TextStyle(
-                                            color: Colors.white,
+                                            color: Colors.black,
                                             fontWeight: FontWeight.w400,
                                             fontSize: 10.sp)),
                                   ],
@@ -779,7 +807,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                           text:
                               'Have you been diagnosed with any smoking related illness? ',
                           style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                               fontWeight: FontWeight.w300,
                               fontSize: 12.sp),
                           children: <TextSpan>[
@@ -821,7 +849,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 ),
                                 Text("Yes",
                                     style: TextStyle(
-                                        color: Colors.white,
+                                        color: Colors.black,
                                         fontSize: 10.sp,
                                         fontWeight: FontWeight.w400)),
                               ],
@@ -848,7 +876,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 ),
                                 Text("No",
                                     style: TextStyle(
-                                        color: Colors.white,
+                                        color: Colors.black,
                                         fontSize: 10.sp,
                                         fontWeight: FontWeight.w400)),
                               ],
@@ -870,7 +898,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                               child: Text(
                                 "If you answered Yes to the previous question, please list any diagnoses.",
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     fontWeight: FontWeight.w300,
                                     fontSize: 12.sp),
                               )
@@ -884,8 +912,8 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                             child: TextFormField(
                               maxLines: 5,
                               controller: list_any_diagnoses,
-                              cursorColor: Colors.white,
-                              style: TextStyle(color: Colors.white),
+                              cursorColor: Colors.black,
+                              style: TextStyle(color: Colors.black),
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.text,
                               // validator: ,
@@ -894,12 +922,12 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                     )),
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     width: 0.3.sp,
                                   ),
                                 ),
@@ -920,7 +948,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                         text: TextSpan(
                           text: 'Are you on any medication? ',
                           style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                               fontWeight: FontWeight.w300,
                               fontSize: 12.sp),
                           children: <TextSpan>[
@@ -962,7 +990,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 ),
                                 Text("Yes",
                                     style: TextStyle(
-                                        color: Colors.white,
+                                        color: Colors.black,
                                         fontSize: 10.sp,
                                         fontWeight: FontWeight.w400)),
                               ],
@@ -992,7 +1020,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 ),
                                 Text("No",
                                     style: TextStyle(
-                                        color: Colors.white,
+                                        color: Colors.black,
                                         fontSize: 10.sp,
                                         fontWeight: FontWeight.w400)),
                               ],

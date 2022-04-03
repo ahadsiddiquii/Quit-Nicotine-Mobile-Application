@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nicotine/Screens/Components/backButton.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../Constant.dart';
+import '../../blocs/User/user_bloc.dart';
+import '../../utils/local_storage.dart';
+import '../Components/snackBar.dart';
 import '../subscription_Screen.dart';
 import 'questionnaire_screen_2.dart';
 
@@ -34,19 +39,11 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        leading: Padding(
-          padding: EdgeInsets.only(left: 5.sp),
-          child: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(Icons.arrow_back_ios),
-          ),
-        ),
-        backgroundColor: Colors.black,
+        leading: backButton(context),
+        backgroundColor: Colors.white,
         title: Text(
           "Questionnaire",
-          style: TextStyle(fontSize: 16.sp),
+          style: TextStyle(fontSize: 16.sp, color: Colors.black),
         ),
         actions: [
           Icon(
@@ -61,7 +58,7 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
       body: Container(
         height: 100.h,
         width: 100.w,
-        color: Colors.black,
+        color: Colors.white,
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
@@ -85,12 +82,12 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                                 text:
                                     'If you answered Yes to the previous question, please list any medication you are taking and what they are for.',
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     fontWeight: FontWeight.w300,
                                     fontSize: 12.sp),
                               ),
                             ),
-                            // Text("Name", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
+                            // Text("Name", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
                           ),
                           Container(
                             height: 15.h,
@@ -99,8 +96,8 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                             // color: Colors.pink,
                             child: TextFormField(
                               controller: c1,
-                              cursorColor: Colors.white,
-                              style: TextStyle(color: Colors.white),
+                              cursorColor: Colors.black,
+                              style: TextStyle(color: Colors.black),
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.emailAddress,
                               maxLines: 5,
@@ -110,12 +107,12 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                     )),
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     width: 0.3.sp,
                                   ),
                                 ),
@@ -136,7 +133,7 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                         text: TextSpan(
                           text: 'Do you have any allergies? ',
                           style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                               fontWeight: FontWeight.w300,
                               fontSize: 12.sp),
                           children: <TextSpan>[
@@ -149,7 +146,7 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                           ],
                         ),
                       ),
-                      // Text("Name", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
+                      // Text("Name", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
                     ),
                     Container(
                       margin: EdgeInsets.only(left: 2.sp, right: 10.w),
@@ -158,7 +155,7 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                         children: [
                           Container(
                             height: 4.h,
-                            // color: Colors.yellowAccent,
+                            // color: Colors.blackAccent,
                             child: Row(
                               children: [
                                 Container(
@@ -177,7 +174,7 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                                 ),
                                 Text("Yes",
                                     style: TextStyle(
-                                        color: Colors.white,
+                                        color: Colors.black,
                                         fontSize: 10.sp,
                                         fontWeight: FontWeight.w400)),
                               ],
@@ -188,7 +185,7 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                           ),
                           Container(
                             height: 4.h,
-                            // color: Colors.yellowAccent,
+                            // color: Colors.blackAccent,
                             child: Row(
                               children: [
                                 Container(
@@ -207,7 +204,7 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                                 ),
                                 Text("No",
                                     style: TextStyle(
-                                        color: Colors.white,
+                                        color: Colors.black,
                                         fontSize: 10.sp,
                                         fontWeight: FontWeight.w400)),
                               ],
@@ -235,14 +232,14 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                               text:
                                   'If you are pregnant or nursing please check with your doctor before enrolling into this programme.',
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.w300,
                                   fontSize: 12.sp),
                             ),
                           ],
                         ),
                       ),
-                      // Text("Name", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
+                      // Text("Name", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
                     ),
                     SizedBox(
                       height: 1.h,
@@ -259,12 +256,12 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                                 text:
                                     'If you answered Yes to the previous question, please provide details.',
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     fontWeight: FontWeight.w300,
                                     fontSize: 12.sp),
                               ),
                             ),
-                            // Text("Name", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
+                            // Text("Name", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
                           ),
                           Container(
                             height: 15.h,
@@ -273,8 +270,8 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                             // color: Colors.pink,
                             child: TextFormField(
                               controller: c2,
-                              cursorColor: Colors.white,
-                              style: TextStyle(color: Colors.white),
+                              cursorColor: Colors.black,
+                              style: TextStyle(color: Colors.black),
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.emailAddress,
                               maxLines: 5,
@@ -284,12 +281,12 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                     )),
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     width: 0.3.sp,
                                   ),
                                 ),
@@ -313,7 +310,7 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                               "Ailments (please select from the list below; if you have more than one health issue please use the space below to add all the relevant information)",
                               textAlign: TextAlign.justify,
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.w300,
                                   fontSize: 11.sp),
                             ),
@@ -326,8 +323,8 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                             child: TextFormField(
                               enabled: false,
                               controller: c3,
-                              cursorColor: Colors.white,
-                              style: TextStyle(color: Colors.white),
+                              cursorColor: Colors.black,
+                              style: TextStyle(color: Colors.black),
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.text,
                               // validator: ,
@@ -337,25 +334,25 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                                   focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                       borderSide: BorderSide(
-                                        color: Colors.white,
+                                        color: Colors.black,
                                       )),
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       width: 0.3.sp,
                                     ),
                                   ),
                                   disabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       width: 0.3.sp,
                                     ),
                                   ),
                                   suffixIcon: Icon(
                                     Icons.arrow_drop_down_sharp,
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     size: 22.sp,
                                   )),
                             ),
@@ -376,7 +373,7 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                             child: Text(
                               "Muscular/Skeletal/Neurological Disorders",
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.w300,
                                   fontSize: 12.sp),
                             ),
@@ -389,8 +386,8 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                             child: TextFormField(
                               enabled: false,
                               controller: c4,
-                              cursorColor: Colors.white,
-                              style: TextStyle(color: Colors.white),
+                              cursorColor: Colors.black,
+                              style: TextStyle(color: Colors.black),
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
@@ -399,26 +396,26 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                                   focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                       borderSide: BorderSide(
-                                        color: Colors.white,
+                                        color: Colors.black,
                                       )),
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       width: 0.3.sp,
                                     ),
                                   ),
                                   disabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       width: 0.3.sp,
                                     ),
                                   ),
                                   suffixIcon: Icon(
                                     Icons.arrow_drop_down_sharp,
                                     size: 22.sp,
-                                    color: Colors.white,
+                                    color: Colors.black,
                                   )),
                             ),
                           ),
@@ -438,7 +435,7 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                             child: Text(
                               "Dermatological Problems",
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.w300,
                                   fontSize: 12.sp),
                             ),
@@ -451,8 +448,8 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                             child: TextFormField(
                               enabled: false,
                               controller: c5,
-                              cursorColor: Colors.white,
-                              style: TextStyle(color: Colors.white),
+                              cursorColor: Colors.black,
+                              style: TextStyle(color: Colors.black),
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.text,
                               // validator: ,
@@ -462,26 +459,26 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                                   focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                       borderSide: BorderSide(
-                                        color: Colors.white,
+                                        color: Colors.black,
                                       )),
                                   disabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       width: 0.3.sp,
                                     ),
                                   ),
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       width: 0.3.sp,
                                     ),
                                   ),
                                   suffixIcon: Icon(
                                     Icons.arrow_drop_down_sharp,
                                     size: 22.sp,
-                                    color: Colors.white,
+                                    color: Colors.black,
                                   )),
                             ),
                           ),
@@ -501,7 +498,7 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                             child: Text(
                               "Internal Problems",
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.w300,
                                   fontSize: 12.sp),
                             ),
@@ -514,8 +511,8 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                             child: TextFormField(
                               enabled: false,
                               controller: c6,
-                              cursorColor: Colors.white,
-                              style: TextStyle(color: Colors.white),
+                              cursorColor: Colors.black,
+                              style: TextStyle(color: Colors.black),
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.text,
                               // validator: ,
@@ -525,26 +522,26 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                                   focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                       borderSide: BorderSide(
-                                        color: Colors.white,
+                                        color: Colors.black,
                                       )),
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       width: 0.3.sp,
                                     ),
                                   ),
                                   disabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       width: 0.3.sp,
                                     ),
                                   ),
                                   suffixIcon: Icon(
                                     Icons.arrow_drop_down_sharp,
                                     size: 22.sp,
-                                    color: Colors.white,
+                                    color: Colors.black,
                                   )),
                             ),
                           ),
@@ -564,7 +561,7 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                             child: Text(
                               "Digestive Disorders",
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.w300,
                                   fontSize: 12.sp),
                             ),
@@ -577,8 +574,8 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                             child: TextFormField(
                               enabled: false,
                               controller: c7,
-                              cursorColor: Colors.white,
-                              style: TextStyle(color: Colors.white),
+                              cursorColor: Colors.black,
+                              style: TextStyle(color: Colors.black),
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.text,
                               // validator: ,
@@ -588,26 +585,26 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                                   focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                       borderSide: BorderSide(
-                                        color: Colors.white,
+                                        color: Colors.black,
                                       )),
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       width: 0.3.sp,
                                     ),
                                   ),
                                   disabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       width: 0.3.sp,
                                     ),
                                   ),
                                   suffixIcon: Icon(
                                     Icons.arrow_drop_down_sharp,
                                     size: 22.sp,
-                                    color: Colors.white,
+                                    color: Colors.black,
                                   )),
                             ),
                           ),
@@ -627,7 +624,7 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                             child: Text(
                               "Ears, Nose, Throat, Eyes & Hair",
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.w300,
                                   fontSize: 12.sp),
                             ),
@@ -640,8 +637,8 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                             child: TextFormField(
                               enabled: false,
                               controller: c8,
-                              cursorColor: Colors.white,
-                              style: TextStyle(color: Colors.white),
+                              cursorColor: Colors.black,
+                              style: TextStyle(color: Colors.black),
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.text,
                               // validator: ,
@@ -651,26 +648,26 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                                   focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                       borderSide: BorderSide(
-                                        color: Colors.white,
+                                        color: Colors.black,
                                       )),
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       width: 0.3.sp,
                                     ),
                                   ),
                                   disabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       width: 0.3.sp,
                                     ),
                                   ),
                                   suffixIcon: Icon(
                                     Icons.arrow_drop_down_sharp,
                                     size: 22.sp,
-                                    color: Colors.white,
+                                    color: Colors.black,
                                   )),
                             ),
                           ),
@@ -690,7 +687,7 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                             child: Text(
                               "Genito-Urinary & Reproductive",
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.w300,
                                   fontSize: 12.sp),
                             ),
@@ -703,8 +700,8 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                             child: TextFormField(
                               enabled: false,
                               controller: c9,
-                              cursorColor: Colors.white,
-                              style: TextStyle(color: Colors.white),
+                              cursorColor: Colors.black,
+                              style: TextStyle(color: Colors.black),
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.text,
                               // validator: ,
@@ -714,26 +711,26 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                                   focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                       borderSide: BorderSide(
-                                        color: Colors.white,
+                                        color: Colors.black,
                                       )),
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       width: 0.3.sp,
                                     ),
                                   ),
                                   disabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       width: 0.3.sp,
                                     ),
                                   ),
                                   suffixIcon: Icon(
                                     Icons.arrow_drop_down_sharp,
                                     size: 22.sp,
-                                    color: Colors.white,
+                                    color: Colors.black,
                                   )),
                             ),
                           ),
@@ -753,7 +750,7 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                             child: Text(
                               "Lifestyle Related Problems",
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.w300,
                                   fontSize: 12.sp),
                             ),
@@ -766,8 +763,8 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                             child: TextFormField(
                               enabled: false,
                               controller: c10,
-                              cursorColor: Colors.white,
-                              style: TextStyle(color: Colors.white),
+                              cursorColor: Colors.black,
+                              style: TextStyle(color: Colors.black),
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.text,
                               // validator: ,
@@ -777,26 +774,26 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                                   focusedBorder: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                       borderSide: BorderSide(
-                                        color: Colors.white,
+                                        color: Colors.black,
                                       )),
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       width: 0.3.sp,
                                     ),
                                   ),
                                   disabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       width: 0.3.sp,
                                     ),
                                   ),
                                   suffixIcon: Icon(
                                     Icons.arrow_drop_down_sharp,
                                     size: 22.sp,
-                                    color: Colors.white,
+                                    color: Colors.black,
                                   )),
                             ),
                           ),
@@ -817,12 +814,12 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                               text: TextSpan(
                                 text: 'Additional Information',
                                 style: TextStyle(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     fontWeight: FontWeight.w300,
                                     fontSize: 12.sp),
                               ),
                             ),
-                            // Text("Name", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
+                            // Text("Name", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
                           ),
                           Container(
                             height: 15.h,
@@ -831,8 +828,8 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                             // color: Colors.pink,
                             child: TextFormField(
                               controller: c11,
-                              cursorColor: Colors.white,
-                              style: TextStyle(color: Colors.white),
+                              cursorColor: Colors.black,
+                              style: TextStyle(color: Colors.black),
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.emailAddress,
                               maxLines: 5,
@@ -842,12 +839,12 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: BorderSide(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                     )),
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                   borderSide: BorderSide(
-                                    color: Colors.white,
+                                    color: Colors.black,
                                     width: 0.3.sp,
                                   ),
                                 ),
@@ -863,33 +860,65 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
               SizedBox(
                 height: 3.h,
               ),
-              Container(
-                height: 7.h,
-                width: 40.w,
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(15)),
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  color: kSignupColor,
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SubscriptionScreen(),
+              BlocConsumer<UserBloc, UserState>(
+                listener: (context, state) {
+                  if (state is UserLoggedIn) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SubscriptionScreen(),
+                      ),
+                    );
+                  }
+                  if (state is LogInError) {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(showSnackbar(state.error.toString()));
+                    BlocProvider.of<UserBloc>(context).add(InitialStatePush());
+                  }
+                },
+                builder: (context, state) {
+                  if (!(state is UserLoading)) {
+                    return Container(
+                      height: 7.h,
+                      width: 40.w,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15)),
+                      child: RaisedButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                        color: kSignupColor,
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            print(Storage.getValue("userId"));
+                            BlocProvider.of<UserBloc>(context).add(
+                                QuestionsSubmitted(
+                                    userId: Storage.getValue("userId")));
+                          }
+                        },
+                        child: Text(
+                          "Submit Now",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 15.sp),
                         ),
-                      );
-                    }
-                  },
-                  child: Text(
-                    "Submit Now",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 15.sp),
-                  ),
-                ),
+                      ),
+                    );
+                  } else {
+                    return Container(
+                      height: 7.h,
+                      width: 90.w,
+                      color: Colors.white,
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          valueColor:
+                              new AlwaysStoppedAnimation<Color>(kSignupColor),
+                          // color: theme.primaryColor,
+                        ),
+                      ),
+                    );
+                  }
+                },
               ),
               SizedBox(
                 height: 3.h,

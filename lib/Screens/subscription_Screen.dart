@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nicotine/Constant.dart';
+import 'package:nicotine/Screens/Components/backButton.dart';
 import 'package:sizer/sizer.dart';
 
 import 'Components/bullet_list.dart';
+import 'Home Screens/dash_bord.dart';
 import 'payments_screen.dart';
 
 class SubscriptionScreen extends StatelessWidget {
@@ -15,34 +17,39 @@ class SubscriptionScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        leading: Padding(
-          padding: EdgeInsets.only(left: 5.sp),
-          child: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(Icons.arrow_back_ios),
-          ),
-        ),
-        backgroundColor: Colors.black,
+        leading: backButton(context),
+        backgroundColor: Colors.white,
         title: Text(
           "Subscription",
-          style: TextStyle(fontSize: 16.sp),
+          style: TextStyle(fontSize: 16.sp, color: Colors.black),
         ),
         actions: [
-          Icon(
-            Icons.more_horiz,
-            size: 24.sp,
+          Padding(
+            padding: const EdgeInsets.only(top: 16.0),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => DashBord()));
+              },
+              child: Text(
+                "Skip",
+                style: TextStyle(fontSize: 12.sp, color: Colors.black),
+              ),
+            ),
           ),
+          // Icon(
+          //   Icons.more_horiz,
+          //   size: 24.sp,
+          // ),
           SizedBox(
-            width: 5.sp,
+            width: 8.sp,
           ),
         ],
       ),
       body: Container(
         height: 100.h,
         width: 100.w,
-        color: Colors.black,
+        color: Colors.white,
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -61,7 +68,7 @@ class SubscriptionScreen extends StatelessWidget {
                   "This 120-day programme is designed to assist you with quitting nicotine for good, whilst reducing feelings of anxiety, depression and cravings usually associated with this process. But it also helps you to build yourself back up with strong foundations, to be able to resist going back into a mind state of addiction. As smoking is a habit. And not an addiction.",
                   textAlign: TextAlign.justify,
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                       height: 1.2,
                       fontSize: 11.sp,
                       fontWeight: FontWeight.w400),
@@ -126,6 +133,9 @@ class SubscriptionScreen extends StatelessWidget {
                         fontSize: 16.sp),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 2.h,
               ),
             ],
           ),

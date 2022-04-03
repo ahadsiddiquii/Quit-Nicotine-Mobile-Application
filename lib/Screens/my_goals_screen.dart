@@ -23,22 +23,36 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
         leading: Padding(
           padding: EdgeInsets.only(left: 5.sp),
           child: Container(
-            margin: EdgeInsets.only(top: 1.4.h, bottom: 1.4.h, left: 2.w, right: 2.w),
+            margin: EdgeInsets.only(
+                top: 1.4.h, bottom: 1.4.h, left: 2.w, right: 2.w),
             decoration: BoxDecoration(
               color: Colors.white.withOpacity(0.1),
               borderRadius: BorderRadius.circular(50),
             ),
-            child:  Builder(builder: (context) =>  IconButton(
-              onPressed: ()=> Navigator.pop(context),
-              icon: Icon(Icons.arrow_back_ios_rounded, size: 12.sp,),
-            ),),
+            child: Builder(
+              builder: (context) => IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: Icon(
+                  Icons.arrow_back_ios_rounded,
+                  size: 12.sp,
+                ),
+              ),
+            ),
           ),
         ),
         backgroundColor: Colors.black,
-        title: Text("My Goals", style: TextStyle(fontSize: 16.sp),),
+        title: Text(
+          "My Goals",
+          style: TextStyle(fontSize: 16.sp),
+        ),
         actions: [
-          Icon(Icons.more_horiz, size: 24.sp,),
-          SizedBox(width: 5.sp,),
+          Icon(
+            Icons.more_horiz,
+            size: 24.sp,
+          ),
+          SizedBox(
+            width: 5.sp,
+          ),
         ],
       ),
       body: Container(
@@ -48,23 +62,54 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            SizedBox(height: 2.h,),
+            SizedBox(
+              height: 2.h,
+            ),
             ListTile(
-              title: Text("Quit the Nicotine", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 17.sp),),
+              title: Text(
+                "Quit the Nicotine",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 17.sp),
+              ),
               subtitle: Container(
                 margin: EdgeInsets.only(top: 1.h, right: 10.w),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("120 Day", style: TextStyle(color: Color(0xffF8DB08), fontWeight: FontWeight.w400, fontSize: 12.sp),),
-                    Text("10 min", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 12.sp),),
-                    Text("150 Points", style: TextStyle(color: kSignupColor, fontWeight: FontWeight.w400, fontSize: 12.sp),),
+                    Text(
+                      "120 Day",
+                      style: TextStyle(
+                          color: Color(0xffF8DB08),
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12.sp),
+                    ),
+                    Text(
+                      "10 min",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12.sp),
+                    ),
+                    Text(
+                      "150 Points",
+                      style: TextStyle(
+                          color: kSignupColor,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12.sp),
+                    ),
                   ],
                 ),
               ),
               trailing: GestureDetector(
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => CalenderScreen(show_appbar: true,)));
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CalenderScreen(
+                                show_appbar: true,
+                              )));
                 },
                 child: Container(
                   // margin: EdgeInsets.only(right: 3.w),
@@ -72,17 +117,23 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
                   width: 11.w,
                   decoration: BoxDecoration(
                       color: Color(0xffF8DB08),
-                      borderRadius: BorderRadius.circular(100)
+                      borderRadius: BorderRadius.circular(100)),
+                  child: Image.asset(
+                    "assets/Calendar2.png",
                   ),
-                  child: Image.asset("assets/Calendar2.png",),
                 ),
               ),
             ),
-            SizedBox(height: 2.h,),
+            SizedBox(
+              height: 2.h,
+            ),
             TimelineTile(
               indicatorStyle: IndicatorStyle(
                 color: kSigninColor,
-                iconStyle: IconStyle(color: Colors.black, iconData: Icons.circle, fontSize: 11.sp),
+                iconStyle: IconStyle(
+                    color: Colors.black,
+                    iconData: Icons.circle,
+                    fontSize: 11.sp),
               ),
               afterLineStyle: LineStyle(color: kSigninColor),
               beforeLineStyle: LineStyle(color: kSigninColor),
@@ -96,11 +147,12 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
                     showDialog<String>(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
-                        // alignment: Alignment.bottomCenter,
+                          // alignment: Alignment.bottomCenter,
                           backgroundColor: kLightColor,
                           titlePadding: EdgeInsets.all(0),
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(20))),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20))),
                           title: GestureDetector(
                             onTap: () => Navigator.pop(context),
                             child: Container(
@@ -109,8 +161,8 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
                               decoration: BoxDecoration(
                                   color: kLightColor,
                                   borderRadius: BorderRadius.circular(20),
-                                  border: Border.all(color: kSignupColor, width: 1.sp)
-                              ),
+                                  border: Border.all(
+                                      color: kSignupColor, width: 1.sp)),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -118,15 +170,31 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
                                   Container(
                                     height: 8.h,
                                     width: 16.w,
-                                    child: Image.asset("assets/activitey.png", fit: BoxFit.fill,),
+                                    child: Image.asset(
+                                      "assets/activitey.png",
+                                      fit: BoxFit.fill,
+                                    ),
                                   ),
-                                  Text("Your Earn 10 Points", style: TextStyle(color: kSigninColor, fontSize: 12.sp, fontWeight: FontWeight.w500, height: 2),),
-                                  Text("Cancel", style: TextStyle(color: Colors.white, fontSize: 11.sp, fontWeight: FontWeight.w400, height: 2),),
+                                  Text(
+                                    "Your Earn 10 Points",
+                                    style: TextStyle(
+                                        color: kSigninColor,
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w500,
+                                        height: 2),
+                                  ),
+                                  Text(
+                                    "Cancel",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 11.sp,
+                                        fontWeight: FontWeight.w400,
+                                        height: 2),
+                                  ),
                                 ],
                               ),
                             ),
-                          )
-                      ),
+                          )),
                     );
                     // _animationController.reset();
                     // _animationController.forward();
@@ -135,8 +203,7 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
                     decoration: BoxDecoration(
                         color: kLightColor,
                         borderRadius: BorderRadius.circular(15),
-                        border: Border.all(width: 1.sp, color: kSigninColor)
-                    ),
+                        border: Border.all(width: 1.sp, color: kSigninColor)),
                     constraints: BoxConstraints(
                       minHeight: 10.h,
                     ),
@@ -148,22 +215,50 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
                         children: [
                           Container(
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("Quit Nicotine", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 13.sp),),
-                                Icon(Icons.more_vert_rounded, color: Colors.white,)
+                                Text(
+                                  "Quit Nicotine",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 13.sp),
+                                ),
+                                Icon(
+                                  Icons.more_vert_rounded,
+                                  color: Colors.white,
+                                )
                               ],
                             ),
                           ),
-                          Text("Complete  10 Points", style: TextStyle(color: kSigninColor, fontWeight: FontWeight.w300, fontSize: 10.sp, height: 1.3),),
+                          Text(
+                            "Complete  10 Points",
+                            style: TextStyle(
+                                color: kSigninColor,
+                                fontWeight: FontWeight.w300,
+                                fontSize: 10.sp,
+                                height: 1.3),
+                          ),
                           // SizedBox(height: 5.sp,),
                           Container(
-                            margin: EdgeInsets.only(top: 10.sp,),
+                            margin: EdgeInsets.only(
+                              top: 10.sp,
+                            ),
                             // width: 60.w,
                             child: Row(
                               children: [
-                                Icon(Icons.access_time, color: kSignupColor, size: 14.sp,),
-                                Text("  25 June, 2021", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w300, fontSize: 10.sp),),
+                                Icon(
+                                  Icons.access_time,
+                                  color: kSignupColor,
+                                  size: 14.sp,
+                                ),
+                                Text(
+                                  "  25 June, 2021",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 10.sp),
+                                ),
                               ],
                             ),
                           ),
@@ -175,13 +270,24 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
               ),
               startChild: Container(
                 // color: Colors.amberAccent,
-                child: Center(child: Text("Day 1", style: TextStyle(color: kSigninColor, fontWeight: FontWeight.w600, fontSize: 11.sp, height: 2),)),
+                child: Center(
+                    child: Text(
+                  "Day 1",
+                  style: TextStyle(
+                      color: kSigninColor,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 11.sp,
+                      height: 2),
+                )),
               ),
             ),
             TimelineTile(
               indicatorStyle: IndicatorStyle(
                 color: kSigninColor,
-                iconStyle: IconStyle(color: Colors.black, iconData: Icons.circle, fontSize: 11.sp),
+                iconStyle: IconStyle(
+                    color: Colors.black,
+                    iconData: Icons.circle,
+                    fontSize: 11.sp),
               ),
               afterLineStyle: LineStyle(color: kSigninColor),
               beforeLineStyle: LineStyle(color: kSigninColor),
@@ -195,11 +301,12 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
                     showDialog<String>(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
-                        // alignment: Alignment.bottomCenter,
+                          // alignment: Alignment.bottomCenter,
                           backgroundColor: kLightColor,
                           titlePadding: EdgeInsets.all(0),
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(20))),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20))),
                           title: GestureDetector(
                             onTap: () => Navigator.pop(context),
                             child: Container(
@@ -208,8 +315,8 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
                               decoration: BoxDecoration(
                                   color: kLightColor,
                                   borderRadius: BorderRadius.circular(20),
-                                  border: Border.all(color: kSignupColor, width: 1.sp)
-                              ),
+                                  border: Border.all(
+                                      color: kSignupColor, width: 1.sp)),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -217,15 +324,31 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
                                   Container(
                                     height: 8.h,
                                     width: 16.w,
-                                    child: Image.asset("assets/activitey.png", fit: BoxFit.fill,),
+                                    child: Image.asset(
+                                      "assets/activitey.png",
+                                      fit: BoxFit.fill,
+                                    ),
                                   ),
-                                  Text("Your Earn 10 Points", style: TextStyle(color: kSigninColor, fontSize: 12.sp, fontWeight: FontWeight.w500, height: 2),),
-                                  Text("Cancel", style: TextStyle(color: Colors.white, fontSize: 11.sp, fontWeight: FontWeight.w400, height: 2),),
+                                  Text(
+                                    "Your Earn 10 Points",
+                                    style: TextStyle(
+                                        color: kSigninColor,
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w500,
+                                        height: 2),
+                                  ),
+                                  Text(
+                                    "Cancel",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 11.sp,
+                                        fontWeight: FontWeight.w400,
+                                        height: 2),
+                                  ),
                                 ],
                               ),
                             ),
-                          )
-                      ),
+                          )),
                     );
                     // _animationController.reset();
                     // _animationController.forward();
@@ -234,8 +357,7 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
                     decoration: BoxDecoration(
                         color: kLightColor,
                         borderRadius: BorderRadius.circular(15),
-                        border: Border.all(width: 1.sp, color: kSigninColor)
-                    ),
+                        border: Border.all(width: 1.sp, color: kSigninColor)),
                     constraints: BoxConstraints(
                       minHeight: 10.h,
                     ),
@@ -247,22 +369,50 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
                         children: [
                           Container(
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("Quit Nicotine", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 13.sp),),
-                                Icon(Icons.more_vert_rounded, color: Colors.white,)
+                                Text(
+                                  "Quit Nicotine",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 13.sp),
+                                ),
+                                Icon(
+                                  Icons.more_vert_rounded,
+                                  color: Colors.white,
+                                )
                               ],
                             ),
                           ),
-                          Text("Complete  10 Points", style: TextStyle(color: kSigninColor, fontWeight: FontWeight.w300, fontSize: 10.sp, height: 1.3),),
+                          Text(
+                            "Complete  10 Points",
+                            style: TextStyle(
+                                color: kSigninColor,
+                                fontWeight: FontWeight.w300,
+                                fontSize: 10.sp,
+                                height: 1.3),
+                          ),
                           // SizedBox(height: 5.sp,),
                           Container(
-                            margin: EdgeInsets.only(top: 10.sp,),
+                            margin: EdgeInsets.only(
+                              top: 10.sp,
+                            ),
                             // width: 60.w,
                             child: Row(
                               children: [
-                                Icon(Icons.access_time, color: kSignupColor, size: 14.sp,),
-                                Text("  25 June, 2021", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w300, fontSize: 10.sp),),
+                                Icon(
+                                  Icons.access_time,
+                                  color: kSignupColor,
+                                  size: 14.sp,
+                                ),
+                                Text(
+                                  "  25 June, 2021",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 10.sp),
+                                ),
                               ],
                             ),
                           ),
@@ -274,13 +424,24 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
               ),
               startChild: Container(
                 // color: Colors.amberAccent,
-                child: Center(child: Text("Day 1", style: TextStyle(color: kSigninColor, fontWeight: FontWeight.w600, fontSize: 11.sp, height: 2),)),
+                child: Center(
+                    child: Text(
+                  "Day 1",
+                  style: TextStyle(
+                      color: kSigninColor,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 11.sp,
+                      height: 2),
+                )),
               ),
             ),
             TimelineTile(
               indicatorStyle: IndicatorStyle(
                 color: kSigninColor,
-                iconStyle: IconStyle(color: Colors.black, iconData: Icons.circle, fontSize: 11.sp),
+                iconStyle: IconStyle(
+                    color: Colors.black,
+                    iconData: Icons.circle,
+                    fontSize: 11.sp),
               ),
               afterLineStyle: LineStyle(color: kSigninColor),
               beforeLineStyle: LineStyle(color: kSigninColor),
@@ -294,11 +455,12 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
                     showDialog<String>(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
-                        // alignment: Alignment.bottomCenter,
+                          // alignment: Alignment.bottomCenter,
                           backgroundColor: kLightColor,
                           titlePadding: EdgeInsets.all(0),
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(20))),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20))),
                           title: GestureDetector(
                             onTap: () => Navigator.pop(context),
                             child: Container(
@@ -307,8 +469,8 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
                               decoration: BoxDecoration(
                                   color: kLightColor,
                                   borderRadius: BorderRadius.circular(20),
-                                  border: Border.all(color: kSignupColor, width: 1.sp)
-                              ),
+                                  border: Border.all(
+                                      color: kSignupColor, width: 1.sp)),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -316,15 +478,31 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
                                   Container(
                                     height: 8.h,
                                     width: 16.w,
-                                    child: Image.asset("assets/activitey.png", fit: BoxFit.fill,),
+                                    child: Image.asset(
+                                      "assets/activitey.png",
+                                      fit: BoxFit.fill,
+                                    ),
                                   ),
-                                  Text("Your Earn 10 Points", style: TextStyle(color: kSigninColor, fontSize: 12.sp, fontWeight: FontWeight.w500, height: 2),),
-                                  Text("Cancel", style: TextStyle(color: Colors.white, fontSize: 11.sp, fontWeight: FontWeight.w400, height: 2),),
+                                  Text(
+                                    "Your Earn 10 Points",
+                                    style: TextStyle(
+                                        color: kSigninColor,
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w500,
+                                        height: 2),
+                                  ),
+                                  Text(
+                                    "Cancel",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 11.sp,
+                                        fontWeight: FontWeight.w400,
+                                        height: 2),
+                                  ),
                                 ],
                               ),
                             ),
-                          )
-                      ),
+                          )),
                     );
                     // _animationController.reset();
                     // _animationController.forward();
@@ -333,8 +511,7 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
                     decoration: BoxDecoration(
                         color: kLightColor,
                         borderRadius: BorderRadius.circular(15),
-                        border: Border.all(width: 1.sp, color: kSigninColor)
-                    ),
+                        border: Border.all(width: 1.sp, color: kSigninColor)),
                     constraints: BoxConstraints(
                       minHeight: 10.h,
                     ),
@@ -346,22 +523,50 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
                         children: [
                           Container(
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("Quit Nicotine", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 13.sp),),
-                                Icon(Icons.more_vert_rounded, color: Colors.white,)
+                                Text(
+                                  "Quit Nicotine",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 13.sp),
+                                ),
+                                Icon(
+                                  Icons.more_vert_rounded,
+                                  color: Colors.white,
+                                )
                               ],
                             ),
                           ),
-                          Text("Complete  10 Points", style: TextStyle(color: kSigninColor, fontWeight: FontWeight.w300, fontSize: 10.sp, height: 1.3),),
+                          Text(
+                            "Complete  10 Points",
+                            style: TextStyle(
+                                color: kSigninColor,
+                                fontWeight: FontWeight.w300,
+                                fontSize: 10.sp,
+                                height: 1.3),
+                          ),
                           // SizedBox(height: 5.sp,),
                           Container(
-                            margin: EdgeInsets.only(top: 10.sp,),
+                            margin: EdgeInsets.only(
+                              top: 10.sp,
+                            ),
                             // width: 60.w,
                             child: Row(
                               children: [
-                                Icon(Icons.access_time, color: kSignupColor, size: 14.sp,),
-                                Text("  25 June, 2021", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w300, fontSize: 10.sp),),
+                                Icon(
+                                  Icons.access_time,
+                                  color: kSignupColor,
+                                  size: 14.sp,
+                                ),
+                                Text(
+                                  "  25 June, 2021",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 10.sp),
+                                ),
                               ],
                             ),
                           ),
@@ -373,13 +578,24 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
               ),
               startChild: Container(
                 // color: Colors.amberAccent,
-                child: Center(child: Text("Day 1", style: TextStyle(color: kSigninColor, fontWeight: FontWeight.w600, fontSize: 11.sp, height: 2),)),
+                child: Center(
+                    child: Text(
+                  "Day 1",
+                  style: TextStyle(
+                      color: kSigninColor,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 11.sp,
+                      height: 2),
+                )),
               ),
             ),
             TimelineTile(
               indicatorStyle: IndicatorStyle(
                 color: kSigninColor,
-                iconStyle: IconStyle(color: Colors.black, iconData: Icons.circle, fontSize: 11.sp),
+                iconStyle: IconStyle(
+                    color: Colors.black,
+                    iconData: Icons.circle,
+                    fontSize: 11.sp),
               ),
               afterLineStyle: LineStyle(color: kSigninColor),
               beforeLineStyle: LineStyle(color: kSigninColor),
@@ -393,11 +609,12 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
                     showDialog<String>(
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
-                        // alignment: Alignment.bottomCenter,
+                          // alignment: Alignment.bottomCenter,
                           backgroundColor: kLightColor,
                           titlePadding: EdgeInsets.all(0),
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(20))),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20))),
                           title: GestureDetector(
                             onTap: () => Navigator.pop(context),
                             child: Container(
@@ -406,8 +623,8 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
                               decoration: BoxDecoration(
                                   color: kLightColor,
                                   borderRadius: BorderRadius.circular(20),
-                                  border: Border.all(color: kSignupColor, width: 1.sp)
-                              ),
+                                  border: Border.all(
+                                      color: kSignupColor, width: 1.sp)),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -415,15 +632,31 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
                                   Container(
                                     height: 8.h,
                                     width: 16.w,
-                                    child: Image.asset("assets/activitey.png", fit: BoxFit.fill,),
+                                    child: Image.asset(
+                                      "assets/activitey.png",
+                                      fit: BoxFit.fill,
+                                    ),
                                   ),
-                                  Text("Your Earn 10 Points", style: TextStyle(color: kSigninColor, fontSize: 12.sp, fontWeight: FontWeight.w500, height: 2),),
-                                  Text("Cancel", style: TextStyle(color: Colors.white, fontSize: 11.sp, fontWeight: FontWeight.w400, height: 2),),
+                                  Text(
+                                    "Your Earn 10 Points",
+                                    style: TextStyle(
+                                        color: kSigninColor,
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w500,
+                                        height: 2),
+                                  ),
+                                  Text(
+                                    "Cancel",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 11.sp,
+                                        fontWeight: FontWeight.w400,
+                                        height: 2),
+                                  ),
                                 ],
                               ),
                             ),
-                          )
-                      ),
+                          )),
                     );
                     // _animationController.reset();
                     // _animationController.forward();
@@ -432,8 +665,7 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
                     decoration: BoxDecoration(
                         color: kLightColor,
                         borderRadius: BorderRadius.circular(15),
-                        border: Border.all(width: 1.sp, color: kSigninColor)
-                    ),
+                        border: Border.all(width: 1.sp, color: kSigninColor)),
                     constraints: BoxConstraints(
                       minHeight: 10.h,
                     ),
@@ -445,22 +677,50 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
                         children: [
                           Container(
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("Quit Nicotine", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 13.sp),),
-                                Icon(Icons.more_vert_rounded, color: Colors.white,)
+                                Text(
+                                  "Quit Nicotine",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 13.sp),
+                                ),
+                                Icon(
+                                  Icons.more_vert_rounded,
+                                  color: Colors.white,
+                                )
                               ],
                             ),
                           ),
-                          Text("In Process", style: TextStyle(color: kSigninColor, fontWeight: FontWeight.w300, fontSize: 10.sp, height: 1.3),),
+                          Text(
+                            "In Process",
+                            style: TextStyle(
+                                color: kSigninColor,
+                                fontWeight: FontWeight.w300,
+                                fontSize: 10.sp,
+                                height: 1.3),
+                          ),
                           // SizedBox(height: 5.sp,),
                           Container(
-                            margin: EdgeInsets.only(top: 10.sp,),
+                            margin: EdgeInsets.only(
+                              top: 10.sp,
+                            ),
                             // width: 60.w,
                             child: Row(
                               children: [
-                                Icon(Icons.access_time, color: kSignupColor, size: 14.sp,),
-                                Text("  25 June, 2021", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w300, fontSize: 10.sp),),
+                                Icon(
+                                  Icons.access_time,
+                                  color: kSignupColor,
+                                  size: 14.sp,
+                                ),
+                                Text(
+                                  "  25 June, 2021",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 10.sp),
+                                ),
                               ],
                             ),
                           ),
@@ -472,28 +732,47 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
               ),
               startChild: Container(
                 // color: Colors.amberAccent,
-                child: Center(child: Text("Day 1", style: TextStyle(color: kSigninColor, fontWeight: FontWeight.w600, fontSize: 11.sp, height: 2),)),
+                child: Center(
+                    child: Text(
+                  "Day 1",
+                  style: TextStyle(
+                      color: kSigninColor,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 11.sp,
+                      height: 2),
+                )),
               ),
             ),
-
             Spacer(),
             Container(
               height: 7.h,
               width: 65.w,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15)
-              ),
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(15)),
               child: RaisedButton(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15)),
                 color: kSignupColor,
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => TodayActivity(),),);
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => TodayActivity(),
+                    ),
+                  );
                 },
-                child: Text("Uplaod Today Activity", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 15.sp),),
+                child: Text(
+                  "Uplaod Today Activity",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 15.sp),
+                ),
               ),
             ),
-            SizedBox(height: 4.h,),
+            SizedBox(
+              height: 4.h,
+            ),
           ],
         ),
       ),

@@ -22,7 +22,7 @@ class BulletList extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 12.sp,
                   fontWeight: FontWeight.w500,
-                  color: Colors.white,
+                  color: Colors.black,
                   // height: 1.55,
                 ),
               ),
@@ -37,7 +37,7 @@ class BulletList extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w300,
-                      color: Colors.white,
+                      color: Colors.black,
                       // height: 1.55,
                     ),
                   ),

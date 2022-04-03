@@ -3,24 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:nicotine/Constant.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../models/Post.dart';
 import '../post_detail_screen.dart';
 
 class PostesCard extends StatelessWidget {
-  const PostesCard({Key? key}) : super(key: key);
+  final Post thisPost;
+  const PostesCard({required this.thisPost, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => PostDetailScreen(),),);
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => PostDetailScreen(thisPost: thisPost),
+          ),
+        );
       },
       child: Container(
         margin: EdgeInsets.only(left: 3.w, right: 3.w, top: 3.h),
         width: 94.w,
         decoration: BoxDecoration(
-          color: kLightColor,
-          borderRadius: BorderRadius.circular(20)
-        ),
+            color: kLightColor, borderRadius: BorderRadius.circular(20)),
         child: Column(
           children: [
             Container(
@@ -34,16 +39,39 @@ class PostesCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Color(0xffD3D3D3),
                     borderRadius: BorderRadius.circular(100),
+                    image: DecorationImage(
+                        image: NetworkImage(
+                          thisPost.user!.userImage!,
+                        ),
+                        fit: BoxFit.fill),
                   ),
                 ),
-                title: Text("Jason Momoa", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 14.sp, height: 1.4),),
-                subtitle: Text("Posted by Alex Ethan", style: TextStyle(color: Colors.black45, fontWeight: FontWeight.w400, fontSize: 10.sp, height: 1.4),),
+                title: Text(
+                  thisPost.user!.userName!,
+                  // "Jason Momoa",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14.sp,
+                      height: 1.4),
+                ),
+                subtitle: Text(
+                  "Posted by ${thisPost.user!.userEmail!}",
+                  style: TextStyle(
+                      color: Colors.black45,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 10.sp,
+                      height: 1.4),
+                ),
               ),
             ),
             Container(
               width: 85.w,
-              child: Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-              style: TextStyle(color: Colors.white, fontSize: 11.sp, height: 1.4),
+              child: Text(
+                thisPost.postDescription!,
+                // "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                style: TextStyle(
+                    color: Colors.white, fontSize: 11.sp, height: 1.4),
               ),
             ),
             Container(
@@ -51,16 +79,20 @@ class PostesCard extends StatelessWidget {
               height: 22.h,
               width: 85.w,
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20)
-              ),
+                  color: Colors.white, borderRadius: BorderRadius.circular(20)),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
-                child: Image.asset("assets/Mask.png", fit: BoxFit.fill,),
+                child: Image.network(
+                  thisPost.postImage!,
+                  // "assets/Mask.png",
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 1.5.h,),
+              margin: EdgeInsets.only(
+                top: 1.5.h,
+              ),
               decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(width: 0.5.sp, color: Colors.white),
@@ -73,13 +105,42 @@ class PostesCard extends StatelessWidget {
                     Container(
                         height: 3.h,
                         width: 6.w,
-                        child: Image.asset("assets/Facebook Like.png", fit: BoxFit.fill,)),
-                    Text("4,341", style: TextStyle(color: Colors.white, fontSize: 10.sp,),),
-                    SizedBox(width: 10.w,),
-                    Icon(Icons.sms_outlined, size: 22.sp, color: Colors.white,),
-                    Text("341", style: TextStyle(color: Colors.white, fontSize: 10.sp,),),
-                    SizedBox(width: 10.w,),
-                    Icon(Icons.share_rounded, color: Colors.white, size: 22.sp,)
+                        child: Image.asset(
+                          "assets/Facebook Like.png",
+                          fit: BoxFit.fill,
+                        )),
+                    Text(
+                      thisPost.postLikes!.length.toString(),
+                      // "4,341",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 10.sp,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                    Icon(
+                      Icons.sms_outlined,
+                      size: 22.sp,
+                      color: Colors.white,
+                    ),
+                    Text(
+                      thisPost.postComments!.length.toString(),
+                      // "341",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 10.sp,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10.w,
+                    ),
+                    Icon(
+                      Icons.share_rounded,
+                      color: Colors.white,
+                      size: 22.sp,
+                    )
                   ],
                 ),
               ),

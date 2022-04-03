@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nicotine/Screens/Components/snackBar.dart';
+import 'package:nicotine/models/User.dart';
 import 'package:sizer/sizer.dart';
 
 import '../Constant.dart';
+import '../blocs/User/user_bloc.dart';
+import '../resources/firebase_services/OnBoardingFirestoreService.dart';
+import '../utils/validators.dart';
+import 'Home Screens/dash_bord.dart';
 import 'discription_screen.dart';
 import 'login_screen.dart';
 
@@ -25,7 +32,7 @@ class _SignupScreenState extends State<SignupScreen> {
       body: Container(
         height: 100.h,
         width: 100.w,
-        color: Colors.black,
+        color: Colors.white,
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
@@ -83,11 +90,11 @@ class _SignupScreenState extends State<SignupScreen> {
                             width: 80.w,
                             // color: Colors.purple,
                             child: Text(
-                              "Enter your name",
+                              "Your name",
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14),
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
                             ),
                           ),
                           Container(
@@ -100,10 +107,13 @@ class _SignupScreenState extends State<SignupScreen> {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter name';
                                 }
+                                if (value.length < 4) {
+                                  return 'Please enter a valid full name';
+                                }
                                 return null;
                               },
                               controller: name,
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: Colors.black),
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.emailAddress,
                               // validator: ,
@@ -139,11 +149,11 @@ class _SignupScreenState extends State<SignupScreen> {
                             width: 80.w,
                             // color: Colors.purple,
                             child: Text(
-                              "Enter your email",
+                              "Your email",
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14),
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
                             ),
                           ),
                           Container(
@@ -156,10 +166,13 @@ class _SignupScreenState extends State<SignupScreen> {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter Email';
                                 }
+                                if (!validateStructureEmail(value)) {
+                                  return "Please enter an email with correct format";
+                                }
                                 return null;
                               },
                               controller: email,
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: Colors.black),
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.emailAddress,
                               // validator: ,
@@ -176,13 +189,19 @@ class _SignupScreenState extends State<SignupScreen> {
                                 ),
                                 suffixIcon: Icon(
                                   Icons.check,
-                                  color: kSignupColor,
+                                  color: validateStructureEmail(email.text) &&
+                                          email.text.isNotEmpty
+                                      ? kSignupColor
+                                      : Colors.white,
                                 ),
                                 prefixIcon: Icon(
                                   Icons.email_outlined,
                                   color: kSignupColor,
                                 ),
                               ),
+                              onChanged: (value) {
+                                setState(() {});
+                              },
                             ),
                           ),
                         ],
@@ -201,9 +220,9 @@ class _SignupScreenState extends State<SignupScreen> {
                             child: Text(
                               "Password",
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14),
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
                             ),
                           ),
                           Container(
@@ -216,10 +235,13 @@ class _SignupScreenState extends State<SignupScreen> {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter Password';
                                 }
+                                if (!validateStructurePassword(value)) {
+                                  return "Correct format: at least 1 uppercase, 1 number and 1 special character";
+                                }
                                 return null;
                               },
                               controller: password,
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: Colors.black),
                               textInputAction: TextInputAction.next,
                               obscureText: obscureShow,
                               decoration: InputDecoration(
@@ -261,37 +283,75 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
               ),
               SizedBox(height: 4.h),
-              Container(
-                height: 7.h,
-                width: 90.w,
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(10)),
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  color: kSignupColor,
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DiscriptionScreen()));
-                    }
-                  },
-                  child: Text(
-                    "Create Account",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16.sp),
-                  ),
-                ),
+              BlocConsumer<UserBloc, UserState>(
+                listener: (context, state) {
+                  if (state is UserShowQuestions) {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DiscriptionScreen()));
+                  }
+                  if (state is LogInError) {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(showSnackbar(state.error.toString()));
+                    BlocProvider.of<UserBloc>(context).add(InitialStatePush());
+                  }
+                  if (state is UserLoggedIn) {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => DashBord()));
+                  }
+                },
+                builder: (context, state) {
+                  if (!(state is UserLoading)) {
+                    return Container(
+                      height: 7.h,
+                      width: 90.w,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10)),
+                      child: RaisedButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        color: kSignupColor,
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            BlocProvider.of<UserBloc>(context).add(SignUp(
+                                email: email.text,
+                                fullName: name.text,
+                                password: password.text));
+                          } else {
+                            print("Error in Validation");
+                          }
+                        },
+                        child: Text(
+                          "Create Account",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16.sp),
+                        ),
+                      ),
+                    );
+                  } else {
+                    return Container(
+                      height: 7.h,
+                      width: 90.w,
+                      color: Colors.white,
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          valueColor:
+                              new AlwaysStoppedAnimation<Color>(kSignupColor),
+                          // color: theme.primaryColor,
+                        ),
+                      ),
+                    );
+                  }
+                },
               ),
               Container(
                 margin: EdgeInsets.only(top: 2.h),
                 child: Text(
                   "Or Sign Up with",
-                  style: TextStyle(color: Colors.white, fontSize: 12.sp),
+                  style: TextStyle(color: Colors.black, fontSize: 12.sp),
                 ),
               ),
               SizedBox(
@@ -306,7 +366,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 child: RaisedButton(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
-                  color: Colors.black,
+                  color: Colors.white,
                   onPressed: () {},
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -325,7 +385,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                       Text(
                         "Google",
-                        style: TextStyle(color: Colors.white, fontSize: 13.sp),
+                        style: TextStyle(color: Colors.black, fontSize: 13.sp),
                       )
                     ],
                   ),
@@ -343,7 +403,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 child: RaisedButton(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
-                  color: Colors.black,
+                  color: Colors.white,
                   onPressed: () {},
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -362,7 +422,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                       Text(
                         "Facebook",
-                        style: TextStyle(color: Colors.white, fontSize: 13.sp),
+                        style: TextStyle(color: Colors.black, fontSize: 13.sp),
                       )
                     ],
                   ),
@@ -373,13 +433,13 @@ class _SignupScreenState extends State<SignupScreen> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
+                  Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => LoginScreen()));
                 },
                 child: RichText(
                   text: TextSpan(
                     text: 'You have an account? ',
-                    style: TextStyle(fontSize: 18, color: Colors.white),
+                    style: TextStyle(fontSize: 18, color: Colors.black),
                     children: [
                       TextSpan(
                           text: 'Login',

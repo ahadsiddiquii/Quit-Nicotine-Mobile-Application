@@ -14,7 +14,7 @@ class DiscriptionScreen extends StatelessWidget {
       body: Container(
         height: 100.h,
         width: 100.w,
-        color: Colors.black,
+        color: Colors.white,
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
@@ -52,21 +52,40 @@ class DiscriptionScreen extends StatelessWidget {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 15.sp),
                 child: Text(
-                  "Out with the old and in with the new.\nThe brand new way to Let your nicotine addiction go. It’s a unique Solution that can take 120 days to reduce the nicotine you smoke by 100%. This is a solution to your nicotine cravings. It’s an on line programme for those who want to give up smoking nicotine, but feel the need to continue to smoke until they are ready to let go. There’s no need to go cold Turkey. There’s no need to feel anxious, or depressed at the thought of losing your personality. QN4L is a brand new habit. It’s a lifestyle change that helps with your health wealth and self. And helps you release the nicotine addiction. That has  become a curse and taken over your life.", textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.white, fontSize: 12.sp, height: 1.4,),
+                  "Out with the old and in with the new.\nThe brand new way to Let your nicotine addiction go. It’s a unique Solution that can take 120 days to reduce the nicotine you smoke by 100%. This is a solution to your nicotine cravings. It’s an on line programme for those who want to give up smoking nicotine, but feel the need to continue to smoke until they are ready to let go. There’s no need to go cold Turkey. There’s no need to feel anxious, or depressed at the thought of losing your personality. QN4L is a brand new habit. It’s a lifestyle change that helps with your health wealth and self. And helps you release the nicotine addiction. That has  become a curse and taken over your life.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 12.sp,
+                    height: 1.4,
+                  ),
                 ),
               ),
               Container(
                 margin: EdgeInsets.only(top: 3.h),
-                child: Text("FILL IN OUR QUESTIONNAIRE 4 LIFE.", style: TextStyle(color: kSignupColor, fontWeight: FontWeight.w600, fontSize: 14.sp),),
+                child: Text(
+                  "FILL IN OUR QUESTIONNAIRE 4 LIFE.",
+                  style: TextStyle(
+                      color: kSignupColor,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14.sp),
+                ),
               ),
               Container(
                 margin: EdgeInsets.only(top: 1.h),
-                child: Text("It’s one step at a time.", style: TextStyle(color: Colors.white, fontSize: 13.sp),),
+                child: Text(
+                  "It’s one step at a time.",
+                  style: TextStyle(color: Colors.black, fontSize: 13.sp),
+                ),
               ),
               GestureDetector(
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => QuestionnaireScreen(),),);
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => QuestionnaireScreen(),
+                    ),
+                  );
                 },
                 child: Container(
                   child: Image.asset("assets/logo2.png"),
@@ -74,7 +93,13 @@ class DiscriptionScreen extends StatelessWidget {
               ),
               Container(
                 margin: EdgeInsets.only(top: 1.h),
-                child: Text("Join our community.", style: TextStyle(color: Colors.white, fontSize: 13.sp, fontWeight: FontWeight.w300),),
+                child: Text(
+                  "Join our community.",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w300),
+                ),
               )
             ],
           ),

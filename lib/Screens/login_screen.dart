@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nicotine/Constant.dart';
 import 'package:nicotine/Screens/signup_screen.dart';
+import 'package:nicotine/blocs/User/user_bloc.dart';
+import 'package:nicotine/resources/firebase_services/OnBoardingFirestoreService.dart';
 import 'package:sizer/sizer.dart';
 
 import '../resources/providers/LoginProvider.dart';
+import '../utils/validators.dart';
+import 'Components/snackBar.dart';
 import 'Home Screens/dash_bord.dart';
+import 'discription_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -25,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Container(
         height: 100.h,
         width: 100.w,
-        color: Colors.black,
+        color: Colors.white,
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
@@ -87,9 +93,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Text(
                               "Email",
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14),
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
                             ),
                           ),
                           Container(
@@ -102,10 +108,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter Email';
                                 }
+                                if (!validateStructureEmail(value)) {
+                                  return "Please enter an email with correct format";
+                                }
                                 return null;
                               },
                               controller: email,
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: Colors.black),
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.emailAddress,
                               // validator: ,
@@ -125,13 +134,17 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                                 suffixIcon: Icon(
                                   Icons.check,
-                                  color: Color(0xff599E48),
+                                  color: validateStructureEmail(email.text) &&
+                                          email.text.isNotEmpty
+                                      ? Color(0xff599E48)
+                                      : Colors.white,
                                 ),
-                                prefixIcon: Icon(
-                                  Icons.email_outlined,
-                                  color: Color(0xff599E48),
-                                ),
+                                prefixIcon: Icon(Icons.email_outlined,
+                                    color: Color(0xff599E48)),
                               ),
+                              onChanged: (value) {
+                                setState(() {});
+                              },
                             ),
                           ),
                         ],
@@ -150,9 +163,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Text(
                               "Password",
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14),
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
                             ),
                           ),
                           Container(
@@ -165,10 +178,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter Password';
                                 }
+                                if (!validateStructurePassword(value)) {
+                                  return "Correct format: at least 1 uppercase, 1 number and 1 special character";
+                                }
                                 return null;
                               },
                               controller: password,
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: Colors.black),
                               textInputAction: TextInputAction.next,
                               obscureText: obscureShow,
                               decoration: InputDecoration(
@@ -210,39 +226,77 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               SizedBox(height: 4.h),
-              Container(
-                height: 8.h,
-                width: 90.w,
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(10)),
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  color: kSigninColor,
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      Navigator.push(
+              BlocConsumer<UserBloc, UserState>(
+                listener: (context, state) {
+                  if (state is UserShowQuestions) {
+                    Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => DashBord(),
+                            builder: (context) => DiscriptionScreen()));
+                  }
+                  if (state is LogInError) {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(showSnackbar(state.error.toString()));
+                    BlocProvider.of<UserBloc>(context).add(InitialStatePush());
+                  }
+                  if (state is UserLoggedIn) {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => DashBord()));
+                  }
+                },
+                builder: (context, state) {
+                  if (!(state is UserLoading)) {
+                    return Container(
+                      height: 8.h,
+                      width: 90.w,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10)),
+                      child: RaisedButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        color: kSigninColor,
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            BlocProvider.of<UserBloc>(context).add(SignIn(
+                                email: email.text, password: password.text));
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) => DashBord(),
+                            //   ),
+                            // );
+                          }
+                        },
+                        child: Text(
+                          "Login",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16.sp),
                         ),
-                      );
-                    }
-                  },
-                  child: Text(
-                    "Login",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16.sp),
-                  ),
-                ),
+                      ),
+                    );
+                  } else {
+                    return Container(
+                      height: 7.h,
+                      width: 90.w,
+                      color: Colors.white,
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          valueColor: new AlwaysStoppedAnimation<Color>(
+                              Color(0xff599E48)),
+                          // color: theme.primaryColor,
+                        ),
+                      ),
+                    );
+                  }
+                },
               ),
               Container(
                 margin: EdgeInsets.only(top: 3.h),
                 child: Text(
                   "Or Login with",
-                  style: TextStyle(color: Colors.white, fontSize: 14.sp),
+                  style: TextStyle(color: Colors.black, fontSize: 14.sp),
                 ),
               ),
               SizedBox(
@@ -257,7 +311,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: RaisedButton(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
-                  color: Colors.black,
+                  color: Colors.white,
                   onPressed: () {
                     loginViaGoogle(context);
                   },
@@ -278,7 +332,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       Text(
                         "Google",
-                        style: TextStyle(color: Colors.white, fontSize: 13.sp),
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.normal),
                       )
                     ],
                   ),
@@ -296,7 +353,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: RaisedButton(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
-                  color: Colors.black,
+                  color: Colors.white,
                   onPressed: () {
                     loginViaFacebook();
                   },
@@ -317,7 +374,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       Text(
                         "Facebook",
-                        style: TextStyle(color: Colors.white, fontSize: 13.sp),
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.normal),
                       )
                     ],
                   ),
@@ -328,13 +388,13 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
+                  Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) => SignupScreen()));
                 },
                 child: RichText(
                   text: TextSpan(
                     text: 'If you don’t have an account? ',
-                    style: TextStyle(fontSize: 18, color: Colors.white),
+                    style: TextStyle(fontSize: 18, color: Colors.black),
                     children: [
                       TextSpan(
                           text: 'Sign Up',

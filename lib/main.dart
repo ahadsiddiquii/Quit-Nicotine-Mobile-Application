@@ -1,9 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:sizer/sizer.dart';
 import 'Screens/login_screen.dart';
 import 'Screens/start_up.dart';
+import 'blocs/Forum/forum_bloc.dart';
+import 'blocs/Shopitem/shopitem_bloc.dart';
+import 'blocs/User/user_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,15 +27,23 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   Widget build(BuildContext context) {
     return Sizer(builder: (context, orientation, deviceType) {
-      return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-            // brightness: Brightness.dark,
-            unselectedWidgetColor: Colors.white),
-        home:
-            // LoginScreen(),
-            StartUp(),
-      );
+      return MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (context) => UserBloc()),
+            BlocProvider(create: (context) => ForumBloc()),
+            BlocProvider(create: (context) => ShopitemBloc()),
+          ],
+          child: OverlaySupport(
+            child: MaterialApp(
+              debugShowCheckedModeBanner: false,
+              theme: ThemeData(
+                  // brightness: Brightness.dark,
+                  unselectedWidgetColor: Colors.white),
+              home:
+                  // LoginScreen(),
+                  StartUp(),
+            ),
+          ));
     });
   }
 }

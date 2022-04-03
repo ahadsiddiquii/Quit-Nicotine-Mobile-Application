@@ -13,20 +13,20 @@ GoogleSignIn _googleSignIn = GoogleSignIn(
 );
 
 Future<void> loginViaGoogle(BuildContext context) async {
-  User user = User(email: ' ', first_name: " ", last_name: " ");
+  // User user = User(email: ' ', first_name: " ", last_name: " ");
   print('Google login done1');
   try {
     await _googleSignIn.signIn().then((GoogleSignInAccount? acc) async {
       print('Google login done1.5');
 
-      user =
-          User(email: acc!.email, first_name: acc.displayName!, last_name: " ");
+      // user =
+      //     User(email: acc!.email, first_name: acc.displayName!, last_name: " ");
 
-      Map<String, dynamic> googleLoginCreds = {
-        "email": acc.email,
-        "first_name": acc.displayName,
-        "last_name": " ",
-      };
+      // Map<String, dynamic> googleLoginCreds = {
+      //   "email": acc.email,
+      //   "first_name": acc.displayName,
+      //   "last_name": " ",
+      // };
 
       // socialLoginFirestoreService(googleLoginCreds, context);
       // print(acc?.id);

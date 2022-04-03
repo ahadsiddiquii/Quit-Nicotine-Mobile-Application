@@ -3,8 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:nicotine/Constant.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../models/Post.dart';
+
 class PostDetailScreen extends StatefulWidget {
-  const PostDetailScreen({Key? key}) : super(key: key);
+  final Post thisPost;
+  const PostDetailScreen({required this.thisPost, Key? key}) : super(key: key);
 
   @override
   _PostDetailScreenState createState() => _PostDetailScreenState();
@@ -31,26 +34,36 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                     Container(
                         height: 35.h,
                         width: 100.w,
-                        child: Image.asset(
-                          "assets/Mask.png",
+                        child: Image.network(
+                          widget.thisPost.postImage!,
+                          // "assets/Mask.png",
                           fit: BoxFit.fill,
                         )),
                     Container(
-                      margin: EdgeInsets.only(top: 4.h, bottom: 0, left: 5.w, right: 0),
+                      margin: EdgeInsets.only(
+                          top: 4.h, bottom: 0, left: 5.w, right: 0),
                       decoration: BoxDecoration(
                         color: Color(0xff505050),
                         // color: Colors.black.withOpacity(0.3),
                         borderRadius: BorderRadius.circular(50),
                       ),
-                      child:  Builder(builder: (context) =>  IconButton(
-                        onPressed: ()=> Navigator.pop(context),
-                        icon: Icon(Icons.arrow_back_ios_rounded, size: 12.sp, color: Colors.white,),
-                      ),),
+                      child: Builder(
+                        builder: (context) => IconButton(
+                          onPressed: () => Navigator.pop(context),
+                          icon: Icon(
+                            Icons.arrow_back_ios_rounded,
+                            size: 12.sp,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 2.h,),
+              SizedBox(
+                height: 2.h,
+              ),
               Container(
                 // color: Colors.white,
                 // width: 80.w,
@@ -62,23 +75,55 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                     decoration: BoxDecoration(
                       color: Color(0xffD3D3D3),
                       borderRadius: BorderRadius.circular(100),
+                      image: DecorationImage(
+                          image: NetworkImage(
+                            widget.thisPost.user!.userImage!,
+                          ),
+                          fit: BoxFit.fill),
                     ),
                   ),
-                  title: Text("Jason Momoa", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 14.sp, height: 1.4),),
-                  subtitle: Text("Posted by Alex Ethan", style: TextStyle(color: Colors.white54, fontWeight: FontWeight.w400, fontSize: 10.sp, height: 1.4),),
+                  title: Text(
+                    widget.thisPost.user!.userName!,
+                    // "Jason Momoa",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14.sp,
+                        height: 1.4),
+                  ),
+                  subtitle: Text(
+                    "Posted by ${widget.thisPost.user!.userEmail!}",
+                    style: TextStyle(
+                        color: Colors.white54,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 10.sp,
+                        height: 1.4),
+                  ),
                 ),
               ),
               Container(
                 width: 90.w,
-                child: Text("Lorem Ipsum is simply dummy text of the printing & typesetting industry.",
-                style: TextStyle(color: Colors.white, fontSize: 11.sp, height: 1.6),
+                child: Text(
+                  widget.thisPost.postDescription!,
+                  // "Lorem Ipsum is simply dummy text of the printing & typesetting industry.",
+                  style: TextStyle(
+                      color: Colors.white, fontSize: 11.sp, height: 1.6),
                 ),
               ),
-              SizedBox(height: 1.h,),
+              SizedBox(
+                height: 1.h,
+              ),
               Container(
                 width: 90.w,
-                child: Text("It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.", textAlign: TextAlign.justify,
-                style: TextStyle(color: Colors.white54, fontSize: 10.sp, height: 1.4,),
+                child: Text(
+                  widget.thisPost.postDescription!,
+                  // "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(
+                    color: Colors.white54,
+                    fontSize: 10.sp,
+                    height: 1.4,
+                  ),
                 ),
               ),
               Container(
@@ -90,19 +135,49 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                   ),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.only(left: 0, right: 0, bottom: 1.h, top: 1.h),
+                  padding:
+                      EdgeInsets.only(left: 0, right: 0, bottom: 1.h, top: 1.h),
                   child: Row(
                     children: [
                       Container(
                           height: 3.h,
                           width: 6.w,
-                          child: Image.asset("assets/Facebook Like.png", fit: BoxFit.fill,)),
-                      Text(" 4,341", style: TextStyle(color: Colors.white, fontSize: 10.sp,),),
-                      SizedBox(width: 10.w,),
-                      Icon(Icons.sms_outlined, size: 20.sp, color: Colors.white,),
-                      Text(" 341", style: TextStyle(color: Colors.white, fontSize: 10.sp,),),
-                      SizedBox(width: 10.w,),
-                      Icon(Icons.share_rounded, color: Colors.white, size: 20.sp,)
+                          child: Image.asset(
+                            "assets/Facebook Like.png",
+                            fit: BoxFit.fill,
+                          )),
+                      Text(
+                        widget.thisPost.postLikes!.length.toString(),
+                        // " 4,341",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 10.sp,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10.w,
+                      ),
+                      Icon(
+                        Icons.sms_outlined,
+                        size: 20.sp,
+                        color: Colors.white,
+                      ),
+                      Text(
+                        widget.thisPost.postComments!.length.toString(),
+                        // " 341",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 10.sp,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10.w,
+                      ),
+                      Icon(
+                        Icons.share_rounded,
+                        color: Colors.white,
+                        size: 20.sp,
+                      )
                     ],
                   ),
                 ),
@@ -126,14 +201,14 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                     filled: true,
                     fillColor: kLightColor,
                     hintText: "Write Comment",
-                    hintStyle: TextStyle(color: Colors.black26, fontSize: 10.sp),
+                    hintStyle:
+                        TextStyle(color: Colors.black26, fontSize: 10.sp),
                     contentPadding: EdgeInsets.fromLTRB(20, 50, 0, 30),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide(
                           color: kLightColor,
-                        )
-                    ),
+                        )),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),
                       borderSide: BorderSide(
