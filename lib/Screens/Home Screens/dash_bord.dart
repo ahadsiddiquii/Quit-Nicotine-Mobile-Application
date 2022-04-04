@@ -5,7 +5,9 @@ import 'package:circular_reveal_animation/circular_reveal_animation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nicotine/Screens/Drawer%20Screen/drawer_screen.dart';
+import 'package:nicotine/blocs/Goal/goal_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../Constant.dart';
@@ -49,6 +51,7 @@ class _DashBordState extends State<DashBord>
       systemNavigationBarIconBrightness: Brightness.light,
     );
     SystemChrome.setSystemUIOverlayStyle(systemTheme);
+    BlocProvider.of<GoalBloc>(context).add(GetUserGoals());
 
     _animationController = AnimationController(
       duration: Duration(seconds: 1),
@@ -129,7 +132,7 @@ class _DashBordState extends State<DashBord>
         body: Container(
           height: 100.h,
           width: 100.w,
-          color: Colors.green,
+          color: Colors.white,
           child: SingleChildScrollView(
             child: Row(
               children: [

@@ -8,6 +8,7 @@ import 'Screens/login_screen.dart';
 import 'Screens/start_up.dart';
 import 'blocs/Activity/activity_bloc.dart';
 import 'blocs/Forum/forum_bloc.dart';
+import 'blocs/Goal/goal_bloc.dart';
 import 'blocs/Shopitem/shopitem_bloc.dart';
 import 'blocs/User/user_bloc.dart';
 
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (context) => ForumBloc()),
             BlocProvider(create: (context) => ActivityBloc()),
             BlocProvider(create: (context) => ShopitemBloc()),
+            BlocProvider(create: (context) => GoalBloc()),
           ],
           child: OverlaySupport(
             child: MaterialApp(

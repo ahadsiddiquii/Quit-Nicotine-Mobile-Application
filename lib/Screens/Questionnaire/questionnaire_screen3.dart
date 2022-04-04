@@ -873,7 +873,7 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                   if (state is LogInError) {
                     ScaffoldMessenger.of(context)
                         .showSnackBar(showSnackbar(state.error.toString()));
-                    BlocProvider.of<UserBloc>(context).add(InitialStatePush());
+                    // BlocProvider.of<UserBloc>(context).add(InitialStatePush());
                   }
                 },
                 builder: (context, state) {
@@ -889,10 +889,20 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                         color: kSignupColor,
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            print(Storage.getValue("userId"));
-                            BlocProvider.of<UserBloc>(context).add(
-                                QuestionsSubmitted(
-                                    userId: Storage.getValue("userId")));
+                            // print(Storage.getValue("userId"));
+                            final userState =
+                                BlocProvider.of<UserBloc>(context).state;
+
+                            print("Inside state");
+                            print(userState);
+                            if (userState is UserShowQuestions) {
+                              print("Inside state");
+                              BlocProvider.of<UserBloc>(context).add(
+                                  QuestionsSubmitted(
+                                      userId: userState.user.userId!));
+                            }
+                          } else {
+                            print("validation failed");
                           }
                         },
                         child: Text(

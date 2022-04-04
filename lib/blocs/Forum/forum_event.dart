@@ -23,4 +23,26 @@ class CreateAPost extends ForumEvent {
   });
 }
 
+class LikeAPost extends ForumEvent {
+  final User user;
+  final Post post;
+
+  LikeAPost({
+    required this.user,
+    required this.post,
+  });
+}
+
+class CommentAPost extends ForumEvent {
+  final User user;
+  final String postId;
+  final String comment;
+
+  CommentAPost({
+    required this.user,
+    required this.postId,
+    required this.comment,
+  });
+}
+
 class ResetForumState extends ForumEvent {}

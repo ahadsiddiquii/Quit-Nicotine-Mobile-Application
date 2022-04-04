@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nicotine/Constant.dart';
+import 'package:nicotine/Screens/Components/backButton.dart';
 import 'package:nicotine/Screens/Components/dialog_box.dart';
+import 'package:nicotine/Screens/Components/snackBar.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../blocs/Forum/forum_bloc.dart';
+import '../../blocs/User/user_bloc.dart';
 import '../../models/User.dart';
 import 'components/PostesCard.dart';
 
@@ -33,30 +37,31 @@ class _ForumScreenState extends State<ForumScreen> {
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        leading: Padding(
-          padding: EdgeInsets.only(left: 5.sp),
-          child: Container(
-            margin: EdgeInsets.only(
-                top: 1.4.h, bottom: 1.4.h, left: 2.w, right: 2.w),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(50),
-            ),
-            child: Builder(
-              builder: (context) => IconButton(
-                onPressed: () => Navigator.pop(context),
-                icon: Icon(
-                  Icons.arrow_back_ios_rounded,
-                  size: 12.sp,
-                ),
-              ),
-            ),
-          ),
-        ),
-        backgroundColor: Colors.black,
+        leading: backButton(context),
+        // Padding(
+        //   padding: EdgeInsets.only(left: 5.sp),
+        //   child: Container(
+        //     margin: EdgeInsets.only(
+        //         top: 1.4.h, bottom: 1.4.h, left: 2.w, right: 2.w),
+        //     decoration: BoxDecoration(
+        //       color: Colors.white.withOpacity(0.1),
+        //       borderRadius: BorderRadius.circular(50),
+        //     ),
+        //     child: Builder(
+        //       builder: (context) => IconButton(
+        //         onPressed: () => Navigator.pop(context),
+        //         icon: Icon(
+        //           Icons.arrow_back_ios_rounded,
+        //           size: 12.sp,
+        //         ),
+        //       ),
+        //     ),
+        //   ),
+        // ),
+        backgroundColor: Colors.white,
         title: Text(
           "Forum",
-          style: TextStyle(fontSize: 16.sp),
+          style: TextStyle(fontSize: 16.sp, color: Colors.black),
         ),
         actions: [
           GestureDetector(
@@ -66,28 +71,38 @@ class _ForumScreenState extends State<ForumScreen> {
                     heading: 'Create a Post',
                     content: 'Do you want to create a post?',
                     function: () {
-                      print("creating a post");
-                      BlocProvider.of<ForumBloc>(context).add(CreateAPost(
+                      final userState =
+                          BlocProvider.of<UserBloc>(context).state;
+                      if (userState is UserLoggedIn) {
+                        print("creating a post");
+                        BlocProvider.of<ForumBloc>(context).add(CreateAPost(
                           user: User(
-                              userId: "ajsdkjdlkjaljlk_hassan@gmail.com",
-                              userEmail: "hassan2@gmail.com",
-                              userName: "Hassan Hassannew",
-                              userPassword: "asdasdasd12.",
-                              userImage:
-                                  "https://images.unsplash.com/photo-1454372182658-c712e4c5a1db?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&w=1000&q=80",
-                              userPoints: 0,
-                              userMistakes: [],
-                              userQuestionsAsked: false),
-                          postDescription:
-                              "Welcome to beautiful scenery in the woods",
+                              userId: userState.user.userId,
+                              userEmail: userState.user.userEmail,
+                              userName: userState.user.userName,
+                              userPassword: userState.user.userPassword,
+                              userImage: userState.user.userImage,
+                              userPoints: userState.user.userPoints,
+                              userMistakes: userState.user.userMistakes,
+                              userQuestionsAsked:
+                                  userState.user.userQuestionsAsked),
+                          postDescription: "Welcome",
                           postImage:
-                              "https://images.unsplash.com/photo-1592743263126-bb241ee76ac7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXRpZnVsJTIwc2NlbmVyeXxlbnwwfHwwfHw%3D&w=1000&q=80"));
-                      Navigator.of(context).pop();
+                              "https://thumbs.dreamstime.com/b/welcome-4563944.jpg",
+                        ));
+                        // "https://images.unsplash.com/photo-1592743263126-bb241ee76ac7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXRpZnVsJTIwc2NlbmVyeXxlbnwwfHwwfHw%3D&w=1000&q=80"));
+                        Navigator.of(context).pop();
+                      } else {
+                        Navigator.of(context).pop();
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(showSnackbar("Please login to post"));
+                      }
                     });
               },
               child: Icon(
                 Icons.more_horiz,
                 size: 24.sp,
+                color: Colors.black,
               )),
           SizedBox(
             width: 5.sp,
@@ -102,26 +117,47 @@ class _ForumScreenState extends State<ForumScreen> {
         },
         builder: (context, state) {
           if (state is AllPostsRetrieved) {
-            return Container(
-              height: 100.h,
-              width: 100.w,
-              color: Colors.black,
-              child: ListView.builder(
-                  itemCount: state.posts.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return GestureDetector(
-                      onTap: () {
-                        // Navigator.push(context, MaterialPageRoute(builder: (context) => ShopPayment()),);
-                      },
-                      child: PostesCard(
-                        thisPost: state.posts[index],
-                      ),
-                    );
-                  }),
-            );
+            if (state.posts.length > 0) {
+              return Container(
+                height: 100.h,
+                width: 100.w,
+                color: Colors.white,
+                child: ListView.builder(
+                    itemCount: state.posts.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
+                        onTap: () {
+                          // Navigator.push(context, MaterialPageRoute(builder: (context) => ShopPayment()),);
+                        },
+                        child: PostesCard(
+                          thisPost: state.posts[index],
+                        ),
+                      );
+                    }),
+              );
+            } else {
+              return Container(
+                height: 50.h,
+                child: Center(
+                  child: Text(
+                    "No post has been added yet",
+                    style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              );
+            }
           } else {
             return Container(
-              color: Colors.black,
+              height: 60.h,
+              child: Center(
+                child: CircularProgressIndicator(
+                  valueColor: new AlwaysStoppedAnimation<Color>(kLightColor),
+                  // color: theme.primaryColor,
+                ),
+              ),
             );
           }
         },

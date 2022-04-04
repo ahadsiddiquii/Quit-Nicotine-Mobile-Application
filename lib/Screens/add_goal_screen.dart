@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nicotine/Screens/Components/backButton.dart';
+import 'package:nicotine/Screens/Components/snackBar.dart';
+import 'package:nicotine/blocs/Goal/goal_bloc.dart';
 import 'package:nicotine/utils/date_util.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter_dropdown/flutter_dropdown.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
 import '../Constant.dart';
+import '../blocs/User/user_bloc.dart';
+import '../utils/goalHelper.dart';
 
 class AddGoalScreen extends StatefulWidget {
   const AddGoalScreen({Key? key}) : super(key: key);
@@ -38,6 +43,13 @@ class _AddGoalScreenState extends State<AddGoalScreen> {
     '50 min',
     '60 min',
   ];
+
+  @override
+  void initState() {
+    dateController.text = formatterMonDateYear.format(addedDate);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -350,9 +362,10 @@ class _AddGoalScreenState extends State<AddGoalScreen> {
                               height: 240,
                               child: CupertinoDatePicker(
                                   mode: CupertinoDatePickerMode.date,
-                                  minimumDate: DateTime(1900, 12, 31, 0, 0),
+                                  minimumDate: DateTime.now()
+                                      .subtract(Duration(minutes: 1)),
                                   initialDateTime: DateTime.now(),
-                                  maximumDate: DateTime.now(),
+                                  maximumDate: DateTime(2080, 12, 31, 0, 0),
                                   onDateTimeChanged: (val) {
                                     setState(() {
                                       addedDate = val;
@@ -517,26 +530,71 @@ class _AddGoalScreenState extends State<AddGoalScreen> {
               SizedBox(
                 height: 7.h,
               ),
-              Container(
-                height: 7.h,
-                width: 65.w,
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(15)),
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  color: kSignupColor,
-                  onPressed: () {
-                    // Navigator.push(context, MaterialPageRoute(builder: (context) => PaymentsScreen(),),);
-                  },
-                  child: Text(
-                    "Create Goal",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16.sp),
-                  ),
-                ),
+              BlocConsumer<GoalBloc, GoalState>(
+                listener: (context, state) {
+                  if (state is GoalAdded) {
+                    BlocProvider.of<GoalBloc>(context).add(ResetGoalState());
+                  }
+                  if (state is GoalInitial) {
+                    BlocProvider.of<GoalBloc>(context).add(GetUserGoals());
+                    Navigator.of(context).pop();
+                  }
+                },
+                builder: (context, state) {
+                  return Container(
+                    height: 7.h,
+                    width: 65.w,
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                    child: RaisedButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      color: kSignupColor,
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          if (dateController.text.isNotEmpty &&
+                              addedDate != null &&
+                              selectedValue != null &&
+                              selectedValue2 != null) {
+                            final userState =
+                                BlocProvider.of<UserBloc>(context).state;
+                            if (userState is UserLoggedIn) {
+                              BlocProvider.of<GoalBloc>(context).add(AddGoal(
+                                  user: userState.user,
+                                  goalName: goal_name_1.text,
+                                  goalDescription: goal_name_2.text,
+                                  goalStatus: status.text,
+                                  goalDays: getDaysInInt(selectedValue!),
+                                  goalDate: addedDate,
+                                  goalTimeSlot:
+                                      getGoalTimeInInt(selectedValue2!)));
+                            }
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                showSnackbar("Please enter all the details"));
+                          }
+
+                          // BlocProvider.of<UserBloc>(context).add(SignUp(
+                          //     email: email.text,
+                          //     fullName: name.text,
+                          //     password: password.text));
+                        } else {
+                          print("Error in Validation");
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              showSnackbar("Please enter all the details"));
+                        }
+                        // Navigator.push(context, MaterialPageRoute(builder: (context) => PaymentsScreen(),),);
+                      },
+                      child: Text(
+                        "Create Goal",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16.sp),
+                      ),
+                    ),
+                  );
+                },
               ),
             ],
           ),

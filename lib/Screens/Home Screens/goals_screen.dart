@@ -16,7 +16,7 @@ class GoalsScreen extends StatelessWidget {
       child: Container(
         height: 100.h,
         width: 100.w,
-        color: Colors.black,
+        color: Colors.white,
         child: Column(
           children: [
             if (show_appbar == true)

@@ -22,7 +22,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
         child: Container(
           height: 100.h,
           width: 100.w,
-          color: Color(0xff18191A),
+          color: Colors.white,
           child: Column(
             children: [
               Container(
@@ -40,11 +40,15 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                           fit: BoxFit.fill,
                         )),
                     Container(
+                      height: 40,
+                      width: 40,
                       margin: EdgeInsets.only(
-                          top: 4.h, bottom: 0, left: 5.w, right: 0),
+                          top: 5.h, bottom: 0, left: 5.w, right: 0),
                       decoration: BoxDecoration(
-                        color: Color(0xff505050),
-                        // color: Colors.black.withOpacity(0.3),
+                        color: Colors.transparent,
+                        border: Border.all(color: Colors.white, width: 2),
+                        //  Color(0xff505050),
+                        // color: Colors.white.withOpacity(0.3),
                         borderRadius: BorderRadius.circular(50),
                       ),
                       child: Builder(
@@ -52,7 +56,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                           onPressed: () => Navigator.pop(context),
                           icon: Icon(
                             Icons.arrow_back_ios_rounded,
-                            size: 12.sp,
+                            size: 15.sp,
                             color: Colors.white,
                           ),
                         ),
@@ -65,7 +69,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                 height: 2.h,
               ),
               Container(
-                // color: Colors.white,
+                // color: Colors.yellow,
                 // width: 80.w,
                 child: ListTile(
                   leading: Container(
@@ -86,7 +90,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                     widget.thisPost.user!.userName!,
                     // "Jason Momoa",
                     style: TextStyle(
-                        color: Colors.white,
+                        color: Colors.black,
                         fontWeight: FontWeight.w500,
                         fontSize: 14.sp,
                         height: 1.4),
@@ -94,7 +98,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                   subtitle: Text(
                     "Posted by ${widget.thisPost.user!.userEmail!}",
                     style: TextStyle(
-                        color: Colors.white54,
+                        color: Colors.black54,
                         fontWeight: FontWeight.w400,
                         fontSize: 10.sp,
                         height: 1.4),
@@ -107,7 +111,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                   widget.thisPost.postDescription!,
                   // "Lorem Ipsum is simply dummy text of the printing & typesetting industry.",
                   style: TextStyle(
-                      color: Colors.white, fontSize: 11.sp, height: 1.6),
+                      color: Colors.black, fontSize: 11.sp, height: 1.6),
                 ),
               ),
               SizedBox(
@@ -130,8 +134,9 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                 margin: EdgeInsets.only(top: 5.h, left: 5.w, right: 5.w),
                 decoration: BoxDecoration(
                   border: Border(
-                    bottom: BorderSide(width: 0.5.sp, color: Colors.white),
-                    top: BorderSide(width: 0.5.sp, color: Colors.white),
+                    bottom:
+                        BorderSide(width: 0.5.sp, color: Colors.grey.shade800),
+                    top: BorderSide(width: 0.5.sp, color: Colors.grey.shade800),
                   ),
                 ),
                 child: Padding(
@@ -140,17 +145,22 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                   child: Row(
                     children: [
                       Container(
-                          height: 3.h,
-                          width: 6.w,
-                          child: Image.asset(
-                            "assets/Facebook Like.png",
-                            fit: BoxFit.fill,
-                          )),
+                        height: 3.h,
+                        width: 6.w,
+                        child: Image.network(
+                          "https://png.pngitem.com/pimgs/s/165-1658491_youtube-like-button-like-button-youtube-png-transparent.png",
+                          fit: BoxFit.contain,
+                        ),
+                        // child: Image.asset(
+                        //   "assets/Facebook Like.png",
+                        //   fit: BoxFit.fill,
+                        // )
+                      ),
                       Text(
-                        widget.thisPost.postLikes!.length.toString(),
+                        "  ${widget.thisPost.postLikes!.length.toString()}",
                         // " 4,341",
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.grey.shade800,
                           fontSize: 10.sp,
                         ),
                       ),
@@ -160,13 +170,13 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                       Icon(
                         Icons.sms_outlined,
                         size: 20.sp,
-                        color: Colors.white,
+                        color: Colors.grey.shade800,
                       ),
                       Text(
-                        widget.thisPost.postComments!.length.toString(),
+                        "  ${widget.thisPost.postComments!.length.toString()}",
                         // " 341",
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.grey.shade800,
                           fontSize: 10.sp,
                         ),
                       ),
@@ -175,7 +185,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                       ),
                       Icon(
                         Icons.share_rounded,
-                        color: Colors.white,
+                        color: Colors.grey.shade800,
                         size: 20.sp,
                       )
                     ],
@@ -186,33 +196,40 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
               Container(
                 height: 8.h,
                 decoration: BoxDecoration(
-                  color: kLightColor,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey,
+                      offset: Offset(0.0, 1.0), //(x,y)
+                      blurRadius: 3.0,
+                    ),
+                  ],
+                  color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(20),
                     topLeft: Radius.circular(20),
                   ),
                 ),
                 child: TextFormField(
-                  cursorColor: Colors.black,
-                  style: TextStyle(color: Colors.white),
+                  cursorColor: Colors.white,
+                  style: TextStyle(color: Colors.black),
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                     // contentPadding: EdgeInsets.symmetric(horizontal: 5.w),
                     filled: true,
-                    fillColor: kLightColor,
+                    fillColor: Colors.white,
                     hintText: "Write Comment",
                     hintStyle:
-                        TextStyle(color: Colors.black26, fontSize: 10.sp),
+                        TextStyle(color: Colors.black54, fontSize: 10.sp),
                     contentPadding: EdgeInsets.fromLTRB(20, 50, 0, 30),
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                         borderSide: BorderSide(
-                          color: kLightColor,
+                          color: Colors.white,
                         )),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),
                       borderSide: BorderSide(
-                        color: kLightColor,
+                        color: Colors.white,
                         // color: Color(0xfff4b41a),
                       ),
                     ),
@@ -223,7 +240,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                     disabledBorder: InputBorder.none,
                     suffixIcon: Icon(
                       Icons.send,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                 ),

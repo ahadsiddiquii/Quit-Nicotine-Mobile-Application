@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
 import '../../models/Post.dart';
+import '../../models/PostLike.dart';
 import '../../models/User.dart';
 import '../../resources/firebase_services/ForumFirestoreService.dart';
 
@@ -41,6 +42,20 @@ class ForumBloc extends Bloc<ForumEvent, ForumState> {
         print('Error in InsertAffirmation event: $e');
         yield ForumError(error: e.toString());
       }
+    } else if (event is LikeAPost) {
+      try {
+        print("ForumBloc: LikeAPost event");
+
+        final added = await forumService.likePost(
+          event.user,
+          event.post,
+        );
+        yield PostAdded();
+      } catch (e) {
+        print('Error in InsertAffirmation event: $e');
+        yield ForumError(error: e.toString());
+      }
+    } else if (event is CommentAPost) {
     } else if (event is ResetForumState) {
       yield ForumInitial();
     }

@@ -1,16 +1,16 @@
 import 'package:nicotine/models/User.dart';
 
 class PostLike {
-  String? postLikeId;
-  User? user;
+  String? userLikeId;
+  String? postId;
 
   PostLike({
-    required this.postLikeId,
-    required this.user,
+    required this.userLikeId,
+    required this.postId,
   });
 
   PostLike.fromJson(Map<String, dynamic> json) {
-    this.postLikeId = json['postLikeId'] ?? "";
-    this.user = User.fromJson(json['user']);
+    this.userLikeId = json['userLikeId'] ?? "";
+    this.postId = json['postId'] ?? "";
   }
 }

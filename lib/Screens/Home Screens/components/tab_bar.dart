@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nicotine/Constant.dart';
@@ -22,13 +21,14 @@ class _TabbarState extends State<Tabbar> {
         // height: 80.h,
         width: 100.w,
         // color: color,
-        child: DefaultTabController(length: 3,
+        child: DefaultTabController(
+            length: 3,
             child: Column(
               children: [
                 TabBar(
                   indicatorColor: kSignupColor,
                   indicatorPadding: EdgeInsets.symmetric(horizontal: 25.sp),
-                  tabs:[
+                  tabs: [
                     Tab(child: tab_style("All", 1)),
                     Tab(child: tab_style("Running", 2)),
                     Tab(child: tab_style("Completed", 3)),
@@ -38,35 +38,36 @@ class _TabbarState extends State<Tabbar> {
                   child: TabBarView(
                       // physics: NeverScrollableScrollPhysics(),
                       children: [
-                       GoalsHistory(),
-                       GoalsHistory(),
-                       GoalsHistory(),
-                  ]),
+                        GoalsHistory(tabKey: 1),
+                        GoalsHistory(tabKey: 2),
+                        GoalsHistory(tabKey: 3),
+                      ]),
                 ),
               ],
             )),
       ),
     );
   }
-  Widget tab_style(String title, int indx){
+
+  Widget tab_style(String title, int indx) {
     return Container(
-        height: 10.h,
-        // width: 100.w,
-        decoration: BoxDecoration(
+      height: 10.h,
+      // width: 100.w,
+      decoration: BoxDecoration(
           // border: Border.all(color: Colors.black12, width: 1),
-            color: chek == indx ? Color(0xffF8DB08) : Colors.black,
-            // color: Color(0xffF8DB08),
-            borderRadius: BorderRadius.circular(50)
-        ),
-        child: Center(
-          child: Text(title, style: TextStyle(
+          color: Colors.white,
+          // color: Color(0xffF8DB08),
+          borderRadius: BorderRadius.circular(50)),
+      child: Center(
+        child: Text(
+          title,
+          style: TextStyle(
             fontSize: 12.sp,
             fontWeight: FontWeight.w500,
-            color: chek == indx ? Colors.black : Colors.white,
-          ),),
+            color: Colors.black,
+          ),
         ),
+      ),
     );
   }
 }
-
-

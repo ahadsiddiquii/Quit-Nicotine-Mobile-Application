@@ -1,15 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nicotine/Constant.dart';
+import 'package:nicotine/blocs/Forum/forum_bloc.dart';
+import 'package:nicotine/blocs/User/user_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../models/Post.dart';
 import '../post_detail_screen.dart';
 
-class PostesCard extends StatelessWidget {
+class PostesCard extends StatefulWidget {
   final Post thisPost;
   const PostesCard({required this.thisPost, Key? key}) : super(key: key);
 
+  @override
+  State<PostesCard> createState() => _PostesCardState();
+}
+
+class _PostesCardState extends State<PostesCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -17,19 +25,24 @@ class PostesCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => PostDetailScreen(thisPost: thisPost),
+            builder: (context) => PostDetailScreen(thisPost: widget.thisPost),
           ),
         );
       },
       child: Container(
         margin: EdgeInsets.only(left: 3.w, right: 3.w, top: 3.h),
         width: 94.w,
-        decoration: BoxDecoration(
-            color: kLightColor, borderRadius: BorderRadius.circular(20)),
+        decoration: BoxDecoration(boxShadow: [
+          BoxShadow(
+            color: Colors.grey,
+            offset: Offset(0.0, 1.0), //(x,y)
+            blurRadius: 6.0,
+          ),
+        ], color: Colors.white, borderRadius: BorderRadius.circular(20)),
         child: Column(
           children: [
             Container(
-              // color: Colors.white,
+              // color: Colors.black,
               // width: 80.w,
               child: ListTile(
                 leading: Container(
@@ -41,22 +54,22 @@ class PostesCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(100),
                     image: DecorationImage(
                         image: NetworkImage(
-                          thisPost.user!.userImage!,
+                          widget.thisPost.user!.userImage!,
                         ),
                         fit: BoxFit.fill),
                   ),
                 ),
                 title: Text(
-                  thisPost.user!.userName!,
+                  widget.thisPost.user!.userName!,
                   // "Jason Momoa",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                       fontWeight: FontWeight.w500,
                       fontSize: 14.sp,
                       height: 1.4),
                 ),
                 subtitle: Text(
-                  "Posted by ${thisPost.user!.userEmail!}",
+                  "Posted by ${widget.thisPost.user!.userEmail!}",
                   style: TextStyle(
                       color: Colors.black45,
                       fontWeight: FontWeight.w400,
@@ -68,10 +81,10 @@ class PostesCard extends StatelessWidget {
             Container(
               width: 85.w,
               child: Text(
-                thisPost.postDescription!,
+                widget.thisPost.postDescription!,
                 // "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
                 style: TextStyle(
-                    color: Colors.white, fontSize: 11.sp, height: 1.4),
+                    color: Colors.black, fontSize: 11.sp, height: 1.4),
               ),
             ),
             Container(
@@ -79,11 +92,11 @@ class PostesCard extends StatelessWidget {
               height: 22.h,
               width: 85.w,
               decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(20)),
+                  color: Colors.black, borderRadius: BorderRadius.circular(20)),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image.network(
-                  thisPost.postImage!,
+                  widget.thisPost.postImage!,
                   // "assets/Mask.png",
                   fit: BoxFit.fill,
                 ),
@@ -95,25 +108,41 @@ class PostesCard extends StatelessWidget {
               ),
               decoration: BoxDecoration(
                 border: Border(
-                  bottom: BorderSide(width: 0.5.sp, color: Colors.white),
+                  bottom:
+                      BorderSide(width: 0.5.sp, color: Colors.grey.shade300),
                 ),
               ),
               child: Padding(
                 padding: EdgeInsets.only(left: 5.w, right: 5.w, bottom: 1.h),
                 child: Row(
                   children: [
-                    Container(
+                    GestureDetector(
+                      onTap: () {
+                        final userState =
+                            BlocProvider.of<UserBloc>(context).state;
+                        if (userState is UserLoggedIn) {
+                          // BlocProvider.of<ForumBloc>(context).add(LikeAPost(
+                          //     user: userState.user, post: widget.thisPost));
+                        }
+                      },
+                      child: Container(
                         height: 3.h,
                         width: 6.w,
-                        child: Image.asset(
-                          "assets/Facebook Like.png",
-                          fit: BoxFit.fill,
-                        )),
+                        child: Image.network(
+                          "https://png.pngitem.com/pimgs/s/165-1658491_youtube-like-button-like-button-youtube-png-transparent.png",
+                          fit: BoxFit.contain,
+                        ),
+                        // Image.asset(
+                        //   "assets/Facebook Like.png",
+                        //   fit: BoxFit.fill,
+                        // ),
+                      ),
+                    ),
                     Text(
-                      thisPost.postLikes!.length.toString(),
+                      "  ${widget.thisPost.postLikes!.length.toString()}",
                       // "4,341",
                       style: TextStyle(
-                        color: Colors.white,
+                        color: kLightColor,
                         fontSize: 10.sp,
                       ),
                     ),
@@ -123,13 +152,13 @@ class PostesCard extends StatelessWidget {
                     Icon(
                       Icons.sms_outlined,
                       size: 22.sp,
-                      color: Colors.white,
+                      color: kLightColor,
                     ),
                     Text(
-                      thisPost.postComments!.length.toString(),
+                      "  ${widget.thisPost.postComments!.length.toString()}",
                       // "341",
                       style: TextStyle(
-                        color: Colors.white,
+                        color: kLightColor,
                         fontSize: 10.sp,
                       ),
                     ),
@@ -138,7 +167,7 @@ class PostesCard extends StatelessWidget {
                     ),
                     Icon(
                       Icons.share_rounded,
-                      color: Colors.white,
+                      color: kLightColor,
                       size: 22.sp,
                     )
                   ],
@@ -150,7 +179,7 @@ class PostesCard extends StatelessWidget {
               margin: EdgeInsets.only(left: 5.w, bottom: 1.h),
               child: TextFormField(
                 cursorColor: Colors.black,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.black),
                 textInputAction: TextInputAction.next,
                 decoration: InputDecoration(
                   hintText: "Write Comment",
