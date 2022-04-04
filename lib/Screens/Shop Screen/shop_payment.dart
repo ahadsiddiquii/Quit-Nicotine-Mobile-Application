@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nicotine/Screens/Components/backButton.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../Constant.dart';
@@ -21,31 +22,46 @@ class _ShopPaymentState extends State<ShopPayment> {
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        leading: Padding(
-          padding: EdgeInsets.only(left: 5.sp),
-          child: Container(
-            margin: EdgeInsets.only(top: 1.4.h, bottom: 1.4.h, left: 2.w, right: 2.w),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(50),
-            ),
-            child:  Builder(builder: (context) =>  IconButton(
-              onPressed: ()=> Navigator.pop(context),
-              icon: Icon(Icons.arrow_back_ios_rounded, size: 12.sp,),
-            ),),
-          ),
+        leading: backButton(context),
+        // Padding(
+        //   padding: EdgeInsets.only(left: 5.sp),
+        //   child: Container(
+        //     margin: EdgeInsets.only(
+        //         top: 1.4.h, bottom: 1.4.h, left: 2.w, right: 2.w),
+        //     decoration: BoxDecoration(
+        //       color: Colors.white.withOpacity(0.1),
+        //       borderRadius: BorderRadius.circular(50),
+        //     ),
+        //     child: Builder(
+        //       builder: (context) => IconButton(
+        //         onPressed: () => Navigator.pop(context),
+        //         icon: Icon(
+        //           Icons.arrow_back_ios_rounded,
+        //           size: 12.sp,
+        //         ),
+        //       ),
+        //     ),
+        //   ),
+        // ),
+        backgroundColor: Colors.white,
+        title: Text(
+          "Payment",
+          style: TextStyle(fontSize: 16.sp, color: Colors.black),
         ),
-        backgroundColor: Colors.black,
-        title: Text("Payment", style: TextStyle(fontSize: 16.sp),),
         actions: [
-          Icon(Icons.more_horiz, size: 24.sp,),
-          SizedBox(width: 5.sp,),
+          Icon(
+            Icons.more_horiz,
+            size: 24.sp,
+          ),
+          SizedBox(
+            width: 5.sp,
+          ),
         ],
       ),
       body: Container(
         height: 100.h,
         width: 100.w,
-        color: Colors.black,
+        color: Colors.white,
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
@@ -87,7 +103,7 @@ class _ShopPaymentState extends State<ShopPayment> {
                       child: Text(
                         "120-day Quit Nicotine 4 Life Programme",
                         style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontSize: 8.sp,
                             fontWeight: FontWeight.w400,
                             height: 2),
@@ -96,7 +112,7 @@ class _ShopPaymentState extends State<ShopPayment> {
                     Container(
                       // width: 80.w,
                       child: Text(
-                        "£120.00",
+                        "£220.00",
                         style: TextStyle(
                             color: kSigninColor,
                             fontSize: 11.sp,
@@ -105,24 +121,36 @@ class _ShopPaymentState extends State<ShopPayment> {
                       ),
                     ),
                   ],
-      ),
-    ),
+                ),
+              ),
               PaymentForm(),
-              SizedBox(height: 2.h,),
+              SizedBox(
+                height: 2.h,
+              ),
               Container(
                 height: 7.h,
                 width: 65.w,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15)
-                ),
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(15)),
                 child: RaisedButton(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
                   color: kSignupColor,
-                  onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => PurchaseSuccessful(),),);
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PurchaseSuccessful(),
+                      ),
+                    );
                   },
-                  child: Text("Pay £120.00", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 16.sp),),
+                  child: Text(
+                    "Pay £120.00",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16.sp),
+                  ),
                 ),
               ),
             ],

@@ -34,8 +34,8 @@ class ShopCard extends StatelessWidget {
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
                       child: Image.asset(
-                        // "assets/shop_img2.png",
-                        "assets/Mask.png",
+                        "assets/shop_img2.png",
+                        // "assets/Mask/.png",
                         fit: BoxFit.fill,
                       )),
                 ),
@@ -66,7 +66,7 @@ class ShopCard extends StatelessWidget {
               // "120-day Quit Nicotine 4 Life Programme"
               ,
               style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.black,
                   fontSize: 10.sp,
                   fontWeight: FontWeight.w400,
                   height: 2),
@@ -75,7 +75,7 @@ class ShopCard extends StatelessWidget {
           Container(
             width: 80.w,
             child: Text(
-              "£20.00",
+              "£220.00",
               // "£120.00",
               style: TextStyle(
                   color: kSigninColor,

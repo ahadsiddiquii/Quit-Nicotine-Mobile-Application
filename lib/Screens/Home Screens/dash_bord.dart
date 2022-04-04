@@ -17,8 +17,9 @@ import 'home_screen.dart';
 import 'profile_screen.dart';
 
 class DashBord extends StatefulWidget {
-  DashBord({Key? key,}) : super(key: key);
-
+  DashBord({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _DashBordState createState() => _DashBordState();
@@ -68,39 +69,56 @@ class _DashBordState extends State<DashBord>
 
     Future.delayed(
       Duration(seconds: 1),
-          () => _animationController.forward(),
+      () => _animationController.forward(),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: ThemeData.dark(),
+      data: ThemeData.light(),
       child: Scaffold(
         extendBody: true,
         appBar: AppBar(
           centerTitle: true,
           elevation: 0,
           actions: [
-            Icon(Icons.facebook_rounded, size: 25.sp, color: Colors.lightBlue,),
-            SizedBox(width: 4.w,)
+            // Icon(
+            //   Icons.facebook_rounded,
+            //   size: 25.sp,
+            //   color: Colors.lightBlue,
+            // ),
+            // SizedBox(
+            //   width: 4.w,
+            // )
           ],
           leading: Padding(
             padding: EdgeInsets.only(left: 5.sp),
             child: Container(
-              margin: EdgeInsets.only(top: 1.h, bottom: 1.h, left: 1.w, right: 1.w),
+              margin:
+                  EdgeInsets.only(top: 1.h, bottom: 1.h, left: 1.w, right: 1.w),
               decoration: BoxDecoration(
-                color: kLightColor,
-                borderRadius: BorderRadius.circular(50),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(100),
+                border: Border.all(color: Colors.black, width: 2),
               ),
-              child:  Builder(builder: (context) =>  IconButton(
-                onPressed: ()=> Scaffold.of(context).openDrawer(),
-                icon: Icon(Icons.grid_view),
-              ),),
+              child: Builder(
+                builder: (context) => IconButton(
+                  onPressed: () => Scaffold.of(context).openDrawer(),
+                  icon: Icon(
+                    Icons.grid_view,
+                    color: Colors.black,
+                    size: 20,
+                  ),
+                ),
+              ),
             ),
           ),
-          backgroundColor: Colors.black,
-          title: Text("Monitor Your Activity", style: TextStyle(fontSize: 16.sp),),
+          backgroundColor: Colors.white,
+          title: Text(
+            "Monitor Your Activity",
+            style: TextStyle(fontSize: 16.sp, color: Colors.black),
+          ),
         ),
         drawer: Container(
           width: 60.w,
@@ -112,17 +130,29 @@ class _DashBordState extends State<DashBord>
           height: 100.h,
           width: 100.w,
           color: Colors.green,
-          child: Row(
-            children: [
-              if(_bottomNavIndex == 0)
-                HomeScreen(),
-              if(_bottomNavIndex == 1)
-                CalenderScreen(show_appbar: false,),
-              if(_bottomNavIndex == 2)
-                GoalsScreen(show_appbar: false,),
-              if(_bottomNavIndex == 3)
-                ProfileScreen(),
-            ],
+          child: SingleChildScrollView(
+            child: Row(
+              children: [
+                if (_bottomNavIndex == 0) HomeScreen(),
+                if (_bottomNavIndex == 1)
+                  CalenderScreen(
+                    show_appbar: false,
+                  ),
+                if (_bottomNavIndex == 2)
+                  GoalsScreen(
+                    show_appbar: false,
+                  ),
+                if (_bottomNavIndex == 3)
+                  Container(
+                    height: 110.h,
+                    width: 100.w,
+                    color: Colors.white,
+                    child: ProfileScreen(
+                      fromDrawer: false,
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
         // body: NavigationScreen(
@@ -142,49 +172,66 @@ class _DashBordState extends State<DashBord>
               showDialog<String>(
                 context: context,
                 builder: (BuildContext context) => AlertDialog(
-                  alignment: Alignment.bottomCenter,
-                  backgroundColor: kLightColor,
+                    alignment: Alignment.bottomCenter,
+                    backgroundColor: Colors.white,
+                    // kLightColor,
                     titlePadding: EdgeInsets.all(0),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
-                  title: Container(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    title: Container(
                       height: 12.h,
                       width: 80.w,
                       decoration: BoxDecoration(
-                          color: kLightColor,
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: kSignupColor, width: 1.sp)
-                      ),
+                          color: Colors.white,
+                          // kLightColor,
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: kSignupColor, width: 2.sp)),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           GestureDetector(
-                            onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => MyActivity(),),);
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => MyActivity(),
+                                ),
+                              );
                             },
-                            child: Text("Upload Your Activity",
-                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 12.sp),
+                            child: Text(
+                              "Upload Your Activity",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 12.sp),
                             ),
                           ),
                           Container(
                             margin: EdgeInsets.symmetric(vertical: 1.5.h),
-                            height: 0.1.h,
+                            height: 0.2.h,
                             width: 70.w,
                             color: kSignupColor,
                           ),
                           GestureDetector(
-                            onTap:(){
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AddGoalScreen(),));
-                              },
-                            child: Text("Add a New Goal",
-                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 12.sp),
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => AddGoalScreen(),
+                                  ));
+                            },
+                            child: Text(
+                              "Add a New Goal",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 12.sp),
                             ),
                           ),
                         ],
                       ),
-                    )
-                ),
+                    )),
               );
               // _animationController.reset();
               // _animationController.forward();
@@ -193,9 +240,10 @@ class _DashBordState extends State<DashBord>
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: AnimatedBottomNavigationBar.builder(
+          elevation: 8,
           itemCount: iconList.length,
           tabBuilder: (int index, bool isActive) {
-            final color = isActive ? HexColor('#D61E3C') : Colors.white;
+            final color = isActive ? HexColor('#D61E3C') : Colors.grey.shade700;
             return Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -208,7 +256,8 @@ class _DashBordState extends State<DashBord>
               ],
             );
           },
-          backgroundColor: HexColor('#505050'),
+          backgroundColor: Colors.white,
+          // HexColor('#505050'),
           activeIndex: _bottomNavIndex,
           splashColor: HexColor('#D61E3C'),
           notchAndCornersAnimation: animation,

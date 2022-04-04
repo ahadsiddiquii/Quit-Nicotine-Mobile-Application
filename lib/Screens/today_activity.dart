@@ -1,6 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nicotine/Screens/Components/backButton.dart';
+import 'package:nicotine/Screens/Components/snackBar.dart';
+import 'package:nicotine/blocs/Activity/activity_bloc.dart';
+import 'package:nicotine/blocs/User/user_bloc.dart';
 import 'package:nicotine/resources/firebase_services/MyActivityFirestoreService.dart';
+import 'package:nicotine/utils/date_util.dart';
 import 'package:sizer/sizer.dart';
 
 import '../Constant.dart';
@@ -24,30 +31,31 @@ class _TodayActivityState extends State<TodayActivity> {
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        leading: Padding(
-          padding: EdgeInsets.only(left: 5.sp),
-          child: Container(
-            margin: EdgeInsets.only(
-                top: 1.4.h, bottom: 1.4.h, left: 2.w, right: 2.w),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(50),
-            ),
-            child: Builder(
-              builder: (context) => IconButton(
-                onPressed: () => Navigator.pop(context),
-                icon: Icon(
-                  Icons.arrow_back_ios_rounded,
-                  size: 12.sp,
-                ),
-              ),
-            ),
-          ),
-        ),
-        backgroundColor: Colors.black,
+        leading: backButton(context),
+        // Padding(
+        //   padding: EdgeInsets.only(left: 5.sp),
+        //   child: Container(
+        //     margin: EdgeInsets.only(
+        //         top: 1.4.h, bottom: 1.4.h, left: 2.w, right: 2.w),
+        //     decoration: BoxDecoration(
+        //       color: Colors.black.withOpacity(0.1),
+        //       borderRadius: BorderRadius.circular(50),
+        //     ),
+        //     child: Builder(
+        //       builder: (context) => IconButton(
+        //         onPressed: () => Navigator.pop(context),
+        //         icon: Icon(
+        //           Icons.arrow_back_ios_rounded,
+        //           size: 12.sp,
+        //         ),
+        //       ),
+        //     ),
+        //   ),
+        // ),
+        backgroundColor: Colors.white,
         title: Text(
           "Today Activity",
-          style: TextStyle(fontSize: 16.sp),
+          style: TextStyle(fontSize: 16.sp, color: Colors.black),
         ),
         actions: [
           Icon(
@@ -62,7 +70,7 @@ class _TodayActivityState extends State<TodayActivity> {
       body: Container(
         height: 100.h,
         width: 100.w,
-        color: Colors.black,
+        color: Colors.white,
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
@@ -94,33 +102,36 @@ class _TodayActivityState extends State<TodayActivity> {
                             child: Text(
                               "How Much Glass of Esyer You Drink Today",
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 15),
                             ),
                           ),
                           Container(
-                            height: 7.h,
+                            // height: 7.h,
                             width: 90.w,
                             // margin: EdgeInsets.symmetric(horizontal: 5.w),
                             // color: Colors.pink,
                             child: TextFormField(
                               controller: drink,
-                              cursorColor: Colors.white,
+                              inputFormatters: [
+                                LengthLimitingTextInputFormatter(2),
+                              ],
+                              cursorColor: Colors.black,
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.w400),
                               textInputAction: TextInputAction.next,
-                              keyboardType: TextInputType.emailAddress,
-                              maxLines: 5,
+                              keyboardType: TextInputType.number,
+                              // maxLines: 5,
                               // validator: ,
                               decoration: InputDecoration(
                                   filled: true,
-                                  fillColor: kLightColor,
+                                  fillColor: Colors.white,
                                   hintText: "Water",
                                   hintStyle: TextStyle(
-                                      color: Colors.white70,
+                                      color: Colors.black,
                                       fontSize: 12.sp,
                                       fontWeight: FontWeight.w300),
                                   // contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 0),
@@ -159,33 +170,33 @@ class _TodayActivityState extends State<TodayActivity> {
                             child: Text(
                               "What Food You Eat Today",
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 15),
                             ),
                           ),
                           Container(
-                            height: 7.h,
+                            // height: 7.h,
                             width: 90.w,
                             // margin: EdgeInsets.symmetric(horizontal: 5.w),
                             // color: Colors.pink,
                             child: TextFormField(
                               controller: eat,
-                              cursorColor: Colors.white,
+                              cursorColor: Colors.black,
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.w400),
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.emailAddress,
-                              maxLines: 5,
+                              // maxLines: 5,
                               // validator: ,
                               decoration: InputDecoration(
                                   filled: true,
-                                  fillColor: kLightColor,
+                                  fillColor: Colors.white,
                                   hintText: "Noodles",
                                   hintStyle: TextStyle(
-                                      color: Colors.white70,
+                                      color: Colors.black,
                                       fontSize: 12.sp,
                                       fontWeight: FontWeight.w300),
                                   // contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 0),
@@ -224,33 +235,33 @@ class _TodayActivityState extends State<TodayActivity> {
                             child: Text(
                               "How Much Steps You Walk Today",
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 15),
                             ),
                           ),
                           Container(
-                            height: 7.h,
+                            // height: 7.h,
                             width: 90.w,
                             // margin: EdgeInsets.symmetric(horizontal: 5.w),
                             // color: Colors.pink,
                             child: TextFormField(
                               controller: walk,
-                              cursorColor: Colors.white,
+                              cursorColor: Colors.black,
                               style: TextStyle(
-                                  color: Colors.white,
+                                  color: Colors.black,
                                   fontSize: 14.sp,
                                   fontWeight: FontWeight.w400),
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.number,
-                              maxLines: 5,
+                              // maxLines: 5,
                               // validator: ,
                               decoration: InputDecoration(
                                   filled: true,
-                                  fillColor: kLightColor,
+                                  fillColor: Colors.white,
                                   hintText: "6,000",
                                   hintStyle: TextStyle(
-                                      color: Colors.white70,
+                                      color: Colors.black,
                                       fontSize: 12.sp,
                                       fontWeight: FontWeight.w300),
                                   // contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 0),
@@ -267,9 +278,12 @@ class _TodayActivityState extends State<TodayActivity> {
                                       width: 0.5.sp,
                                     ),
                                   ),
-                                  prefixIcon: Image.asset(
-                                    "assets/person.png",
-                                    color: kSignupColor,
+                                  prefixIcon: Container(
+                                    height: 7.h,
+                                    child: Image.asset(
+                                      "assets/person.png",
+                                      color: kSignupColor,
+                                    ),
                                   )),
                             ),
                           ),
@@ -282,98 +296,114 @@ class _TodayActivityState extends State<TodayActivity> {
               SizedBox(
                 height: 10.h,
               ),
-              Container(
-                height: 7.h,
-                width: 65.w,
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(15)),
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  color: kSignupColor,
-                  onPressed: () {
-                    MyActivityFirestoreService myActivityFirestoreService =
-                        MyActivityFirestoreService();
-                    print(int.parse(drink.text));
-                    print(eat.text);
-                    print(int.parse(walk.text));
+              BlocListener<ActivityBloc, ActivityState>(
+                listener: (context, state) {
+                  if (state is ActivityAdded) {
+                    BlocProvider.of<ActivityBloc>(context)
+                        .add(GetUserActivities());
+                  }
+                },
+                child: Container(
+                  height: 7.h,
+                  width: 65.w,
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    color: kSignupColor,
+                    onPressed: () {
+                      if (drink.text.isEmpty ||
+                          eat.text.isEmpty ||
+                          walk.text.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            showSnackbar("Please don't leave any field empty"));
+                      } else {
+                        // MyActivityFirestoreService myActivityFirestoreService =
+                        //     MyActivityFirestoreService();
+                        print(int.parse(drink.text));
+                        print(eat.text);
+                        print(int.parse(walk.text));
+                        final userState =
+                            BlocProvider.of<UserBloc>(context).state;
+                        if (userState is UserLoggedIn) {
+                          BlocProvider.of<ActivityBloc>(context).add(AddActivity(
+                              user: userState.user,
+                              activityName:
+                                  "Activity of ${formatterMonDateYear.format(DateTime.now())}",
+                              foodAte: eat.text,
+                              glassesOfWater: int.parse(drink.text),
+                              stepsWalked: int.parse(walk.text),
+                              activityPoints: 10));
+                        }
 
-                    Map<String, dynamic> activityMap = {
-                      "activityId": "1234",
-                      "userId": "hasdakdshakjd",
-                      "activityName": "activity1234",
-                      "glassesOfWater": int.parse(drink.text),
-                      "foodEat": eat.text,
-                      "stepsWalked": int.parse(walk.text),
-                      "creationDate": DateTime.now().toIso8601String(),
-                      "points": 10,
-                    };
-                    myActivityFirestoreService.createActivity(
-                        "hasdakdshakjd", activityMap);
-                    showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                          // alignment: Alignment.bottomCenter,
-                          backgroundColor: kLightColor,
-                          titlePadding: EdgeInsets.all(0),
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20))),
-                          title: GestureDetector(
-                            onTap: () => Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => MyActivity())),
-                            child: Container(
-                              height: 18.h,
-                              width: 40.w,
-                              decoration: BoxDecoration(
-                                  color: kLightColor,
-                                  borderRadius: BorderRadius.circular(20),
-                                  border: Border.all(
-                                      color: kSignupColor, width: 1.sp)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    height: 8.h,
-                                    width: 16.w,
-                                    child: Image.asset(
-                                      "assets/activitey.png",
-                                      fit: BoxFit.fill,
-                                    ),
+                        showDialog<String>(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                              // alignment: Alignment.bottomCenter,
+                              backgroundColor: Colors.white,
+                              titlePadding: EdgeInsets.all(0),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20))),
+                              title: GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).pop();
+                                  Navigator.of(context).pop();
+                                },
+                                child: Container(
+                                  height: 18.h,
+                                  width: 40.w,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20),
+                                      border: Border.all(
+                                          color: kSignupColor, width: 1.sp)),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        height: 8.h,
+                                        width: 16.w,
+                                        child: Image.asset(
+                                          "assets/activitey.png",
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
+                                      Text(
+                                        "Your Earn 10 Points",
+                                        style: TextStyle(
+                                            color: kSigninColor,
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.w500,
+                                            height: 2),
+                                      ),
+                                      Text(
+                                        "Cancel",
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 11.sp,
+                                            fontWeight: FontWeight.w400,
+                                            height: 2),
+                                      ),
+                                    ],
                                   ),
-                                  Text(
-                                    "Your Earn 10 Points",
-                                    style: TextStyle(
-                                        color: kSigninColor,
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.w500,
-                                        height: 2),
-                                  ),
-                                  Text(
-                                    "Cancel",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 11.sp,
-                                        fontWeight: FontWeight.w400,
-                                        height: 2),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )),
-                    );
-                    // _animationController.reset();
-                    // _animationController.forward();
-                  },
-                  child: Text(
-                    "Upload",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 15.sp),
+                                ),
+                              )),
+                        );
+                      }
+                      // _animationController.reset();
+                      // _animationController.forward();
+                    },
+                    child: Text(
+                      "Upload",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 15.sp),
+                    ),
                   ),
                 ),
               ),

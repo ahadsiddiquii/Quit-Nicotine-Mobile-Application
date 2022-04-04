@@ -7,6 +7,8 @@ class UserInitial extends UserState {}
 
 class UserLoading extends UserState {}
 
+class UserSplashScreen extends UserState {}
+
 class UserShowQuestions extends UserState {
   final User user;
   UserShowQuestions({required this.user});

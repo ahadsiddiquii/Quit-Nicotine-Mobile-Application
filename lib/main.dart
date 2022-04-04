@@ -6,6 +6,7 @@ import 'package:overlay_support/overlay_support.dart';
 import 'package:sizer/sizer.dart';
 import 'Screens/login_screen.dart';
 import 'Screens/start_up.dart';
+import 'blocs/Activity/activity_bloc.dart';
 import 'blocs/Forum/forum_bloc.dart';
 import 'blocs/Shopitem/shopitem_bloc.dart';
 import 'blocs/User/user_bloc.dart';
@@ -29,8 +30,11 @@ class MyApp extends StatelessWidget {
     return Sizer(builder: (context, orientation, deviceType) {
       return MultiBlocProvider(
           providers: [
-            BlocProvider(create: (context) => UserBloc()),
+            BlocProvider(
+              create: (context) => UserBloc()..add(CheckIfLoggedIn()),
+            ),
             BlocProvider(create: (context) => ForumBloc()),
+            BlocProvider(create: (context) => ActivityBloc()),
             BlocProvider(create: (context) => ShopitemBloc()),
           ],
           child: OverlaySupport(

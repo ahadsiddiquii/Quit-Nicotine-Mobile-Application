@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nicotine/Constant.dart';
+import 'package:nicotine/Screens/Components/backButton.dart';
 import 'package:sizer/sizer.dart';
 
 import 'components/shop_card.dart';
@@ -20,30 +21,31 @@ class _ShopScreenState extends State<ShopScreen> {
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        leading: Padding(
-          padding: EdgeInsets.only(left: 5.sp),
-          child: Container(
-            margin: EdgeInsets.only(
-                top: 1.4.h, bottom: 1.4.h, left: 2.w, right: 2.w),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(50),
-            ),
-            child: Builder(
-              builder: (context) => IconButton(
-                onPressed: () => Navigator.pop(context),
-                icon: Icon(
-                  Icons.arrow_back_ios_rounded,
-                  size: 12.sp,
-                ),
-              ),
-            ),
-          ),
-        ),
-        backgroundColor: Colors.black,
+        leading: backButton(context),
+        // Padding(
+        //   padding: EdgeInsets.only(left: 5.sp),
+        //   child: Container(
+        //     margin: EdgeInsets.only(
+        //         top: 1.4.h, bottom: 1.4.h, left: 2.w, right: 2.w),
+        //     decoration: BoxDecoration(
+        //       color: Colors.white.withOpacity(0.1),
+        //       borderRadius: BorderRadius.circular(50),
+        //     ),
+        //     child: Builder(
+        //       builder: (context) => IconButton(
+        //         onPressed: () => Navigator.pop(context),
+        //         icon: Icon(
+        //           Icons.arrow_back_ios_rounded,
+        //           size: 12.sp,
+        //         ),
+        //       ),
+        //     ),
+        //   ),
+        // ),
+        backgroundColor: Colors.white,
         title: Text(
           "Shop",
-          style: TextStyle(fontSize: 16.sp),
+          style: TextStyle(fontSize: 16.sp, color: Colors.black),
         ),
         actions: [
           Icon(
@@ -58,7 +60,7 @@ class _ShopScreenState extends State<ShopScreen> {
       body: Container(
         height: 100.h,
         width: 100.w,
-        color: Colors.black,
+        color: Colors.white,
         child: ListView.builder(
             itemCount: 1,
             itemBuilder: (BuildContext context, int index) {

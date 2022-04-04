@@ -112,6 +112,47 @@ class OnBoardingFirestoreService {
     }
   }
 
+  Future<User> withOutPasswordLogin(String userId) async {
+    print("OnBoardingFirestoreService: withOutPasswordLogin Function");
+
+    bool emailFound = false;
+    User user = emptyUser;
+
+    try {
+      await FirebaseFirestore.instance
+          .collection(collectionName)
+          .where("userId", isEqualTo: userId)
+          .get()
+          .then((QuerySnapshot querySnapshot) {
+        querySnapshot.docs.forEach((doc) {
+          emailFound = true;
+          print("Email found");
+
+          Map<String, dynamic> userMap = {
+            "userId": doc["userId"],
+            "userEmail": doc["userEmail"],
+            "userName": doc["userName"],
+            "userPassword": doc["userPassword"],
+            "userImage": doc["userImage"],
+            "userPoints": doc["userPoints"],
+            "userMistakes": doc["userMistakes"],
+            "userQuestionsAsked": doc["userQuestionsAsked"]
+          };
+
+          user = User.fromJson(userMap);
+        });
+      });
+      if (!emailFound) {
+        print("Email not found");
+        throw "Email not found";
+      }
+
+      return user;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
   Future<User> questionsSubmitted(String userId) async {
     print("OnBoardingFirestoreService: questionsSubmitted Function");
 
@@ -155,6 +196,39 @@ class OnBoardingFirestoreService {
         print("Email not found");
         throw "Email not found";
       }
+
+      return user;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
+  Future<User> updateProfile(User user, String email, String fullName,
+      String password, String mistake) async {
+    print("OnBoardingFirestoreService: updateProfile Function");
+
+    user.userMistakes!.add(mistake);
+
+    try {
+      Map<String, dynamic> userMap = {
+        "userId": user.userId,
+        "userEmail": email,
+        "userName": fullName,
+        "userPassword": user.userPassword,
+        "userImage": user.userImage,
+        "userPoints": user.userPoints,
+        "userMistakes": user.userMistakes,
+        "userQuestionsAsked": user.userQuestionsAsked
+      };
+      await FirebaseFirestore.instance
+          .collection(collectionName)
+          .doc(user.userId)
+          .set(userMap)
+          .catchError((e) {
+        print(e.toString());
+      });
+
+      user = User.fromJson(userMap);
 
       return user;
     } catch (e) {

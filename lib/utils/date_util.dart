@@ -31,3 +31,4 @@ extension DateExtension on DateTime {
 final DateFormat monthFormatter = DateFormat('MMMM');
 final DateFormat formatterMonDateYear = DateFormat('MMMM d, yyyy');
 final DateFormat formatterMonYear = DateFormat('MMMM, yyyy');
+final DateFormat dateWithTimeFormatter = DateFormat('dd/MM/yyyy hh:mm a');

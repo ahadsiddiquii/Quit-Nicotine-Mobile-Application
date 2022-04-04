@@ -18,6 +18,28 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   ) async* {
     if (event is InitialStatePush) {
       yield UserInitial();
+    } else if (event is CheckIfLoggedIn) {
+      yield UserSplashScreen();
+      try {
+        print("Inside Check if Logged in");
+        if (Storage.getValue("userId") == null ||
+            Storage.getValue("userId") == "null") {
+          print('Not Logged In, key not found');
+          yield UserInitial();
+        } else {
+          print('pref key found');
+          final userId = Storage.getValue("userId");
+
+          final user =
+              await onBoardingFirestoreService.withOutPasswordLogin(userId!);
+
+          yield UserLoggedIn(user: user);
+        }
+      } catch (e) {
+        print('Error');
+        print(e.toString());
+        yield UserInitial();
+      }
     } else if (event is SignUp) {
       yield UserLoading();
       try {
@@ -70,6 +92,22 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         print('error in Signup');
         yield LogInError(error: e.toString());
       }
+    } else if (event is UpdateProfile) {
+      try {
+        print("UserBloc: UpdateProfile event");
+
+        User user = await onBoardingFirestoreService.updateProfile(event.user,
+            event.email, event.fullName, event.password, event.mistake);
+
+        yield UserLoggedIn(user: user);
+      } catch (e) {
+        print('error in Signup');
+        yield LogInError(error: e.toString());
+      }
+    } else if (event is Logout) {
+      print("UserBloc: Logout event");
+      Storage.setValue('userId', 'null');
+      yield UserInitial();
     }
   }
 }

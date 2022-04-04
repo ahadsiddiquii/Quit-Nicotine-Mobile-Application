@@ -19,75 +19,163 @@ class DrawerScreen extends StatelessWidget {
     return Container(
       height: 100.h,
       // width: 40.w,
-      color: Colors.black,
+      color: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          SizedBox(height: 6.h,),
-        Container(
-          child: Image.asset("assets/qnl4.png"),
-        ),
-          GestureDetector(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => DashBord()));
-            },
-            child: Container(
-                width: 48.w,
-                child: Text("Monitor Your Activity", style: TextStyle(color: Colors.white, fontSize: 13.sp),)),
+          SizedBox(
+            height: 6.h,
+          ),
+          Container(
+            child: Image.asset("assets/qnl4.png"),
           ),
           GestureDetector(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ForumScreen(),),);
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => DashBord()));
             },
             child: Container(
                 width: 48.w,
-                child: Text("Forum", style: TextStyle(color: Colors.white, fontSize: 13.sp),)),
-          ),
-          GestureDetector( //MyActivity
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => MyActivity(),),);
-            },
-            child: Container(
-                width: 48.w,
-                child: Text("My Activity", style: TextStyle(color: Colors.white, fontSize: 13.sp),)),
-          ),
-          GestureDetector(//GoalsScreen(),
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => GoalsScreen(show_appbar: true,),),);
-            },
-            child: Container(
-                width: 48.w,
-                child: Text("My Goal", style: TextStyle(color: Colors.white, fontSize: 13.sp),)),
+                child: Text(
+                  "Monitor Your Activity",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w600),
+                )),
           ),
           GestureDetector(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => CalenderScreen(show_appbar: true,)),);
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ForumScreen(),
+                ),
+              );
             },
             child: Container(
                 width: 48.w,
-                child: Text("Calendar", style: TextStyle(color: Colors.white, fontSize: 13.sp),)),
+                child: Text(
+                  "Forum",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w600),
+                )),
           ),
           GestureDetector(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ShopScreen()),);
+            //MyActivity
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MyActivity(),
+                ),
+              );
             },
             child: Container(
                 width: 48.w,
-                child: Text("Shop", style: TextStyle(color: Colors.white, fontSize: 13.sp),)),
+                child: Text(
+                  "My Activity",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w600),
+                )),
           ),
           GestureDetector(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()),);
+            //GoalsScreen(),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => GoalsScreen(
+                    show_appbar: true,
+                  ),
+                ),
+              );
             },
             child: Container(
                 width: 48.w,
-                child: Text("Profile", style: TextStyle(color: Colors.white, fontSize: 13.sp),)),
+                child: Text(
+                  "My Goal",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w600),
+                )),
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CalenderScreen(
+                          show_appbar: true,
+                        )),
+              );
+            },
+            child: Container(
+                width: 48.w,
+                child: Text(
+                  "Calendar",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w600),
+                )),
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ShopScreen()),
+              );
+            },
+            child: Container(
+                width: 48.w,
+                child: Text(
+                  "Shop",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w600),
+                )),
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ProfileScreen(
+                          fromDrawer: true,
+                        )),
+              );
+            },
+            child: Container(
+                width: 48.w,
+                child: Text(
+                  "Profile",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w600),
+                )),
           ),
           Container(
               width: 48.w,
-              child: Text("Log Out", style: TextStyle(color: kSignupColor, fontSize: 13.sp),)),
-          SizedBox(height: 6.h,),
-      ],),
+              child: Text(
+                "Log Out",
+                style: TextStyle(
+                    color: kSignupColor,
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w600),
+              )),
+          SizedBox(
+            height: 6.h,
+          ),
+        ],
+      ),
     );
   }
 }

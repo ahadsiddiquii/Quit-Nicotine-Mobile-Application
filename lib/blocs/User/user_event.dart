@@ -22,7 +22,22 @@ class SignUp extends UserEvent {
   });
 }
 
+class UpdateProfile extends UserEvent {
+  final User user;
+  final String email, fullName, password, mistake;
+
+  UpdateProfile({
+    required this.user,
+    required this.email,
+    required this.fullName,
+    required this.password,
+    required this.mistake,
+  });
+}
+
 class QuestionsSubmitted extends UserEvent {
   final String userId;
   QuestionsSubmitted({required this.userId});
 }
+
+class Logout extends UserEvent {}

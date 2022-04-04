@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:nicotine/Constant.dart';
 import 'package:sizer/sizer.dart';
 
+import '../utils/globals.dart';
 import 'Components/backButton.dart';
 import 'Home Screens/dash_bord.dart';
 import 'welldone_screen.dart';
@@ -113,7 +114,8 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                               decoration: BoxDecoration(
                                 color: methodSelector == "Card"
                                     ? kSigninColor
-                                    : Color(0xff505050),
+                                    : Colors.white,
+                                // Color(0xff505050),
                                 borderRadius: BorderRadius.circular(15),
                                 border: Border.all(
                                     color: kSigninColor, width: 0.8.sp),
@@ -123,12 +125,17 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                                     EdgeInsets.only(right: 50.sp, left: 5.sp),
                                 title: Icon(
                                   Icons.payment,
-                                  color: Colors.black,
+                                  color: methodSelector == "Card"
+                                      ? Colors.white
+                                      : Colors.black,
                                 ),
                                 subtitle: Text(
                                   "Card",
                                   style: TextStyle(
-                                      color: Colors.black, fontSize: 11.sp),
+                                      color: methodSelector == "Card"
+                                          ? Colors.white
+                                          : Colors.black,
+                                      fontSize: 11.sp),
                                 ),
                               ),
                             ),
@@ -145,7 +152,8 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                               decoration: BoxDecoration(
                                 color: methodSelector == "Paypal"
                                     ? kSigninColor
-                                    : Color(0xff505050),
+                                    : Colors.white,
+                                // Color(0xff505050),
                                 borderRadius: BorderRadius.circular(15),
                                 border: Border.all(
                                     color: kSigninColor, width: 0.8.sp),
@@ -157,14 +165,23 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                                         EdgeInsets.only(left: 0.w, right: 13.w),
                                     height: 2.h,
                                     width: 2.w,
-                                    child: Image.asset(
-                                      "assets/paypale.png",
-                                      fit: BoxFit.fill,
-                                    )),
+                                    child: methodSelector == "Paypal"
+                                        ? Image.asset(
+                                            "assets/paypale.png",
+                                            fit: BoxFit.fill,
+                                          )
+                                        : Image.network(
+                                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXb0PvXc7nwto6yrSgihDdTjlMCCdrOXlB0A&usqp=CAU",
+                                            // "assets/paypale.png",
+                                            fit: BoxFit.fill,
+                                          )),
                                 subtitle: Text(
                                   "Paypal",
                                   style: TextStyle(
-                                      color: Colors.black, fontSize: 11.sp),
+                                      color: methodSelector == "Paypal"
+                                          ? Colors.white
+                                          : Colors.black,
+                                      fontSize: 11.sp),
                                 ),
                               ),
                             ),
@@ -173,7 +190,7 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                               height: 8.h,
                               width: 25.w,
                               decoration: BoxDecoration(
-                                color: Color(0xff505050),
+                                color: Colors.white,
                                 borderRadius: BorderRadius.circular(15),
                                 border: Border.all(
                                     color: kSigninColor, width: 0.8.sp),
@@ -186,6 +203,7 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                         ],
                       ),
                     ),
+                    SizedBox(height: 1.h),
                     Container(
                       child: Column(
                         children: [
@@ -214,7 +232,8 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                               keyboardType: TextInputType.text,
                               // validator: ,
                               decoration: InputDecoration(
-                                fillColor: Color(0xff505050),
+                                fillColor: Colors.white,
+                                // Color(0xff505050),
                                 filled: true,
                                 hintText: "1234 1234 1234 1234",
                                 hintStyle: TextStyle(
@@ -242,7 +261,7 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: 3.h,
+                      height: 1.h,
                     ),
                     Container(
                       width: 90.w,
@@ -277,7 +296,8 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                                     keyboardType: TextInputType.datetime,
                                     // validator: ,
                                     decoration: InputDecoration(
-                                      fillColor: Color(0xff505050),
+                                      fillColor: Colors.white,
+                                      // Color(0xff505050),
                                       filled: true,
                                       hintText: "MM/YY",
                                       hintStyle: TextStyle(
@@ -333,7 +353,8 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                                     keyboardType: TextInputType.number,
                                     // validator: ,
                                     decoration: InputDecoration(
-                                      fillColor: Color(0xff505050),
+                                      fillColor: Colors.white,
+                                      // Color(0xff505050),
                                       filled: true,
                                       hintText: "CVV",
                                       hintStyle: TextStyle(
@@ -365,7 +386,7 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: 3.h,
+                      height: 1.h,
                     ),
                     Container(
                       child: Column(
@@ -382,48 +403,73 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                                   fontSize: 12.sp),
                             ),
                           ),
-                          Container(
-                            height: 6.5.h,
-                            width: 90.w,
-                            // margin: EdgeInsets.only(top: 5.sp),
-                            // color: Colors.pink,
-                            child: TextFormField(
-                              enabled: false,
-                              controller: country,
-                              cursorColor: Colors.black,
-                              style: TextStyle(color: Colors.black),
-                              textInputAction: TextInputAction.next,
-                              keyboardType: TextInputType.text,
-                              // validator: ,
-                              decoration: InputDecoration(
-                                  fillColor: Color(0xff505050),
-                                  filled: true,
-                                  focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                      borderSide: BorderSide(
-                                        width: 0.8.sp,
+                          Stack(
+                            children: [
+                              Container(
+                                height: 6.5.h,
+                                width: 90.w,
+                                // margin: EdgeInsets.only(top: 5.sp),
+                                // color: Colors.pink,
+                                child: TextFormField(
+                                  enabled: false,
+                                  controller: country,
+                                  cursorColor: Colors.black,
+                                  style: TextStyle(color: Colors.black),
+                                  textInputAction: TextInputAction.next,
+                                  keyboardType: TextInputType.text,
+                                  // validator: ,
+                                  decoration: InputDecoration(
+                                      fillColor: Colors.white,
+                                      //  Color(0xff505050),
+                                      filled: true,
+                                      focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          borderSide: BorderSide(
+                                            width: 0.8.sp,
+                                            color: kSigninColor,
+                                          )),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: kSigninColor,
+                                          width: 0.8.sp,
+                                        ),
+                                      ),
+                                      disabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: kSigninColor,
+                                          width: 0.8.sp,
+                                        ),
+                                      ),
+                                      suffixIcon: Icon(
+                                        Icons.keyboard_arrow_down_rounded,
+                                        size: 20.sp,
                                         color: kSigninColor,
                                       )),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: kSigninColor,
-                                      width: 0.8.sp,
-                                    ),
-                                  ),
-                                  disabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: kSigninColor,
-                                      width: 0.8.sp,
-                                    ),
-                                  ),
-                                  suffixIcon: Icon(
-                                    Icons.keyboard_arrow_down_rounded,
-                                    size: 20.sp,
-                                    color: kSigninColor,
-                                  )),
-                            ),
+                                ),
+                              ),
+                              Container(
+                                height: 6.5.h,
+                                width: 90.w,
+                                child: DropdownButton<String>(
+                                  underline: Container(),
+                                  icon: Container(),
+                                  items: countries.map((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value),
+                                    );
+                                  }).toList(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      country.text = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -454,7 +500,7 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
                   child: Text(
                     "Pay Now",
                     style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontWeight: FontWeight.w600,
                         fontSize: 16.sp),
                   ),
