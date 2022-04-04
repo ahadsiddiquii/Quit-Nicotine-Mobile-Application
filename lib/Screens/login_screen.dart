@@ -99,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           Container(
-                            height: 7.h,
+                            // height: 7.h,
                             width: 90.w,
                             // margin: EdgeInsets.symmetric(horizontal: 5.w),
                             // color: Colors.pink,
@@ -169,7 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           Container(
-                            height: 7.h,
+                            // height: 7.h,
                             width: 90.w,
                             // margin: EdgeInsets.only(top: 5.sp),
                             // color: Colors.pink,
@@ -405,7 +405,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                 ),
-              )
+              ),
+              SizedBox(
+                height: 3.h,
+              ),
             ],
           ),
         ),

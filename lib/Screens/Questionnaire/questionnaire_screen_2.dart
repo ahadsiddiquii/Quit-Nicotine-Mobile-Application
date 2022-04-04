@@ -93,7 +93,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                             // Text("Name", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
                           ),
                           Container(
-                            height: 15.h,
+                            // height: 15.h,
                             width: 90.w,
                             // margin: EdgeInsets.only(top: 5.sp),
                             // color: Colors.pink,
@@ -168,7 +168,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                             // Text("Name", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
                           ),
                           Container(
-                            height: 7.h,
+                            // height: 7.h,
                             width: 90.w,
                             // margin: EdgeInsets.only(top: 5.sp),
                             // color: Colors.pink,
@@ -243,7 +243,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                             // Text("Name", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
                           ),
                           Container(
-                            height: 7.h,
+                            // height: 7.h,
                             width: 90.w,
                             // margin: EdgeInsets.only(top: 5.sp),
                             // color: Colors.pink,
@@ -317,7 +317,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                             // Text("Name", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
                           ),
                           Container(
-                            height: 7.h,
+                            // height: 7.h,
                             width: 90.w,
                             // margin: EdgeInsets.only(top: 5.sp),
                             // color: Colors.pink,
@@ -392,7 +392,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                             // Text("Name", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
                           ),
                           Container(
-                            height: 7.h,
+                            // height: 7.h,
                             width: 90.w,
                             // margin: EdgeInsets.only(top: 5.sp),
                             // color: Colors.pink,
@@ -467,7 +467,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                             // Text("Name", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
                           ),
                           Container(
-                            height: 7.h,
+                            // height: 7.h,
                             width: 90.w,
                             // margin: EdgeInsets.only(top: 5.sp),
                             // color: Colors.pink,
@@ -542,7 +542,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                             // Text("Name", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
                           ),
                           Container(
-                            height: 7.h,
+                            // height: 7.h,
                             width: 90.w,
                             // margin: EdgeInsets.only(top: 5.sp),
                             // color: Colors.pink,
@@ -614,9 +614,9 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                       // Text("Name", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
                     ),
                     Container(
-                      margin: EdgeInsets.only(left: 3.sp),
+                      margin: EdgeInsets.only(left: 10.sp, right: 10.sp),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
@@ -631,7 +631,16 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                   child: Row(
                                     children: [
                                       Container(
-                                        width: 8.w,
+                                        decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.black),
+                                          // color: Colors.white,
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(100.0),
+                                          ),
+                                        ),
+                                        width: 5.w,
+                                        height: 5.w,
                                         child: Radio(
                                           // overlayColor: ,
                                           value: 1,
@@ -643,6 +652,9 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                           },
                                           activeColor: kSignupColor,
                                         ),
+                                      ),
+                                      SizedBox(
+                                        width: 2.w,
                                       ),
                                       Text("Less than 5 minutes",
                                           style: TextStyle(
@@ -657,7 +669,16 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                   child: Row(
                                     children: [
                                       Container(
-                                        width: 8.w,
+                                        decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.black),
+                                          // color: Colors.white,
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(100.0),
+                                          ),
+                                        ),
+                                        width: 5.w,
+                                        height: 5.w,
                                         child: Radio(
                                           // overlayColor: ,
                                           value: 2,
@@ -669,6 +690,9 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                           },
                                           activeColor: kSignupColor,
                                         ),
+                                      ),
+                                      SizedBox(
+                                        width: 2.w,
                                       ),
                                       Text("Between 15-30 minutes",
                                           style: TextStyle(
@@ -683,7 +707,16 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                   child: Row(
                                     children: [
                                       Container(
-                                        width: 8.w,
+                                        decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.black),
+                                          // color: Colors.white,
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(100.0),
+                                          ),
+                                        ),
+                                        width: 5.w,
+                                        height: 5.w,
                                         child: Radio(
                                           // overlayColor: ,
                                           value: 3,
@@ -695,6 +728,9 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                           },
                                           activeColor: kSignupColor,
                                         ),
+                                      ),
+                                      SizedBox(
+                                        width: 2.w,
                                       ),
                                       Text("Between 1-2 hours",
                                           style: TextStyle(
@@ -717,7 +753,15 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 child: Row(
                                   children: [
                                     Container(
-                                      width: 8.w,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.black),
+                                        // color: Colors.white,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(100.0),
+                                        ),
+                                      ),
+                                      width: 5.w,
+                                      height: 5.w,
                                       child: Radio(
                                         // overlayColor: ,
                                         value: 4,
@@ -730,6 +774,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                         activeColor: kSignupColor,
                                       ),
                                     ),
+                                    SizedBox(width: 2.w),
                                     Text("Between 5-15 minutes",
                                         style: TextStyle(
                                             color: Colors.black,
@@ -743,7 +788,15 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 child: Row(
                                   children: [
                                     Container(
-                                      width: 8.w,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.black),
+                                        // color: Colors.white,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(100.0),
+                                        ),
+                                      ),
+                                      width: 5.w,
+                                      height: 5.w,
                                       child: Radio(
                                         // overlayColor: ,
                                         value: 5,
@@ -755,6 +808,9 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                         },
                                         activeColor: kSignupColor,
                                       ),
+                                    ),
+                                    SizedBox(
+                                      width: 2.w,
                                     ),
                                     Text("Between 30-60 minutes",
                                         style: TextStyle(
@@ -769,7 +825,15 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                 child: Row(
                                   children: [
                                     Container(
-                                      width: 8.w,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.black),
+                                        // color: Colors.white,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(100.0),
+                                        ),
+                                      ),
+                                      width: 5.w,
+                                      height: 5.w,
                                       child: Radio(
                                         // overlayColor: ,
                                         value: 6,
@@ -781,6 +845,9 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                         },
                                         activeColor: kSignupColor,
                                       ),
+                                    ),
+                                    SizedBox(
+                                      width: 2.w,
                                     ),
                                     Text("Over 2 hours",
                                         style: TextStyle(
@@ -824,7 +891,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                       // Text("Name", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
                     ),
                     Container(
-                      margin: EdgeInsets.only(left: 2.sp, right: 10.w),
+                      margin: EdgeInsets.only(left: 10.sp, right: 10.w),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -834,7 +901,15 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                             child: Row(
                               children: [
                                 Container(
-                                  width: 10.w,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.black),
+                                    // color: Colors.white,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(100.0),
+                                    ),
+                                  ),
+                                  width: 5.w,
+                                  height: 5.w,
                                   child: Radio(
                                     // overlayColor: ,
                                     value: 1,
@@ -846,6 +921,9 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                     },
                                     activeColor: kSignupColor,
                                   ),
+                                ),
+                                SizedBox(
+                                  width: 2.w,
                                 ),
                                 Text("Yes",
                                     style: TextStyle(
@@ -861,7 +939,15 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                             child: Row(
                               children: [
                                 Container(
-                                  width: 10.w,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.black),
+                                    // color: Colors.white,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(100.0),
+                                    ),
+                                  ),
+                                  width: 5.w,
+                                  height: 5.w,
                                   child: Radio(
                                     // overlayColor: ,
                                     value: 2,
@@ -873,6 +959,9 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                     },
                                     activeColor: kSignupColor,
                                   ),
+                                ),
+                                SizedBox(
+                                  width: 2.w,
                                 ),
                                 Text("No",
                                     style: TextStyle(
@@ -905,7 +994,7 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                               // Text("Name", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
                               ),
                           Container(
-                            height: 15.h,
+                            // height: 15.h,
                             width: 90.w,
                             // margin: EdgeInsets.only(top: 5.sp),
                             // color: Colors.pink,
@@ -965,9 +1054,10 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                       // Text("Name", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
                     ),
                     Container(
-                      margin: EdgeInsets.only(left: 2.sp, right: 10.w),
+                      width: 95.w,
+                      margin: EdgeInsets.only(left: 10.sp, right: 20.sp),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
                             height: 4.h,
@@ -975,7 +1065,15 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                             child: Row(
                               children: [
                                 Container(
-                                  width: 10.w,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.black),
+                                    // color: Colors.white,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(100.0),
+                                    ),
+                                  ),
+                                  width: 5.w,
+                                  height: 5.w,
                                   child: Radio(
                                     // overlayColor: ,
                                     value: 1,
@@ -988,6 +1086,9 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                     activeColor: kSignupColor,
                                   ),
                                 ),
+                                SizedBox(
+                                  width: 2.w,
+                                ),
                                 Text("Yes",
                                     style: TextStyle(
                                         color: Colors.black,
@@ -996,16 +1097,24 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                               ],
                             ),
                           ),
-                          SizedBox(
-                            width: 30.w,
-                          ),
+                          // SizedBox(
+                          //   width: 30.w,
+                          // ),
                           Container(
                             height: 4.h,
                             // color: Colors.yellowAccent,
                             child: Row(
                               children: [
                                 Container(
-                                  width: 10.w,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.black),
+                                    // color: Colors.white,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(100.0),
+                                    ),
+                                  ),
+                                  width: 5.w,
+                                  height: 5.w,
                                   child: Radio(
                                     // overlayColor: ,
                                     value: 2,
@@ -1017,6 +1126,9 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                                     },
                                     activeColor: kSignupColor,
                                   ),
+                                ),
+                                SizedBox(
+                                  width: 2.w,
                                 ),
                                 Text("No",
                                     style: TextStyle(

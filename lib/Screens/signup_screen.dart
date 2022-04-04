@@ -98,7 +98,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             ),
                           ),
                           Container(
-                            height: 7.h,
+                            // height: 7.h,
                             width: 90.w,
                             // margin: EdgeInsets.only(top: 5.sp),
                             // color: Colors.pink,
@@ -157,7 +157,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             ),
                           ),
                           Container(
-                            height: 7.h,
+                            // height: 7.h,
                             width: 90.w,
                             // margin: EdgeInsets.only(top: 5.sp),
                             // color: Colors.pink,
@@ -226,7 +226,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             ),
                           ),
                           Container(
-                            height: 7.h,
+                            // height: 7.h,
                             width: 90.w,
                             // margin: EdgeInsets.only(top: 5.sp),
                             // color: Colors.pink,
@@ -450,7 +450,10 @@ class _SignupScreenState extends State<SignupScreen> {
                     ],
                   ),
                 ),
-              )
+              ),
+              SizedBox(
+                height: 3.h,
+              ),
             ],
           ),
         ),

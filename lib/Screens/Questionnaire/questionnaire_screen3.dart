@@ -90,7 +90,7 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                             // Text("Name", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
                           ),
                           Container(
-                            height: 15.h,
+                            // height: 15.h,
                             width: 90.w,
                             // margin: EdgeInsets.only(top: 5.sp),
                             // color: Colors.pink,
@@ -149,7 +149,7 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                       // Text("Name", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
                     ),
                     Container(
-                      margin: EdgeInsets.only(left: 2.sp, right: 10.w),
+                      margin: EdgeInsets.only(left: 13.sp, right: 10.w),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -159,7 +159,15 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                             child: Row(
                               children: [
                                 Container(
-                                  width: 10.w,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.black),
+                                    // color: Colors.white,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(100.0),
+                                    ),
+                                  ),
+                                  width: 5.w,
+                                  height: 5.w,
                                   child: Radio(
                                     // overlayColor: ,
                                     value: 1,
@@ -171,6 +179,9 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                                     },
                                     activeColor: kSignupColor,
                                   ),
+                                ),
+                                SizedBox(
+                                  width: 2.w,
                                 ),
                                 Text("Yes",
                                     style: TextStyle(
@@ -189,7 +200,15 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                             child: Row(
                               children: [
                                 Container(
-                                  width: 10.w,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.black),
+                                    // color: Colors.white,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(100.0),
+                                    ),
+                                  ),
+                                  width: 5.w,
+                                  height: 5.w,
                                   child: Radio(
                                     // overlayColor: ,
                                     value: 2,
@@ -201,6 +220,9 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                                     },
                                     activeColor: kSignupColor,
                                   ),
+                                ),
+                                SizedBox(
+                                  width: 2.w,
                                 ),
                                 Text("No",
                                     style: TextStyle(
@@ -264,7 +286,7 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                             // Text("Name", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
                           ),
                           Container(
-                            height: 15.h,
+                            // height: 15.h,
                             width: 90.w,
                             // margin: EdgeInsets.only(top: 5.sp),
                             // color: Colors.pink,
@@ -315,47 +337,75 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                                   fontSize: 11.sp),
                             ),
                           ),
-                          Container(
-                            height: 7.h,
-                            width: 90.w,
-                            // margin: EdgeInsets.only(top: 5.sp),
-                            // color: Colors.pink,
-                            child: TextFormField(
-                              enabled: false,
-                              controller: c3,
-                              cursorColor: Colors.black,
-                              style: TextStyle(color: Colors.black),
-                              textInputAction: TextInputAction.next,
-                              keyboardType: TextInputType.text,
-                              // validator: ,
-                              decoration: InputDecoration(
-                                  contentPadding:
-                                      EdgeInsets.fromLTRB(20, 0, 0, 0),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                      borderSide: BorderSide(
+                          Stack(
+                            children: [
+                              Container(
+                                height: 7.h,
+                                width: 90.w,
+                                // margin: EdgeInsets.only(top: 5.sp),
+                                // color: Colors.pink,
+                                child: TextFormField(
+                                  enabled: false,
+                                  controller: c3,
+                                  cursorColor: Colors.black,
+                                  style: TextStyle(color: Colors.black),
+                                  textInputAction: TextInputAction.next,
+                                  keyboardType: TextInputType.text,
+                                  // validator: ,
+                                  decoration: InputDecoration(
+                                      contentPadding:
+                                          EdgeInsets.fromLTRB(20, 0, 0, 0),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          borderSide: BorderSide(
+                                            color: Colors.black,
+                                          )),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: Colors.black,
+                                          width: 0.3.sp,
+                                        ),
+                                      ),
+                                      disabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: Colors.black,
+                                          width: 0.3.sp,
+                                        ),
+                                      ),
+                                      suffixIcon: Icon(
+                                        Icons.arrow_drop_down_sharp,
                                         color: Colors.black,
+                                        size: 22.sp,
                                       )),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.black,
-                                      width: 0.3.sp,
-                                    ),
-                                  ),
-                                  disabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.black,
-                                      width: 0.3.sp,
-                                    ),
-                                  ),
-                                  suffixIcon: Icon(
-                                    Icons.arrow_drop_down_sharp,
-                                    color: Colors.black,
-                                    size: 22.sp,
-                                  )),
-                            ),
+                                ),
+                              ),
+                              Container(
+                                // height: 7.h,
+                                width: 90.w,
+                                child: DropdownButton<String>(
+                                  underline: Container(),
+                                  icon: Container(),
+                                  items: <String>[
+                                    'Option 1',
+                                    'Option 2',
+                                    'Option 3',
+                                  ].map((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value),
+                                    );
+                                  }).toList(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      c3.text = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -378,46 +428,74 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                                   fontSize: 12.sp),
                             ),
                           ),
-                          Container(
-                            height: 7.h,
-                            width: 90.w,
-                            // margin: EdgeInsets.only(top: 5.sp),
-                            // color: Colors.pink,
-                            child: TextFormField(
-                              enabled: false,
-                              controller: c4,
-                              cursorColor: Colors.black,
-                              style: TextStyle(color: Colors.black),
-                              textInputAction: TextInputAction.next,
-                              keyboardType: TextInputType.text,
-                              decoration: InputDecoration(
-                                  contentPadding:
-                                      EdgeInsets.fromLTRB(20, 0, 0, 0),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                      borderSide: BorderSide(
+                          Stack(
+                            children: [
+                              Container(
+                                height: 7.h,
+                                width: 90.w,
+                                // margin: EdgeInsets.only(top: 5.sp),
+                                // color: Colors.pink,
+                                child: TextFormField(
+                                  enabled: false,
+                                  controller: c4,
+                                  cursorColor: Colors.black,
+                                  style: TextStyle(color: Colors.black),
+                                  textInputAction: TextInputAction.next,
+                                  keyboardType: TextInputType.text,
+                                  decoration: InputDecoration(
+                                      contentPadding:
+                                          EdgeInsets.fromLTRB(20, 0, 0, 0),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          borderSide: BorderSide(
+                                            color: Colors.black,
+                                          )),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: Colors.black,
+                                          width: 0.3.sp,
+                                        ),
+                                      ),
+                                      disabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: Colors.black,
+                                          width: 0.3.sp,
+                                        ),
+                                      ),
+                                      suffixIcon: Icon(
+                                        Icons.arrow_drop_down_sharp,
+                                        size: 22.sp,
                                         color: Colors.black,
                                       )),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.black,
-                                      width: 0.3.sp,
-                                    ),
-                                  ),
-                                  disabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.black,
-                                      width: 0.3.sp,
-                                    ),
-                                  ),
-                                  suffixIcon: Icon(
-                                    Icons.arrow_drop_down_sharp,
-                                    size: 22.sp,
-                                    color: Colors.black,
-                                  )),
-                            ),
+                                ),
+                              ),
+                              Container(
+                                // height: 7.h,
+                                width: 90.w,
+                                child: DropdownButton<String>(
+                                  underline: Container(),
+                                  icon: Container(),
+                                  items: <String>[
+                                    'Muscular',
+                                    'Skeletal',
+                                    'Neurological Disorders',
+                                  ].map((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value),
+                                    );
+                                  }).toList(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      c4.text = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -440,47 +518,75 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                                   fontSize: 12.sp),
                             ),
                           ),
-                          Container(
-                            height: 7.h,
-                            width: 90.w,
-                            // margin: EdgeInsets.only(top: 5.sp),
-                            // color: Colors.pink,
-                            child: TextFormField(
-                              enabled: false,
-                              controller: c5,
-                              cursorColor: Colors.black,
-                              style: TextStyle(color: Colors.black),
-                              textInputAction: TextInputAction.next,
-                              keyboardType: TextInputType.text,
-                              // validator: ,
-                              decoration: InputDecoration(
-                                  contentPadding:
-                                      EdgeInsets.fromLTRB(20, 0, 0, 0),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                      borderSide: BorderSide(
+                          Stack(
+                            children: [
+                              Container(
+                                height: 7.h,
+                                width: 90.w,
+                                // margin: EdgeInsets.only(top: 5.sp),
+                                // color: Colors.pink,
+                                child: TextFormField(
+                                  enabled: false,
+                                  controller: c5,
+                                  cursorColor: Colors.black,
+                                  style: TextStyle(color: Colors.black),
+                                  textInputAction: TextInputAction.next,
+                                  keyboardType: TextInputType.text,
+                                  // validator: ,
+                                  decoration: InputDecoration(
+                                      contentPadding:
+                                          EdgeInsets.fromLTRB(20, 0, 0, 0),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          borderSide: BorderSide(
+                                            color: Colors.black,
+                                          )),
+                                      disabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: Colors.black,
+                                          width: 0.3.sp,
+                                        ),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: Colors.black,
+                                          width: 0.3.sp,
+                                        ),
+                                      ),
+                                      suffixIcon: Icon(
+                                        Icons.arrow_drop_down_sharp,
+                                        size: 22.sp,
                                         color: Colors.black,
                                       )),
-                                  disabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.black,
-                                      width: 0.3.sp,
-                                    ),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.black,
-                                      width: 0.3.sp,
-                                    ),
-                                  ),
-                                  suffixIcon: Icon(
-                                    Icons.arrow_drop_down_sharp,
-                                    size: 22.sp,
-                                    color: Colors.black,
-                                  )),
-                            ),
+                                ),
+                              ),
+                              Container(
+                                // height: 7.h,
+                                width: 90.w,
+                                child: DropdownButton<String>(
+                                  underline: Container(),
+                                  icon: Container(),
+                                  items: <String>[
+                                    'Problem 1',
+                                    'Problem 2',
+                                    'Problem 3',
+                                  ].map((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value),
+                                    );
+                                  }).toList(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      c5.text = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -503,47 +609,75 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                                   fontSize: 12.sp),
                             ),
                           ),
-                          Container(
-                            height: 7.h,
-                            width: 90.w,
-                            // margin: EdgeInsets.only(top: 5.sp),
-                            // color: Colors.pink,
-                            child: TextFormField(
-                              enabled: false,
-                              controller: c6,
-                              cursorColor: Colors.black,
-                              style: TextStyle(color: Colors.black),
-                              textInputAction: TextInputAction.next,
-                              keyboardType: TextInputType.text,
-                              // validator: ,
-                              decoration: InputDecoration(
-                                  contentPadding:
-                                      EdgeInsets.fromLTRB(20, 0, 0, 0),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                      borderSide: BorderSide(
+                          Stack(
+                            children: [
+                              Container(
+                                height: 7.h,
+                                width: 90.w,
+                                // margin: EdgeInsets.only(top: 5.sp),
+                                // color: Colors.pink,
+                                child: TextFormField(
+                                  enabled: false,
+                                  controller: c6,
+                                  cursorColor: Colors.black,
+                                  style: TextStyle(color: Colors.black),
+                                  textInputAction: TextInputAction.next,
+                                  keyboardType: TextInputType.text,
+                                  // validator: ,
+                                  decoration: InputDecoration(
+                                      contentPadding:
+                                          EdgeInsets.fromLTRB(20, 0, 0, 0),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          borderSide: BorderSide(
+                                            color: Colors.black,
+                                          )),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: Colors.black,
+                                          width: 0.3.sp,
+                                        ),
+                                      ),
+                                      disabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: Colors.black,
+                                          width: 0.3.sp,
+                                        ),
+                                      ),
+                                      suffixIcon: Icon(
+                                        Icons.arrow_drop_down_sharp,
+                                        size: 22.sp,
                                         color: Colors.black,
                                       )),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.black,
-                                      width: 0.3.sp,
-                                    ),
-                                  ),
-                                  disabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.black,
-                                      width: 0.3.sp,
-                                    ),
-                                  ),
-                                  suffixIcon: Icon(
-                                    Icons.arrow_drop_down_sharp,
-                                    size: 22.sp,
-                                    color: Colors.black,
-                                  )),
-                            ),
+                                ),
+                              ),
+                              Container(
+                                // height: 7.h,
+                                width: 90.w,
+                                child: DropdownButton<String>(
+                                  underline: Container(),
+                                  icon: Container(),
+                                  items: <String>[
+                                    'Problem 1',
+                                    'Problem 2',
+                                    'Problem 3',
+                                  ].map((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value),
+                                    );
+                                  }).toList(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      c6.text = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -566,47 +700,75 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                                   fontSize: 12.sp),
                             ),
                           ),
-                          Container(
-                            height: 7.h,
-                            width: 90.w,
-                            // margin: EdgeInsets.only(top: 5.sp),
-                            // color: Colors.pink,
-                            child: TextFormField(
-                              enabled: false,
-                              controller: c7,
-                              cursorColor: Colors.black,
-                              style: TextStyle(color: Colors.black),
-                              textInputAction: TextInputAction.next,
-                              keyboardType: TextInputType.text,
-                              // validator: ,
-                              decoration: InputDecoration(
-                                  contentPadding:
-                                      EdgeInsets.fromLTRB(20, 0, 0, 0),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                      borderSide: BorderSide(
+                          Stack(
+                            children: [
+                              Container(
+                                height: 7.h,
+                                width: 90.w,
+                                // margin: EdgeInsets.only(top: 5.sp),
+                                // color: Colors.pink,
+                                child: TextFormField(
+                                  enabled: false,
+                                  controller: c7,
+                                  cursorColor: Colors.black,
+                                  style: TextStyle(color: Colors.black),
+                                  textInputAction: TextInputAction.next,
+                                  keyboardType: TextInputType.text,
+                                  // validator: ,
+                                  decoration: InputDecoration(
+                                      contentPadding:
+                                          EdgeInsets.fromLTRB(20, 0, 0, 0),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          borderSide: BorderSide(
+                                            color: Colors.black,
+                                          )),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: Colors.black,
+                                          width: 0.3.sp,
+                                        ),
+                                      ),
+                                      disabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: Colors.black,
+                                          width: 0.3.sp,
+                                        ),
+                                      ),
+                                      suffixIcon: Icon(
+                                        Icons.arrow_drop_down_sharp,
+                                        size: 22.sp,
                                         color: Colors.black,
                                       )),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.black,
-                                      width: 0.3.sp,
-                                    ),
-                                  ),
-                                  disabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.black,
-                                      width: 0.3.sp,
-                                    ),
-                                  ),
-                                  suffixIcon: Icon(
-                                    Icons.arrow_drop_down_sharp,
-                                    size: 22.sp,
-                                    color: Colors.black,
-                                  )),
-                            ),
+                                ),
+                              ),
+                              Container(
+                                // height: 7.h,
+                                width: 90.w,
+                                child: DropdownButton<String>(
+                                  underline: Container(),
+                                  icon: Container(),
+                                  items: <String>[
+                                    'Disorder 1',
+                                    'Disorder 2',
+                                    'Disorder 3',
+                                  ].map((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value),
+                                    );
+                                  }).toList(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      c7.text = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -629,47 +791,77 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                                   fontSize: 12.sp),
                             ),
                           ),
-                          Container(
-                            height: 7.h,
-                            width: 90.w,
-                            // margin: EdgeInsets.only(top: 5.sp),
-                            // color: Colors.pink,
-                            child: TextFormField(
-                              enabled: false,
-                              controller: c8,
-                              cursorColor: Colors.black,
-                              style: TextStyle(color: Colors.black),
-                              textInputAction: TextInputAction.next,
-                              keyboardType: TextInputType.text,
-                              // validator: ,
-                              decoration: InputDecoration(
-                                  contentPadding:
-                                      EdgeInsets.fromLTRB(20, 0, 0, 0),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                      borderSide: BorderSide(
+                          Stack(
+                            children: [
+                              Container(
+                                height: 7.h,
+                                width: 90.w,
+                                // margin: EdgeInsets.only(top: 5.sp),
+                                // color: Colors.pink,
+                                child: TextFormField(
+                                  enabled: false,
+                                  controller: c8,
+                                  cursorColor: Colors.black,
+                                  style: TextStyle(color: Colors.black),
+                                  textInputAction: TextInputAction.next,
+                                  keyboardType: TextInputType.text,
+                                  // validator: ,
+                                  decoration: InputDecoration(
+                                      contentPadding:
+                                          EdgeInsets.fromLTRB(20, 0, 0, 0),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          borderSide: BorderSide(
+                                            color: Colors.black,
+                                          )),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: Colors.black,
+                                          width: 0.3.sp,
+                                        ),
+                                      ),
+                                      disabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: Colors.black,
+                                          width: 0.3.sp,
+                                        ),
+                                      ),
+                                      suffixIcon: Icon(
+                                        Icons.arrow_drop_down_sharp,
+                                        size: 22.sp,
                                         color: Colors.black,
                                       )),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.black,
-                                      width: 0.3.sp,
-                                    ),
-                                  ),
-                                  disabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.black,
-                                      width: 0.3.sp,
-                                    ),
-                                  ),
-                                  suffixIcon: Icon(
-                                    Icons.arrow_drop_down_sharp,
-                                    size: 22.sp,
-                                    color: Colors.black,
-                                  )),
-                            ),
+                                ),
+                              ),
+                              Container(
+                                // height: 7.h,
+                                width: 90.w,
+                                child: DropdownButton<String>(
+                                  underline: Container(),
+                                  icon: Container(),
+                                  items: <String>[
+                                    'Ears',
+                                    'Nose',
+                                    'Throat',
+                                    'Eyes',
+                                    'Hair',
+                                  ].map((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value),
+                                    );
+                                  }).toList(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      c8.text = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -692,47 +884,74 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                                   fontSize: 12.sp),
                             ),
                           ),
-                          Container(
-                            height: 7.h,
-                            width: 90.w,
-                            // margin: EdgeInsets.only(top: 5.sp),
-                            // color: Colors.pink,
-                            child: TextFormField(
-                              enabled: false,
-                              controller: c9,
-                              cursorColor: Colors.black,
-                              style: TextStyle(color: Colors.black),
-                              textInputAction: TextInputAction.next,
-                              keyboardType: TextInputType.text,
-                              // validator: ,
-                              decoration: InputDecoration(
-                                  contentPadding:
-                                      EdgeInsets.fromLTRB(20, 0, 0, 0),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                      borderSide: BorderSide(
+                          Stack(
+                            children: [
+                              Container(
+                                height: 7.h,
+                                width: 90.w,
+                                // margin: EdgeInsets.only(top: 5.sp),
+                                // color: Colors.pink,
+                                child: TextFormField(
+                                  enabled: false,
+                                  controller: c9,
+                                  cursorColor: Colors.black,
+                                  style: TextStyle(color: Colors.black),
+                                  textInputAction: TextInputAction.next,
+                                  keyboardType: TextInputType.text,
+                                  // validator: ,
+                                  decoration: InputDecoration(
+                                      contentPadding:
+                                          EdgeInsets.fromLTRB(20, 0, 0, 0),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          borderSide: BorderSide(
+                                            color: Colors.black,
+                                          )),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: Colors.black,
+                                          width: 0.3.sp,
+                                        ),
+                                      ),
+                                      disabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: Colors.black,
+                                          width: 0.3.sp,
+                                        ),
+                                      ),
+                                      suffixIcon: Icon(
+                                        Icons.arrow_drop_down_sharp,
+                                        size: 22.sp,
                                         color: Colors.black,
                                       )),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.black,
-                                      width: 0.3.sp,
-                                    ),
-                                  ),
-                                  disabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.black,
-                                      width: 0.3.sp,
-                                    ),
-                                  ),
-                                  suffixIcon: Icon(
-                                    Icons.arrow_drop_down_sharp,
-                                    size: 22.sp,
-                                    color: Colors.black,
-                                  )),
-                            ),
+                                ),
+                              ),
+                              Container(
+                                // height: 7.h,
+                                width: 90.w,
+                                child: DropdownButton<String>(
+                                  underline: Container(),
+                                  icon: Container(),
+                                  items: <String>[
+                                    'Genital Urinary',
+                                    'Reproductive',
+                                  ].map((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value),
+                                    );
+                                  }).toList(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      c9.text = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -755,47 +974,76 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                                   fontSize: 12.sp),
                             ),
                           ),
-                          Container(
-                            height: 7.h,
-                            width: 90.w,
-                            // margin: EdgeInsets.only(top: 5.sp),
-                            // color: Colors.pink,
-                            child: TextFormField(
-                              enabled: false,
-                              controller: c10,
-                              cursorColor: Colors.black,
-                              style: TextStyle(color: Colors.black),
-                              textInputAction: TextInputAction.next,
-                              keyboardType: TextInputType.text,
-                              // validator: ,
-                              decoration: InputDecoration(
-                                  contentPadding:
-                                      EdgeInsets.fromLTRB(20, 0, 0, 0),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                      borderSide: BorderSide(
+                          Stack(
+                            children: [
+                              Container(
+                                height: 7.h,
+                                width: 90.w,
+                                // margin: EdgeInsets.only(top: 5.sp),
+                                // color: Colors.pink,
+                                child: TextFormField(
+                                  enabled: false,
+                                  controller: c10,
+                                  cursorColor: Colors.black,
+                                  style: TextStyle(color: Colors.black),
+                                  textInputAction: TextInputAction.next,
+                                  keyboardType: TextInputType.text,
+                                  // validator: ,
+                                  decoration: InputDecoration(
+                                      contentPadding:
+                                          EdgeInsets.fromLTRB(20, 0, 0, 0),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          borderSide: BorderSide(
+                                            color: Colors.black,
+                                          )),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: Colors.black,
+                                          width: 0.3.sp,
+                                        ),
+                                      ),
+                                      disabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: BorderSide(
+                                          color: Colors.black,
+                                          width: 0.3.sp,
+                                        ),
+                                      ),
+                                      suffixIcon: Icon(
+                                        Icons.arrow_drop_down_sharp,
+                                        size: 22.sp,
                                         color: Colors.black,
                                       )),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.black,
-                                      width: 0.3.sp,
-                                    ),
-                                  ),
-                                  disabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide(
-                                      color: Colors.black,
-                                      width: 0.3.sp,
-                                    ),
-                                  ),
-                                  suffixIcon: Icon(
-                                    Icons.arrow_drop_down_sharp,
-                                    size: 22.sp,
-                                    color: Colors.black,
-                                  )),
-                            ),
+                                ),
+                              ),
+                              Container(
+                                // height: 7.h,
+                                width: 90.w,
+                                child: DropdownButton<String>(
+                                  underline: Container(),
+                                  icon: Container(),
+                                  items: <String>[
+                                    'Problem 1',
+                                    'Problem 2',
+                                    'Problem 3',
+                                    'Problem 4'
+                                  ].map((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value),
+                                    );
+                                  }).toList(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      c10.text = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -822,7 +1070,7 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                             // Text("Name", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400, fontSize: 12.sp),) ,
                           ),
                           Container(
-                            height: 15.h,
+                            // height: 15.h,
                             width: 90.w,
                             // margin: EdgeInsets.only(top: 5.sp),
                             // color: Colors.pink,
