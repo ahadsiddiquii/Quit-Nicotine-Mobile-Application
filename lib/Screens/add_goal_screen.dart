@@ -133,7 +133,7 @@ class _AddGoalScreenState extends State<AddGoalScreen> {
                         decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
-                            hintText: "Enter Goal Name",
+                            hintText: "Goal Name",
                             hintStyle: TextStyle(
                                 color: Colors.black,
                                 fontSize: 14.sp,
@@ -158,102 +158,102 @@ class _AddGoalScreenState extends State<AddGoalScreen> {
                             )),
                       ),
                     ),
-                    Container(
-                      // height: 7.h,
-                      width: 90.w,
-                      margin: EdgeInsets.only(top: 3.h),
-                      // color: Colors.pink,
-                      child: TextFormField(
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter a goal name';
-                          }
+                    // Container(
+                    //   // height: 7.h,
+                    //   width: 90.w,
+                    //   margin: EdgeInsets.only(top: 3.h),
+                    //   // color: Colors.pink,
+                    //   child: TextFormField(
+                    //     validator: (value) {
+                    //       if (value == null || value.isEmpty) {
+                    //         return 'Please enter a goal name';
+                    //       }
 
-                          return null;
-                        },
+                    //       return null;
+                    //     },
 
-                        controller: goal_name_2,
-                        cursorColor: Colors.black,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w400),
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.emailAddress,
-                        maxLines: 1,
-                        // validator: ,
-                        decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white,
-                            hintText: "Goal Name",
-                            hintStyle: TextStyle(
-                                color: Colors.black,
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w400),
-                            // contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                  width: 0.6,
-                                  color: kSignupColor,
-                                )),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(
-                                color: kSignupColor,
-                                width: 0.5.sp,
-                              ),
-                            ),
-                            prefixIcon: Image.asset(
-                              "assets/Document.png",
-                              color: kSignupColor,
-                            )),
-                      ),
-                    ),
-                    Container(
-                      // height: 7.h,
-                      width: 90.w,
-                      margin: EdgeInsets.only(top: 3.h),
-                      // color: Colors.pink,
-                      child: TextFormField(
-                        controller: status,
-                        cursorColor: Colors.black,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w400),
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.emailAddress,
-                        maxLines: 1,
-                        // validator: ,
-                        decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white,
-                            hintText: "Status",
-                            hintStyle: TextStyle(
-                                color: Colors.black,
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w400),
-                            // contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                  width: 0.6,
-                                  color: kSignupColor,
-                                )),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(
-                                color: kSignupColor,
-                                width: 0.5.sp,
-                              ),
-                            ),
-                            prefixIcon: Image.asset(
-                              "assets/Graph.png",
-                              color: kSignupColor,
-                            )),
-                      ),
-                    ),
+                    //     controller: goal_name_2,
+                    //     cursorColor: Colors.black,
+                    //     style: TextStyle(
+                    //         color: Colors.black,
+                    //         fontSize: 14.sp,
+                    //         fontWeight: FontWeight.w400),
+                    //     textInputAction: TextInputAction.next,
+                    //     keyboardType: TextInputType.emailAddress,
+                    //     maxLines: 1,
+                    //     // validator: ,
+                    //     decoration: InputDecoration(
+                    //         filled: true,
+                    //         fillColor: Colors.white,
+                    //         hintText: "Goal Name",
+                    //         hintStyle: TextStyle(
+                    //             color: Colors.black,
+                    //             fontSize: 14.sp,
+                    //             fontWeight: FontWeight.w400),
+                    //         // contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                    //         focusedBorder: OutlineInputBorder(
+                    //             borderRadius: BorderRadius.circular(10),
+                    //             borderSide: BorderSide(
+                    //               width: 0.6,
+                    //               color: kSignupColor,
+                    //             )),
+                    //         enabledBorder: OutlineInputBorder(
+                    //           borderRadius: BorderRadius.circular(10),
+                    //           borderSide: BorderSide(
+                    //             color: kSignupColor,
+                    //             width: 0.5.sp,
+                    //           ),
+                    //         ),
+                    //         prefixIcon: Image.asset(
+                    //           "assets/Document.png",
+                    //           color: kSignupColor,
+                    //         )),
+                    //   ),
+                    // ),
+                    // Container(
+                    //   // height: 7.h,
+                    //   width: 90.w,
+                    //   margin: EdgeInsets.only(top: 3.h),
+                    //   // color: Colors.pink,
+                    //   child: TextFormField(
+                    //     controller: status,
+                    //     cursorColor: Colors.black,
+                    //     style: TextStyle(
+                    //         color: Colors.black,
+                    //         fontSize: 14.sp,
+                    //         fontWeight: FontWeight.w400),
+                    //     textInputAction: TextInputAction.next,
+                    //     keyboardType: TextInputType.emailAddress,
+                    //     maxLines: 1,
+                    //     // validator: ,
+                    //     decoration: InputDecoration(
+                    //         filled: true,
+                    //         fillColor: Colors.white,
+                    //         hintText: "Status",
+                    //         hintStyle: TextStyle(
+                    //             color: Colors.black,
+                    //             fontSize: 14.sp,
+                    //             fontWeight: FontWeight.w400),
+                    //         // contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                    //         focusedBorder: OutlineInputBorder(
+                    //             borderRadius: BorderRadius.circular(10),
+                    //             borderSide: BorderSide(
+                    //               width: 0.6,
+                    //               color: kSignupColor,
+                    //             )),
+                    //         enabledBorder: OutlineInputBorder(
+                    //           borderRadius: BorderRadius.circular(10),
+                    //           borderSide: BorderSide(
+                    //             color: kSignupColor,
+                    //             width: 0.5.sp,
+                    //           ),
+                    //         ),
+                    //         prefixIcon: Image.asset(
+                    //           "assets/Graph.png",
+                    //           color: kSignupColor,
+                    //         )),
+                    //   ),
+                    // ),
                     SizedBox(
                       height: 3.h,
                     ),
@@ -437,96 +437,96 @@ class _AddGoalScreenState extends State<AddGoalScreen> {
               SizedBox(
                 height: 3.h,
               ),
-              Container(
-                  height: 7.h,
-                  width: 90.w,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(width: 0.6.sp, color: kSignupColor),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Row(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(left: 3.w, right: 1.w),
-                        child: Image.asset(
-                          "assets/fi-rr-alarm-clock 1.png",
-                          color: kSignupColor,
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          // width: .w,
-                          child: DropdownButtonHideUnderline(
-                            child: DropdownButton2(
-                              isExpanded: true,
-                              hint: Text(
-                                'Time Slot',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w400),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              items: items2
-                                  .map((item2) => DropdownMenuItem<String>(
-                                        value: item2,
-                                        child: Text(
-                                          item2,
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w400),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ))
-                                  .toList(),
-                              value: selectedValue2,
-                              onChanged: (value) {
-                                setState(() {
-                                  selectedValue2 = value as String;
-                                });
-                              },
-                              icon: const Icon(
-                                Icons.arrow_drop_down,
-                              ),
-                              iconSize: 30,
-                              iconEnabledColor: Colors.black,
-                              iconDisabledColor: Colors.black,
-                              buttonHeight: 50,
-                              buttonWidth: 160,
-                              buttonPadding:
-                                  const EdgeInsets.only(left: 8, right: 14),
-                              buttonDecoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                // border: Border.all(
-                                //   color: kSignupColor,
-                                // ),
-                                color: Colors.white,
-                              ),
-                              buttonElevation: 0,
-                              itemHeight: 40,
-                              itemPadding:
-                                  const EdgeInsets.only(left: 14, right: 14),
-                              dropdownMaxHeight: 30.h,
-                              dropdownWidth: 35.w,
-                              dropdownPadding: null,
-                              dropdownDecoration: BoxDecoration(
-                                border:
-                                    Border.all(color: kSignupColor, width: 1.3),
-                                borderRadius: BorderRadius.circular(14),
-                                color: Colors.white,
-                              ),
-                              dropdownElevation: 8,
-                              scrollbarRadius: const Radius.circular(40),
-                              scrollbarThickness: 6,
-                              scrollbarAlwaysShow: true,
-                              offset: const Offset(160, 260),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  )),
+              // Container(
+              //     height: 7.h,
+              //     width: 90.w,
+              //     decoration: BoxDecoration(
+              //         color: Colors.white,
+              //         border: Border.all(width: 0.6.sp, color: kSignupColor),
+              //         borderRadius: BorderRadius.circular(10)),
+              //     child: Row(
+              //       children: [
+              //         Container(
+              //           margin: EdgeInsets.only(left: 3.w, right: 1.w),
+              //           child: Image.asset(
+              //             "assets/fi-rr-alarm-clock 1.png",
+              //             color: kSignupColor,
+              //           ),
+              //         ),
+              //         // Expanded(
+              //         //   child: Container(
+              //         //     // width: .w,
+              //         //     child: DropdownButtonHideUnderline(
+              //         //       child: DropdownButton2(
+              //         //         isExpanded: true,
+              //         //         hint: Text(
+              //         //           'Time Slot',
+              //         //           style: TextStyle(
+              //         //               color: Colors.black,
+              //         //               fontSize: 18,
+              //         //               fontWeight: FontWeight.w400),
+              //         //           overflow: TextOverflow.ellipsis,
+              //         //         ),
+              //         //         items: items2
+              //         //             .map((item2) => DropdownMenuItem<String>(
+              //         //                   value: item2,
+              //         //                   child: Text(
+              //         //                     item2,
+              //         //                     style: TextStyle(
+              //         //                         color: Colors.black,
+              //         //                         fontSize: 18,
+              //         //                         fontWeight: FontWeight.w400),
+              //         //                     overflow: TextOverflow.ellipsis,
+              //         //                   ),
+              //         //                 ))
+              //         //             .toList(),
+              //         //         value: selectedValue2,
+              //         //         onChanged: (value) {
+              //         //           setState(() {
+              //         //             selectedValue2 = value as String;
+              //         //           });
+              //         //         },
+              //         //         icon: const Icon(
+              //         //           Icons.arrow_drop_down,
+              //         //         ),
+              //         //         iconSize: 30,
+              //         //         iconEnabledColor: Colors.black,
+              //         //         iconDisabledColor: Colors.black,
+              //         //         buttonHeight: 50,
+              //         //         buttonWidth: 160,
+              //         //         buttonPadding:
+              //         //             const EdgeInsets.only(left: 8, right: 14),
+              //         //         buttonDecoration: BoxDecoration(
+              //         //           borderRadius: BorderRadius.circular(10),
+              //         //           // border: Border.all(
+              //         //           //   color: kSignupColor,
+              //         //           // ),
+              //         //           color: Colors.white,
+              //         //         ),
+              //         //         buttonElevation: 0,
+              //         //         itemHeight: 40,
+              //         //         itemPadding:
+              //         //             const EdgeInsets.only(left: 14, right: 14),
+              //         //         dropdownMaxHeight: 30.h,
+              //         //         dropdownWidth: 35.w,
+              //         //         dropdownPadding: null,
+              //         //         dropdownDecoration: BoxDecoration(
+              //         //           border:
+              //         //               Border.all(color: kSignupColor, width: 1.3),
+              //         //           borderRadius: BorderRadius.circular(14),
+              //         //           color: Colors.white,
+              //         //         ),
+              //         //         dropdownElevation: 8,
+              //         //         scrollbarRadius: const Radius.circular(40),
+              //         //         scrollbarThickness: 6,
+              //         //         scrollbarAlwaysShow: true,
+              //         //         offset: const Offset(160, 260),
+              //         //       ),
+              //         //     ),
+              //         //   ),
+              //         // ),
+              //       ],
+              //     )),
               SizedBox(
                 height: 7.h,
               ),
@@ -553,21 +553,24 @@ class _AddGoalScreenState extends State<AddGoalScreen> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           if (dateController.text.isNotEmpty &&
-                              addedDate != null &&
-                              selectedValue != null &&
-                              selectedValue2 != null) {
+                                  addedDate != null &&
+                                  selectedValue != null
+                              // &&
+                              // selectedValue2 != null
+                              ) {
                             final userState =
                                 BlocProvider.of<UserBloc>(context).state;
                             if (userState is UserLoggedIn) {
                               BlocProvider.of<GoalBloc>(context).add(AddGoal(
-                                  user: userState.user,
-                                  goalName: goal_name_1.text,
-                                  goalDescription: goal_name_2.text,
-                                  goalStatus: status.text,
-                                  goalDays: getDaysInInt(selectedValue!),
-                                  goalDate: addedDate,
-                                  goalTimeSlot:
-                                      getGoalTimeInInt(selectedValue2!)));
+                                user: userState.user,
+                                goalName: goal_name_1.text,
+                                // goalDescription: goal_name_2.text,
+                                // goalStatus: status.text,
+                                goalDays: getDaysInInt(selectedValue!),
+                                goalDate: addedDate,
+                                // goalTimeSlot:
+                                //     getGoalTimeInInt(selectedValue2!)
+                              ));
                             }
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(

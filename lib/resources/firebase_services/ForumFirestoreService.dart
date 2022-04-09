@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -52,11 +54,16 @@ class ForumFirestoreService {
     String postId = DateTime.now().toIso8601String() + "_" + user.userEmail!;
     // DateTime.now().toIso8601String() + Storage.getValue("UserEmail");
     try {
+      final image = File(postImage);
+      List<int> imageBytes = await image.readAsBytes();
+
+      final base64Image = base64Encode(imageBytes);
+
       final Map<String, dynamic> postMap = {
         "postId": postId,
         "user": user.toJson(user),
         "postDescription": postDescription,
-        "postImage": postImage,
+        "postImage": base64Image,
         "postLikes": [],
         "postComments": [],
         "postCreated": DateTime.now().toIso8601String(),
@@ -64,6 +71,44 @@ class ForumFirestoreService {
       FirebaseFirestore.instance
           .collection(collectionName)
           .doc(postId)
+          .set(postMap)
+          .catchError((e) {
+        print(e.toString());
+      });
+      // FirebaseFirestore.instance.collection(collectionName).add(affirmationMap);
+      return true;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
+  Future<bool> updateAPost(
+    User user,
+    Post post,
+    String postDescription,
+    String postImage,
+  ) async {
+    print("ForumFirestoreService: updateAPost Function");
+    // String postId = DateTime.now().toIso8601String() + "_" + user.userEmail!;
+    // DateTime.now().toIso8601String() + Storage.getValue("UserEmail");
+    try {
+      final image = File(postImage);
+      List<int> imageBytes = await image.readAsBytes();
+
+      final base64Image = base64Encode(imageBytes);
+
+      final Map<String, dynamic> postMap = {
+        "postId": post.postId,
+        "user": user.toJson(user),
+        "postDescription": postDescription,
+        "postImage": base64Image,
+        "postLikes": post.postLikes,
+        "postComments": post.postLikes,
+        "postCreated": post.postCreated!.toIso8601String(),
+      };
+      FirebaseFirestore.instance
+          .collection(collectionName)
+          .doc(post.postId)
           .set(postMap)
           .catchError((e) {
         print(e.toString());
@@ -154,6 +199,20 @@ class ForumFirestoreService {
         print("Email not found");
         throw "Email not found";
       }
+
+      return true;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
+  Future<bool> deletePost(String postId) async {
+    print("ForumFirestoreService: deletePost Function");
+    try {
+      await FirebaseFirestore.instance
+          .collection(collectionName)
+          .doc(postId)
+          .delete();
 
       return true;
     } catch (e) {

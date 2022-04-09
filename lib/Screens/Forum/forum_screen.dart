@@ -5,6 +5,7 @@ import 'package:nicotine/Constant.dart';
 import 'package:nicotine/Screens/Components/backButton.dart';
 import 'package:nicotine/Screens/Components/dialog_box.dart';
 import 'package:nicotine/Screens/Components/snackBar.dart';
+import 'package:nicotine/Screens/Forum/upload_post_screen.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../blocs/Forum/forum_bloc.dart';
@@ -71,32 +72,40 @@ class _ForumScreenState extends State<ForumScreen> {
                     heading: 'Create a Post',
                     content: 'Do you want to create a post?',
                     function: () {
-                      final userState =
-                          BlocProvider.of<UserBloc>(context).state;
-                      if (userState is UserLoggedIn) {
-                        print("creating a post");
-                        BlocProvider.of<ForumBloc>(context).add(CreateAPost(
-                          user: User(
-                              userId: userState.user.userId,
-                              userEmail: userState.user.userEmail,
-                              userName: userState.user.userName,
-                              userPassword: userState.user.userPassword,
-                              userImage: userState.user.userImage,
-                              userPoints: userState.user.userPoints,
-                              userMistakes: userState.user.userMistakes,
-                              userQuestionsAsked:
-                                  userState.user.userQuestionsAsked),
-                          postDescription: "Welcome",
-                          postImage:
-                              "https://thumbs.dreamstime.com/b/welcome-4563944.jpg",
-                        ));
-                        // "https://images.unsplash.com/photo-1592743263126-bb241ee76ac7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXRpZnVsJTIwc2NlbmVyeXxlbnwwfHwwfHw%3D&w=1000&q=80"));
-                        Navigator.of(context).pop();
-                      } else {
-                        Navigator.of(context).pop();
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(showSnackbar("Please login to post"));
-                      }
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => UploadPostScreen(
+                                  isEditPost: false,
+                                )),
+                      );
+
+                      // final userState =
+                      //     BlocProvider.of<UserBloc>(context).state;
+                      // if (userState is UserLoggedIn) {
+                      //   print("creating a post");
+                      //   BlocProvider.of<ForumBloc>(context).add(CreateAPost(
+                      //     user: User(
+                      //         userId: userState.user.userId,
+                      //         userEmail: userState.user.userEmail,
+                      //         userName: userState.user.userName,
+                      //         userPassword: userState.user.userPassword,
+                      //         userImage: userState.user.userImage,
+                      //         userPoints: userState.user.userPoints,
+                      //         userMistakes: userState.user.userMistakes,
+                      //         userQuestionsAsked:
+                      //             userState.user.userQuestionsAsked),
+                      //     postDescription: "Welcome",
+                      //     postImage:
+                      //         "https://images.unsplash.com/photo-1592743263126-bb241ee76ac7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXRpZnVsJTIwc2NlbmVyeXxlbnwwfHwwfHw%3D&w=1000&q=80",
+                      //   ));
+                      //   // "https://images.unsplash.com/photo-1592743263126-bb241ee76ac7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXRpZnVsJTIwc2NlbmVyeXxlbnwwfHwwfHw%3D&w=1000&q=80"));
+                      //   Navigator.of(context).pop();
+                      // } else {
+                      //   Navigator.of(context).pop();
+                      //   ScaffoldMessenger.of(context)
+                      //       .showSnackBar(showSnackbar("Please login to post"));
+                      // }
                     });
               },
               child: Icon(

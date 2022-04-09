@@ -42,6 +42,22 @@ class ForumBloc extends Bloc<ForumEvent, ForumState> {
         print('Error in InsertAffirmation event: $e');
         yield ForumError(error: e.toString());
       }
+    } else if (event is EditAPost) {
+      try {
+        print("ForumBloc: EditAPost event");
+
+        final added = await forumService.updateAPost(
+          event.user,
+          event.post,
+          event.postDescription,
+          event.postImage,
+        );
+
+        yield PostAdded();
+      } catch (e) {
+        print('Error in InsertAffirmation event: $e');
+        yield ForumError(error: e.toString());
+      }
     } else if (event is LikeAPost) {
       try {
         print("ForumBloc: LikeAPost event");
@@ -51,6 +67,20 @@ class ForumBloc extends Bloc<ForumEvent, ForumState> {
           event.post,
         );
         yield PostAdded();
+      } catch (e) {
+        print('Error in InsertAffirmation event: $e');
+        yield ForumError(error: e.toString());
+      }
+    } else if (event is DeleteAPost) {
+      try {
+        print("ForumBloc: DeleteAPost event");
+
+        final added = await forumService.deletePost(
+          event.postId,
+        );
+        if (added) {
+          yield PostAdded();
+        }
       } catch (e) {
         print('Error in InsertAffirmation event: $e');
         yield ForumError(error: e.toString());

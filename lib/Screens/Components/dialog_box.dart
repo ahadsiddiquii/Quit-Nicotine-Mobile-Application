@@ -33,7 +33,7 @@ learnMoreDialogBox(
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.w600)),
                     InkWell(
-                      onTap: function,
+                      onTap: () => Navigator.of(context).pop(),
                       child: Container(
                         height: 13,
                         // margin: const EdgeInsets.symmetric(vertical: 5),

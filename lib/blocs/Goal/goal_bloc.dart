@@ -31,13 +31,14 @@ class GoalBloc extends Bloc<GoalEvent, GoalState> {
         print("GoalBloc: AddGoal event");
 
         final added = await userGoalService.createGoal(
-            event.user,
-            event.goalName,
-            event.goalDescription,
-            event.goalStatus,
-            event.goalDays,
-            event.goalDate,
-            event.goalTimeSlot);
+          event.user,
+          event.goalName,
+          // event.goalDescription,
+          // event.goalStatus,
+          event.goalDays,
+          event.goalDate,
+          // event.goalTimeSlot
+        );
 
         yield GoalAdded();
       } catch (e) {

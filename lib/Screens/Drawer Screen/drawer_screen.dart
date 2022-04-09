@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nicotine/Constant.dart';
 import 'package:nicotine/Screens/Forum/forum_screen.dart';
 import 'package:nicotine/Screens/Home%20Screens/calender_screen.dart';
@@ -9,6 +10,9 @@ import 'package:nicotine/Screens/Home%20Screens/profile_screen.dart';
 import 'package:nicotine/Screens/Shop%20Screen/shop_screen.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../blocs/Activity/activity_bloc.dart';
+import '../../blocs/Forum/forum_bloc.dart';
+import '../../blocs/User/user_bloc.dart';
 import '../my_activity.dart';
 
 class DrawerScreen extends StatelessWidget {
@@ -162,15 +166,22 @@ class DrawerScreen extends StatelessWidget {
                       fontWeight: FontWeight.w600),
                 )),
           ),
-          Container(
-              width: 48.w,
-              child: Text(
-                "Log Out",
-                style: TextStyle(
-                    color: kSignupColor,
-                    fontSize: 13.sp,
-                    fontWeight: FontWeight.w600),
-              )),
+          GestureDetector(
+            onTap: () {
+              BlocProvider.of<ForumBloc>(context).add(ResetForumState());
+              BlocProvider.of<ActivityBloc>(context).add(ResetActivityState());
+              BlocProvider.of<UserBloc>(context).add(Logout());
+            },
+            child: Container(
+                width: 48.w,
+                child: Text(
+                  "Log Out",
+                  style: TextStyle(
+                      color: kSignupColor,
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w600),
+                )),
+          ),
           SizedBox(
             height: 6.h,
           ),

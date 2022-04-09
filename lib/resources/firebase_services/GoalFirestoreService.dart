@@ -13,13 +13,14 @@ class GoalFirestoreService {
   final String collectionName = "goal";
 
   Future<bool> createGoal(
-      User user,
-      String goalName,
-      String goalDescription,
-      String goalStatus,
-      int goalDays,
-      DateTime goalDate,
-      int goalTimeSlot) async {
+    User user,
+    String goalName,
+    // String goalDescription,
+    // String goalStatus,
+    int goalDays,
+    DateTime goalDate,
+    // int goalTimeSlot
+  ) async {
     print("GoalFirestoreService: createGoal Function");
     String goalId = DateTime.now().toIso8601String() + "_" + user.userEmail!;
     // DateTime.now().toIso8601String() + Storage.getValue("UserEmail");
@@ -47,11 +48,11 @@ class GoalFirestoreService {
         "goalId": goalId,
         "userId": user.userId,
         "goalName": goalName,
-        "goalDescription": goalDescription,
-        "goalStatus": goalStatus,
+        // "goalDescription": goalDescription,
+        // "goalStatus": goalStatus,
         "goalDays": goalDays,
         "goalDate": goalDate.toIso8601String(),
-        "goalTimeSlot": goalTimeSlot,
+        // "goalTimeSlot": goalTimeSlot,
         "running": running,
         "inProcess": inProcess,
         "complete": complete,

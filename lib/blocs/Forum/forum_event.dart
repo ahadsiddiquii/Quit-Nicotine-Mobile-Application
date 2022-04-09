@@ -23,6 +23,19 @@ class CreateAPost extends ForumEvent {
   });
 }
 
+class EditAPost extends ForumEvent {
+  final User user;
+  final Post post;
+  final String postDescription, postImage;
+
+  EditAPost({
+    required this.user,
+    required this.post,
+    required this.postDescription,
+    required this.postImage,
+  });
+}
+
 class LikeAPost extends ForumEvent {
   final User user;
   final Post post;
@@ -42,6 +55,14 @@ class CommentAPost extends ForumEvent {
     required this.user,
     required this.postId,
     required this.comment,
+  });
+}
+
+class DeleteAPost extends ForumEvent {
+  final String postId;
+
+  DeleteAPost({
+    required this.postId,
   });
 }
 

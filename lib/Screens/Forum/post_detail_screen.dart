@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:nicotine/Constant.dart';
@@ -34,11 +36,17 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                     Container(
                         height: 35.h,
                         width: 100.w,
-                        child: Image.network(
-                          widget.thisPost.postImage!,
+                        child: Image.memory(
+                          base64Decode(widget.thisPost.postImage!),
                           // "assets/Mask.png",
-                          fit: BoxFit.fill,
-                        )),
+                          fit: BoxFit.cover,
+                        )
+                        // Image.network(
+                        //   widget.thisPost.postImage!,
+                        //   // "assets/Mask.png",
+                        //   fit: BoxFit.fill,
+                        // ),
+                        ),
                     Container(
                       height: 40,
                       width: 40,

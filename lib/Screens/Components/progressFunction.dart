@@ -112,17 +112,17 @@ Widget progressFunction(UserGoal userGoal) {
                       fontSize: 11.sp),
                 ),
                 Spacer(),
-                Icon(
-                  Icons.access_time,
-                  color: kSignupColor,
-                ),
-                Text(
-                  "  ${userGoal.goalTimeSlot.toString()} min time Slots",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 11.sp),
-                ),
+                // Icon(
+                //   Icons.access_time,
+                //   color: kSignupColor,
+                // ),
+                // Text(
+                //   "  ${userGoal.goalTimeSlot.toString()} min time Slots",
+                //   style: TextStyle(
+                //       color: Colors.black,
+                //       fontWeight: FontWeight.w400,
+                //       fontSize: 11.sp),
+                // ),
               ],
             ),
           ),
