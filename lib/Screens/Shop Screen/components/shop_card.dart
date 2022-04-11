@@ -3,9 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../Constant.dart';
+import '../../../models/ShopItem.dart';
 
 class ShopCard extends StatelessWidget {
-  const ShopCard({Key? key}) : super(key: key);
+  final ShopItem shopItem;
+  ShopCard({required this.shopItem, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +18,16 @@ class ShopCard extends StatelessWidget {
             height: 2.h,
           ),
           Container(
-            height: 20.h,
-            width: 80.w,
+            height: 25.h,
+            width: 85.w,
             decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey,
+                  offset: Offset(0.0, 1.0), //(x,y)
+                  blurRadius: 3.0,
+                ),
+              ],
               color: Color(0xffE1DADC),
               borderRadius: BorderRadius.circular(15),
             ),
@@ -27,16 +36,17 @@ class ShopCard extends StatelessWidget {
                 Container(
                   // height: 20.h,
                   // width: 100.w,
+                  width: 85.w,
                   decoration: BoxDecoration(
-                    color: Color(0xffE1DADC),
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
                       child: Image.asset(
-                        "assets/shop_img2.png",
+                        shopItem.image,
                         // "assets/Mask/.png",
-                        fit: BoxFit.fill,
+                        fit: BoxFit.contain,
                       )),
                 ),
                 Align(
@@ -62,12 +72,12 @@ class ShopCard extends StatelessWidget {
           Container(
             width: 80.w,
             child: Text(
-              "120 Day nico programme"
+              shopItem.itemName
               // "120-day Quit Nicotine 4 Life Programme"
               ,
               style: TextStyle(
                   color: Colors.black,
-                  fontSize: 10.sp,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.w400,
                   height: 2),
             ),
@@ -75,11 +85,11 @@ class ShopCard extends StatelessWidget {
           Container(
             width: 80.w,
             child: Text(
-              "£220.00",
+              "£ ${shopItem.amount.toString()}",
               // "£120.00",
               style: TextStyle(
                   color: kSigninColor,
-                  fontSize: 11.sp,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.w400,
                   height: 1.5),
             ),

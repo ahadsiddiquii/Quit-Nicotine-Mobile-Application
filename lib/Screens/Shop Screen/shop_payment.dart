@@ -4,12 +4,14 @@ import 'package:nicotine/Screens/Components/backButton.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../Constant.dart';
+import '../../models/ShopItem.dart';
 import 'components/payment_form.dart';
 import 'components/shop_card.dart';
 import 'purchase_successful.dart';
 
 class ShopPayment extends StatefulWidget {
-  const ShopPayment({Key? key}) : super(key: key);
+  final ShopItem shopItem;
+  ShopPayment({required this.shopItem, Key? key}) : super(key: key);
 
   @override
   _ShopPaymentState createState() => _ShopPaymentState();
@@ -73,10 +75,10 @@ class _ShopPaymentState extends State<ShopPayment> {
                       height: 1.h,
                     ),
                     Container(
-                      height: 13.h,
-                      width: 55.w,
+                      height: 20.h,
+                      width: 80.w,
                       decoration: BoxDecoration(
-                        color: Color(0xffE1DADC),
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: Stack(
@@ -84,27 +86,36 @@ class _ShopPaymentState extends State<ShopPayment> {
                           Container(
                             // height: 20.h,
                             // width: 100.w,
+                            width: 80.w,
                             decoration: BoxDecoration(
-                              color: Color(0xffE1DADC),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey,
+                                  offset: Offset(0.0, 1.0), //(x,y)
+                                  blurRadius: 3.0,
+                                ),
+                              ],
                               borderRadius: BorderRadius.circular(15),
                             ),
                             child: ClipRRect(
                                 borderRadius: BorderRadius.circular(15),
                                 child: Image.asset(
-                                  "assets/shop_img2.png",
-                                  fit: BoxFit.fill,
+                                  widget.shopItem.image,
+                                  fit: BoxFit.contain,
                                 )),
                           ),
                         ],
                       ),
                     ),
                     Container(
-                      // width: 80.w,
+                      width: 90.w,
                       child: Text(
-                        "120-day Quit Nicotine 4 Life Programme",
+                        widget.shopItem.itemName,
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.black,
-                            fontSize: 8.sp,
+                            fontSize: 12.sp,
                             fontWeight: FontWeight.w400,
                             height: 2),
                       ),
@@ -112,7 +123,7 @@ class _ShopPaymentState extends State<ShopPayment> {
                     Container(
                       // width: 80.w,
                       child: Text(
-                        "£220.00",
+                        "£ ${widget.shopItem.amount}",
                         style: TextStyle(
                             color: kSigninColor,
                             fontSize: 11.sp,
@@ -145,13 +156,16 @@ class _ShopPaymentState extends State<ShopPayment> {
                     );
                   },
                   child: Text(
-                    "Pay £120.00",
+                    "Pay £ ${widget.shopItem.amount}",
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
                         fontSize: 16.sp),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 2.h,
               ),
             ],
           ),

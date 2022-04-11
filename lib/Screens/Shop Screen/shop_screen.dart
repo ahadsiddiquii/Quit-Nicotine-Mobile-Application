@@ -5,6 +5,7 @@ import 'package:nicotine/Screens/Components/backButton.dart';
 import 'package:sizer/sizer.dart';
 
 import 'components/shop_card.dart';
+import 'components/shop_list.dart';
 import 'shop_payment.dart';
 
 class ShopScreen extends StatefulWidget {
@@ -62,16 +63,21 @@ class _ShopScreenState extends State<ShopScreen> {
         width: 100.w,
         color: Colors.white,
         child: ListView.builder(
-            itemCount: 1,
+            itemCount: shopList.length,
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ShopPayment()),
+                    MaterialPageRoute(
+                        builder: (context) => ShopPayment(
+                              shopItem: shopList[index],
+                            )),
                   );
                 },
-                child: ShopCard(),
+                child: ShopCard(
+                  shopItem: shopList[index],
+                ),
               );
             }),
       ),
