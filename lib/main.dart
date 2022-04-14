@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:sizer/sizer.dart';
 import 'Screens/login_screen.dart';
@@ -15,6 +16,7 @@ import 'blocs/User/user_bloc.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Paint.enableDithering = true;
+
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Firebase.initializeApp();
   if (Firebase.apps.length == 0) {
@@ -22,6 +24,8 @@ Future<void> main() async {
   } else {
     print("Firebase is initialized");
   }
+  Stripe.publishableKey =
+      "pk_test_51K2bXeHcpFyN7czAgP20BvLsh0Ii8LwJUUZZ3V2Zl1O9woRLS1vIAFezPpq79PiPQqo9E60eQVceFiVY98pEHSpO00FbHuhvTW";
   runApp(const MyApp());
 }
 

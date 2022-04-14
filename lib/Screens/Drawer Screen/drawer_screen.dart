@@ -13,6 +13,7 @@ import 'package:sizer/sizer.dart';
 import '../../blocs/Activity/activity_bloc.dart';
 import '../../blocs/Forum/forum_bloc.dart';
 import '../../blocs/User/user_bloc.dart';
+import '../login_screen.dart';
 import '../my_activity.dart';
 
 class DrawerScreen extends StatelessWidget {
@@ -166,21 +167,30 @@ class DrawerScreen extends StatelessWidget {
                       fontWeight: FontWeight.w600),
                 )),
           ),
-          GestureDetector(
-            onTap: () {
-              BlocProvider.of<ForumBloc>(context).add(ResetForumState());
-              BlocProvider.of<ActivityBloc>(context).add(ResetActivityState());
-              BlocProvider.of<UserBloc>(context).add(Logout());
+          BlocListener<UserBloc, UserState>(
+            listener: (context, state) {
+              if (state is UserInitial) {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()));
+              }
             },
-            child: Container(
-                width: 48.w,
-                child: Text(
-                  "Log Out",
-                  style: TextStyle(
-                      color: kSignupColor,
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.w600),
-                )),
+            child: GestureDetector(
+              onTap: () {
+                BlocProvider.of<ForumBloc>(context).add(ResetForumState());
+                BlocProvider.of<ActivityBloc>(context)
+                    .add(ResetActivityState());
+                BlocProvider.of<UserBloc>(context).add(Logout());
+              },
+              child: Container(
+                  width: 48.w,
+                  child: Text(
+                    "Log Out",
+                    style: TextStyle(
+                        color: kSignupColor,
+                        fontSize: 13.sp,
+                        fontWeight: FontWeight.w600),
+                  )),
+            ),
           ),
           SizedBox(
             height: 6.h,

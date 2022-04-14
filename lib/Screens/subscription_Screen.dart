@@ -6,6 +6,8 @@ import 'package:sizer/sizer.dart';
 
 import 'Components/bullet_list.dart';
 import 'Home Screens/dash_bord.dart';
+import 'Shop Screen/components/shop_list.dart';
+import 'Shop Screen/shop_payment.dart';
 import 'payments_screen.dart';
 
 class SubscriptionScreen extends StatelessWidget {

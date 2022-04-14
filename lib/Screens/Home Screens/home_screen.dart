@@ -342,7 +342,18 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           );
         } else {
-          return Container();
+          return Container(
+            height: 7.h,
+            width: 90.w,
+            color: Colors.white,
+            child: Center(
+              child: CircularProgressIndicator(
+                valueColor:
+                    new AlwaysStoppedAnimation<Color>(Color(0xff599E48)),
+                // color: theme.primaryColor,
+              ),
+            ),
+          );
         }
       },
     );

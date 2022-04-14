@@ -42,8 +42,10 @@ dependencies:
   flutter_countdown_timer: ^4.1.0
   flutter_dropdown: ^1.0.0+hotfix.1
   flutter_facebook_auth: ^4.1.1
+  flutter_stripe: ^2.4.0
   flutter_switch: ^0.3.2
   google_sign_in: ^5.2.4
+  http: ^0.13.4
   image_picker: ^0.8.5
   overlay_support: ^1.2.1
   percent_indicator: ^4.0.0

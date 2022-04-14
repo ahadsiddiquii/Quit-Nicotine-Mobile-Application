@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:nicotine/Screens/Components/backButton.dart';
 import 'package:sizer/sizer.dart';
-
+import 'package:http/http.dart' as http;
 import '../../Constant.dart';
 import '../../models/ShopItem.dart';
 import 'components/payment_form.dart';
@@ -18,6 +21,101 @@ class ShopPayment extends StatefulWidget {
 }
 
 class _ShopPaymentState extends State<ShopPayment> {
+  Map<String, dynamic>? paymentIntentData;
+
+  calculateAmount(String amount) {
+    final a = (int.parse(amount)) * 100;
+    return a.toString();
+  }
+
+  createPaymentIntent(String amount, String currency) async {
+    try {
+      Map<String, dynamic> body = {
+        'amount': calculateAmount(amount),
+        'currency': currency,
+        'payment_method_types[]': 'card'
+      };
+      print(body);
+      var response = await http.post(
+          Uri.parse('https://api.stripe.com/v1/payment_intents'),
+          body: body,
+          headers: {
+            'Authorization':
+                'Bearer sk_test_51K2bXeHcpFyN7czAlt0ZH1PrKZyKRySaZywTK3mMjGaZ3ppycA3QVhisH3CZjMuC1bZ95MTz14EdOQPG1Gexy0bJ00KzKTHHQf',
+            'Content-Type': 'application/x-www-form-urlencoded'
+          });
+      print('Create Intent reponse ===> ${response.body.toString()}');
+      return jsonDecode(response.body);
+    } catch (err) {
+      print('err charging user: ${err.toString()}');
+    }
+  }
+
+  displayPaymentSheet() async {
+    try {
+      await Stripe.instance
+          .presentPaymentSheet(
+              parameters: PresentPaymentSheetParameters(
+        clientSecret: paymentIntentData!['client_secret'],
+        confirmPayment: true,
+      ))
+          .then((newValue) {
+        print('payment intent' + paymentIntentData!['id'].toString());
+        print(
+            'payment intent' + paymentIntentData!['client_secret'].toString());
+        print('payment intent' + paymentIntentData!['amount'].toString());
+        print('payment intent' + paymentIntentData.toString());
+        //orderPlaceApi(paymentIntentData!['id'].toString());
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("paid successfully")));
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => PurchaseSuccessful(),
+          ),
+        );
+
+        paymentIntentData = null;
+      }).onError((error, stackTrace) {
+        print('Exception/DISPLAYPAYMENTSHEET==> $error $stackTrace');
+      });
+    } on StripeException catch (e) {
+      print('Exception/DISPLAYPAYMENTSHEET==> $e');
+      showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+                content: Text("Cancelled "),
+              ));
+    } catch (e) {
+      print('$e');
+    }
+  }
+
+  Future<void> makePayment(String amount) async {
+    try {
+      paymentIntentData = await createPaymentIntent(
+          amount, 'GBP'); //json.decode(response.body);
+      // print('Response body==>${response.body.toString()}');
+      await Stripe.instance
+          .initPaymentSheet(
+              paymentSheetParameters: SetupPaymentSheetParameters(
+                  paymentIntentClientSecret:
+                      paymentIntentData!['client_secret'],
+                  applePay: true,
+                  googlePay: true,
+                  testEnv: true,
+                  style: ThemeMode.dark,
+                  merchantCountryCode: 'US',
+                  merchantDisplayName: 'ANNIE'))
+          .then((value) {});
+
+      ///now finally display payment sheeet
+      displayPaymentSheet();
+    } catch (e, s) {
+      print('exception:$e$s');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -134,7 +232,7 @@ class _ShopPaymentState extends State<ShopPayment> {
                   ],
                 ),
               ),
-              PaymentForm(),
+              // PaymentForm(),
               SizedBox(
                 height: 2.h,
               ),
@@ -147,13 +245,15 @@ class _ShopPaymentState extends State<ShopPayment> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15)),
                   color: kSignupColor,
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => PurchaseSuccessful(),
-                      ),
-                    );
+                  onPressed: () async {
+                    await makePayment(
+                        widget.shopItem.amount.toInt().toString());
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => PurchaseSuccessful(),
+                    //   ),
+                    // );
                   },
                   child: Text(
                     "Pay £ ${widget.shopItem.amount}",

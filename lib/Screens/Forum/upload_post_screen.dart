@@ -183,7 +183,7 @@ class _UploadPostScreenState extends State<UploadPostScreen> {
                 ),
               ],
             ),
-            floatingActionButton: BlocListener<ForumBloc, ForumState>(
+            floatingActionButton: BlocConsumer<ForumBloc, ForumState>(
               listener: (context, state) {
                 if (state is PostAdded) {
                   BlocProvider.of<ForumBloc>(context).add(GetAllForumPosts());
@@ -192,60 +192,78 @@ class _UploadPostScreenState extends State<UploadPostScreen> {
                   Navigator.of(context).pop();
                 }
               },
-              child: DialogBoxWidthButton(
-                  text: "Upload",
-                  func: () {
-                    if (_formKey.currentState!.validate() &&
-                        _imageFile != null) {
-                      if (widget.isEditPost == false) {
-                        final userState =
-                            BlocProvider.of<UserBloc>(context).state;
-                        if (userState is UserLoggedIn) {
-                          print("creating a post");
-                          BlocProvider.of<ForumBloc>(context).add(CreateAPost(
-                            user: User(
-                                userId: userState.user.userId,
-                                userEmail: userState.user.userEmail,
-                                userName: userState.user.userName,
-                                userPassword: userState.user.userPassword,
-                                userImage: userState.user.userImage,
-                                userPoints: userState.user.userPoints,
-                                userMistakes: userState.user.userMistakes,
-                                userQuestionsAsked:
-                                    userState.user.userQuestionsAsked),
-                            postDescription: postDescription.text,
-                            postImage: _imageFile!.path,
-                          ));
+              builder: (context, state) {
+                if ((state is AllPostsRetrieved) || (state is ForumInitial)) {
+                  return DialogBoxWidthButton(
+                      text: "Upload",
+                      func: () {
+                        if (_formKey.currentState!.validate() &&
+                            _imageFile != null) {
+                          if (widget.isEditPost == false) {
+                            final userState =
+                                BlocProvider.of<UserBloc>(context).state;
+                            if (userState is UserLoggedIn) {
+                              print("creating a post");
+                              BlocProvider.of<ForumBloc>(context)
+                                  .add(CreateAPost(
+                                user: User(
+                                    userId: userState.user.userId,
+                                    userEmail: userState.user.userEmail,
+                                    userName: userState.user.userName,
+                                    userPassword: userState.user.userPassword,
+                                    userImage: userState.user.userImage,
+                                    userPoints: userState.user.userPoints,
+                                    userMistakes: userState.user.userMistakes,
+                                    userQuestionsAsked:
+                                        userState.user.userQuestionsAsked),
+                                postDescription: postDescription.text,
+                                postImage: _imageFile!.path,
+                              ));
+                            }
+                          } else {
+                            final userState =
+                                BlocProvider.of<UserBloc>(context).state;
+                            if (userState is UserLoggedIn) {
+                              print("editing a post");
+                              BlocProvider.of<ForumBloc>(context).add(EditAPost(
+                                user: User(
+                                    userId: userState.user.userId,
+                                    userEmail: userState.user.userEmail,
+                                    userName: userState.user.userName,
+                                    userPassword: userState.user.userPassword,
+                                    userImage: userState.user.userImage,
+                                    userPoints: userState.user.userPoints,
+                                    userMistakes: userState.user.userMistakes,
+                                    userQuestionsAsked:
+                                        userState.user.userQuestionsAsked),
+                                post: widget.thisPost!,
+                                postDescription: postDescription.text,
+                                postImage: _imageFile!.path,
+                              ));
+                            }
+                          }
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(showSnackbar(
+                              "Some field is left empty or image is not added"));
                         }
-                      } else {
-                        final userState =
-                            BlocProvider.of<UserBloc>(context).state;
-                        if (userState is UserLoggedIn) {
-                          print("editing a post");
-                          BlocProvider.of<ForumBloc>(context).add(EditAPost(
-                            user: User(
-                                userId: userState.user.userId,
-                                userEmail: userState.user.userEmail,
-                                userName: userState.user.userName,
-                                userPassword: userState.user.userPassword,
-                                userImage: userState.user.userImage,
-                                userPoints: userState.user.userPoints,
-                                userMistakes: userState.user.userMistakes,
-                                userQuestionsAsked:
-                                    userState.user.userQuestionsAsked),
-                            post: widget.thisPost!,
-                            postDescription: postDescription.text,
-                            postImage: _imageFile!.path,
-                          ));
-                        }
-                      }
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(showSnackbar(
-                          "Some field is left empty or image is not added"));
-                    }
-                  },
-                  isFullWidth: true,
-                  isOutlined: false),
+                      },
+                      isFullWidth: true,
+                      isOutlined: false);
+                } else {
+                  return Container(
+                    height: 70.h,
+                    width: 90.w,
+                    color: Colors.white,
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        valueColor: new AlwaysStoppedAnimation<Color>(
+                            Color(0xff599E48)),
+                        // color: theme.primaryColor,
+                      ),
+                    ),
+                  );
+                }
+              },
             ),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerFloat,
