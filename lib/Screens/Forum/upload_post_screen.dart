@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:nicotine/Constant.dart';
 import 'package:nicotine/Screens/Components/dialog_box_width_button.dart';
@@ -47,6 +49,9 @@ class _UploadPostScreenState extends State<UploadPostScreen> {
         // ignore: deprecated_member_use
         final pickedFile = await _picker.getImage(
           source: source,
+          maxHeight: 480,
+          maxWidth: 640,
+          imageQuality: 50,
         );
         setState(() {
           _imageFile = pickedFile;
@@ -163,6 +168,25 @@ class _UploadPostScreenState extends State<UploadPostScreen> {
           });
     }
 
+    Future<File?> testCompressAndGetFile(File file, String targetPath) async {
+      print("testCompressAndGetFile");
+      final result = await FlutterImageCompress.compressAndGetFile(
+        file.absolute.path,
+        targetPath,
+        quality: 30,
+        minWidth: 1024,
+        minHeight: 1024,
+        rotate: 0,
+      );
+
+      print(file.lengthSync());
+      print(result?.lengthSync());
+      print("Result Path");
+      print("Result Path: " + result!.path.toString());
+
+      return result;
+    }
+
     return BlocBuilder<UserBloc, UserState>(
       builder: (context, state) {
         if (state is UserLoggedIn) {
@@ -186,7 +210,7 @@ class _UploadPostScreenState extends State<UploadPostScreen> {
             floatingActionButton: BlocConsumer<ForumBloc, ForumState>(
               listener: (context, state) {
                 if (state is PostAdded) {
-                  BlocProvider.of<ForumBloc>(context).add(GetAllForumPosts());
+                  // BlocProvider.of<ForumBloc>(context).add(GetAllForumPosts());
                 }
                 if (state is AllPostsRetrieved) {
                   Navigator.of(context).pop();
@@ -196,13 +220,18 @@ class _UploadPostScreenState extends State<UploadPostScreen> {
                 if ((state is AllPostsRetrieved) || (state is ForumInitial)) {
                   return DialogBoxWidthButton(
                       text: "Upload",
-                      func: () {
+                      func: () async {
                         if (_formKey.currentState!.validate() &&
                             _imageFile != null) {
                           if (widget.isEditPost == false) {
                             final userState =
                                 BlocProvider.of<UserBloc>(context).state;
                             if (userState is UserLoggedIn) {
+                              final image = File(_imageFile!.path);
+
+                              // File? file = await testCompressAndGetFile(
+                              //     image, "assets/image101.jpg");
+
                               print("creating a post");
                               BlocProvider.of<ForumBloc>(context)
                                   .add(CreateAPost(

@@ -185,7 +185,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Container(
                         // width: 50.w,
                         child: Text(
-                          "Latest Goals",
+                          "Latest Goal",
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 17.sp,
@@ -343,8 +343,8 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         } else {
           return Container(
-            height: 7.h,
-            width: 90.w,
+            height: 70.h,
+            width: 100.w,
             color: Colors.white,
             child: Center(
               child: CircularProgressIndicator(

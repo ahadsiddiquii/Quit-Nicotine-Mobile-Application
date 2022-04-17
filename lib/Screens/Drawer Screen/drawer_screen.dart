@@ -7,6 +7,7 @@ import 'package:nicotine/Screens/Home%20Screens/calender_screen.dart';
 import 'package:nicotine/Screens/Home%20Screens/dash_bord.dart';
 import 'package:nicotine/Screens/Home%20Screens/goals_screen.dart';
 import 'package:nicotine/Screens/Home%20Screens/profile_screen.dart';
+import 'package:nicotine/Screens/ServiceProvider/service_provider_screen.dart';
 import 'package:nicotine/Screens/Shop%20Screen/shop_screen.dart';
 import 'package:sizer/sizer.dart';
 
@@ -141,6 +142,23 @@ class DrawerScreen extends StatelessWidget {
                 width: 48.w,
                 child: Text(
                   "Shop",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w600),
+                )),
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ServiceProvider()),
+              );
+            },
+            child: Container(
+                width: 48.w,
+                child: Text(
+                  "Service Provider",
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 13.sp,
