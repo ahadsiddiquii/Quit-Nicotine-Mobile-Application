@@ -158,6 +158,33 @@ class _ShopPaymentState extends State<ShopPayment> {
           ),
         ],
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Container(
+        height: 7.h,
+        width: 65.w,
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+        child: RaisedButton(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          color: kSignupColor,
+          onPressed: () async {
+            await makePayment(widget.shopItem.amount.toInt().toString());
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (context) => PurchaseSuccessful(),
+            //   ),
+            // );
+          },
+          child: Text(
+            "Pay £ ${widget.shopItem.amount}",
+            style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+                fontSize: 16.sp),
+          ),
+        ),
+      ),
       body: Container(
         height: 100.h,
         width: 100.w,
@@ -232,38 +259,23 @@ class _ShopPaymentState extends State<ShopPayment> {
                   ],
                 ),
               ),
-              // PaymentForm(),
-              SizedBox(
-                height: 2.h,
-              ),
               Container(
-                height: 7.h,
-                width: 65.w,
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(15)),
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)),
-                  color: kSignupColor,
-                  onPressed: () async {
-                    await makePayment(
-                        widget.shopItem.amount.toInt().toString());
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => PurchaseSuccessful(),
-                    //   ),
-                    // );
-                  },
-                  child: Text(
-                    "Pay £ ${widget.shopItem.amount}",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16.sp),
-                  ),
+                width: 90.w,
+                child: Text(
+                  widget.shopItem.description,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w400,
+                      height: 2),
                 ),
               ),
+              // PaymentForm(),
+              SizedBox(
+                height: 10.h,
+              ),
+
               SizedBox(
                 height: 2.h,
               ),

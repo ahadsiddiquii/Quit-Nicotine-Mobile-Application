@@ -43,6 +43,7 @@ class ServiceCard extends StatelessWidget {
               child: Stack(
                 children: [
                   Container(
+                    height: 25.h,
                     // height: 20.h,
                     // width: 100.w,
                     width: 85.w,
@@ -54,16 +55,13 @@ class ServiceCard extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(15),
-                          child: isAsset
+                          child: serviceItem.image.isNotEmpty
                               ? Image.asset(
                                   serviceItem.image,
                                   // "assets/Mask/.png",
                                   fit: BoxFit.contain,
                                 )
-                              : Image.network(
-                                  serviceItem.image,
-                                  fit: BoxFit.contain,
-                                )),
+                              : Container()),
                     ),
                   ),
                 ],
