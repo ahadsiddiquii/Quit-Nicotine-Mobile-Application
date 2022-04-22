@@ -48,7 +48,7 @@ class ServiceCard extends StatelessWidget {
                     // width: 100.w,
                     width: 85.w,
                     decoration: BoxDecoration(
-                      color: kSigninColor,
+                      color: serviceItem.color,
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Padding(
