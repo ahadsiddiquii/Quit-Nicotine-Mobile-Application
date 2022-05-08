@@ -25,4 +25,12 @@ class AddGoal extends GoalEvent {
   });
 }
 
+class DeleteAGoal extends GoalEvent {
+  final String goalId;
+
+  DeleteAGoal({
+    required this.goalId,
+  });
+}
+
 class ResetGoalState extends GoalEvent {}

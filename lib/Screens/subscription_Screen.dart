@@ -81,7 +81,7 @@ class SubscriptionScreen extends StatelessWidget {
               ),
               Container(
                   margin: EdgeInsets.symmetric(horizontal: 7.w),
-                  height: 34.h,
+                  // height: 34.h,
                   decoration: BoxDecoration(
                     // color: Colors.cyanAccent,
                     borderRadius: BorderRadius.circular(14),
@@ -93,17 +93,18 @@ class SubscriptionScreen extends StatelessWidget {
                         height: 2.h,
                       ),
                       Text(
-                        "Upon subscribing you will get,",
+                        "Upon subscribing you will get:",
                         style: TextStyle(
                             color: kSigninColor,
                             fontWeight: FontWeight.w500,
                             fontSize: 13.sp),
                       ),
                       BulletList([
-                        '120 days supply of Herbal Smoking Mix to mix as added to your own tobacco.',
-                        '120 days supply of Tissue Salts to take daily to ease the cravings.',
-                        'The prepaid envelope for the Hair Test4 Life and the instructions on how to do it',
-                        'The explanation of how the programme works. And how to use it.',
+                        '4-month supply of Imperial Herbal Smoking Mix (12 pouches) to add to your own tobacco, as directed, plus 12 booklets of rolling papers.',
+                        '1-month supply of First Aid + Tissue Salts for Immediate Relief (500 pills) to take daily to ease the cravings.',
+                        '3-month supply of Ultimate Health Tissue Salts (500 pills).',
+                        'Instructions on how to complete the Hair Test 4 Life and a prepaid envelope for its return.',
+                        'Full details of how the programme works and of how to get involved.',
                       ]),
                     ],
                   )),

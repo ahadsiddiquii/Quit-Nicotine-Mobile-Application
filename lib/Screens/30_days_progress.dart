@@ -101,14 +101,18 @@ class _DaysProgressState extends State<DaysProgress> {
                     border: Border.all(color: kSigninColor, width: 1.sp),
                   ),
                   child: Padding(
-                      padding: EdgeInsets.all(5.sp), child: MyHomeScreen()),
+                      padding: EdgeInsets.all(5.sp),
+                      child: MyHomeScreen(
+                          waterCount: waterCount,
+                          stepsCount: stepsCount,
+                          foodCount: foodCount)),
                 ),
                 ProgressCard(
                   img: "assets/watergreen.png",
                   type: "  Water",
                   score: " ${waterCount.toString()}",
                   // "  483",
-                  hading: "Glass drink in 30 days\n",
+                  hading: "Glasses in 30 days\n",
                   description:
                       "Lorem ipsum is simply dummy text is that readable",
                 ),
@@ -117,7 +121,7 @@ class _DaysProgressState extends State<DaysProgress> {
                   type: "  Walk Steps",
                   score: " ${stepsCount.toString()}",
                   // "  58,483",
-                  hading: "Walk Step in 30 days\n",
+                  hading: "Walked Steps in 30 days\n",
                   description:
                       "Lorem ipsum is simply dummy text is that readable",
                 ),

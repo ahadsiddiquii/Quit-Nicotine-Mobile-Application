@@ -489,7 +489,7 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
                                   width: 90.w,
                                   // color: Colors.purple,
                                   child: Text(
-                                    "Post Code",
+                                    "Postal Code",
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.w300,

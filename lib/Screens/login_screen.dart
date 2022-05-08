@@ -188,6 +188,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               textInputAction: TextInputAction.next,
                               obscureText: obscureShow,
                               decoration: InputDecoration(
+                                errorMaxLines: 2,
                                 // contentPadding: EdgeInsets.fromLTRB(20, 10, 0, 30),
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
@@ -313,7 +314,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.circular(10)),
                   color: Colors.white,
                   onPressed: () {
-                    loginViaGoogle(context);
+                    BlocProvider.of<UserBloc>(context).add(GoogleLogin());
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

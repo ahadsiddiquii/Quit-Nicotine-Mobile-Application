@@ -34,67 +34,69 @@ class _PostesCardState extends State<PostesCard> {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10.0))),
             content: Container(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // IconButton(
-                  //     padding: EdgeInsets.zero,
-                  //     onPressed:,
-                  //     icon: ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // SizedBox(
-                      //   width: 10,
-                      // ),
-                      Text(heading,
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.w600)),
-                      InkWell(
-                        onTap: () => Navigator.of(context).pop(),
-                        child: Container(
-                          height: 13,
-                          // margin: const EdgeInsets.symmetric(vertical: 5),
-                          child: Image.asset('assets/crossNoBackground.png'),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // IconButton(
+                    //     padding: EdgeInsets.zero,
+                    //     onPressed:,
+                    //     icon: ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        // SizedBox(
+                        //   width: 10,
+                        // ),
+                        Text(heading,
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.w600)),
+                        InkWell(
+                          onTap: () => Navigator.of(context).pop(),
+                          child: Container(
+                            height: 13,
+                            // margin: const EdgeInsets.symmetric(vertical: 5),
+                            child: Image.asset('assets/crossNoBackground.png'),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 10),
-                  Text(content,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 12,
-                      )),
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                    Text(content,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 12,
+                        )),
 
-                  SizedBox(height: 20),
-                  Container(
-                    height: 1,
-                    color: Colors.grey[300],
-                  ),
-                  SizedBox(height: 5),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      DialogBoxWidthButton(
-                          text: "Edit post",
-                          func: function1,
-                          isFullWidth: true,
-                          isOutlined: false),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      DialogBoxWidthButton(
-                          text: "Delete post",
-                          func: function2,
-                          isFullWidth: true,
-                          isOutlined: false),
-                    ],
-                  ),
-                ],
+                    SizedBox(height: 20),
+                    Container(
+                      height: 1,
+                      color: Colors.grey[300],
+                    ),
+                    SizedBox(height: 5),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        DialogBoxWidthButton(
+                            text: "Edit post",
+                            func: function1,
+                            isFullWidth: true,
+                            isOutlined: false),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        DialogBoxWidthButton(
+                            text: "Delete post",
+                            func: function2,
+                            isFullWidth: true,
+                            isOutlined: false),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           );

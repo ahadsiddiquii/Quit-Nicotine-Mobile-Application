@@ -5,6 +5,7 @@ learnMoreDialogBox(
     {required BuildContext context,
     required String heading,
     required String content,
+    required String buttonText,
     required void Function() function}) {
   showDialog(
       context: context,
@@ -76,7 +77,7 @@ learnMoreDialogBox(
                     //     isFullWidth: false,
                     //     isOutlined: true),
                     DialogBoxWidthButton(
-                        text: "Create a post",
+                        text: buttonText,
                         func: function,
                         isFullWidth: true,
                         isOutlined: false),

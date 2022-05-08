@@ -6,7 +6,7 @@ SnackBar showSnackbar(String text) {
       text,
       textAlign: TextAlign.center,
     ),
-    duration: const Duration(milliseconds: 3000),
+    duration: const Duration(milliseconds: 5000),
     behavior: SnackBarBehavior.floating,
   );
 }

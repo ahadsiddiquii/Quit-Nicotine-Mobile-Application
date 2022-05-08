@@ -87,7 +87,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
                               if (isValidGoal) {
                                 print(p.goalName!);
                                 print(formatterMonDateYear.format(p.goalDate!));
-                                return progressFunction(p);
+                                return progressFunction(p, context);
                               } else {
                                 return Container();
                               }

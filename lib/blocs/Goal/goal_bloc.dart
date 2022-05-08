@@ -45,6 +45,20 @@ class GoalBloc extends Bloc<GoalEvent, GoalState> {
         print('Error in create goal event: $e');
         yield GoalError(error: e.toString());
       }
+    } else if (event is DeleteAGoal) {
+      try {
+        print("GoalBloc: DeleteAGoal event");
+
+        final added = await userGoalService.deleteGoal(
+          event.goalId,
+        );
+        if (added) {
+          yield GoalAdded();
+        }
+      } catch (e) {
+        print('Error in DeleteAGoal event: $e');
+        yield GoalError(error: e.toString());
+      }
     } else if (event is ResetGoalState) {
       yield GoalInitial();
     }

@@ -105,4 +105,18 @@ class GoalFirestoreService {
       throw e.toString();
     }
   }
+
+  Future<bool> deleteGoal(String goalId) async {
+    print("GoalFirestoreService: deleteGoal Function");
+    try {
+      await FirebaseFirestore.instance
+          .collection(collectionName)
+          .doc(goalId)
+          .delete();
+
+      return true;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
 }

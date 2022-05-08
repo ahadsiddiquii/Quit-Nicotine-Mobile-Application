@@ -12,9 +12,14 @@ GoogleSignIn _googleSignIn = GoogleSignIn(
   ],
 );
 
-Future<void> loginViaGoogle(BuildContext context) async {
+Future<Map<String, dynamic>> loginViaGoogle() async {
   // User user = User(email: ' ', first_name: " ", last_name: " ");
   print('Google login done1');
+
+  Map<String, dynamic> googleLoginCreds = {
+    "email": null,
+    "first_name": null,
+  };
   try {
     await _googleSignIn.signIn().then((GoogleSignInAccount? acc) async {
       print('Google login done1.5');
@@ -22,11 +27,11 @@ Future<void> loginViaGoogle(BuildContext context) async {
       // user =
       //     User(email: acc!.email, first_name: acc.displayName!, last_name: " ");
 
-      // Map<String, dynamic> googleLoginCreds = {
-      //   "email": acc.email,
-      //   "first_name": acc.displayName,
-      //   "last_name": " ",
-      // };
+      Map<String, dynamic> googleLoginNewCreds = {
+        "email": acc!.email,
+        "first_name": acc.displayName,
+      };
+      googleLoginCreds = googleLoginNewCreds;
 
       // socialLoginFirestoreService(googleLoginCreds, context);
       // print(acc?.id);
@@ -42,6 +47,8 @@ Future<void> loginViaGoogle(BuildContext context) async {
     print("Thrown Exception");
     print(e.toString());
   }
+
+  return googleLoginCreds;
 }
 
 Future<void> loginViaFacebook() async {

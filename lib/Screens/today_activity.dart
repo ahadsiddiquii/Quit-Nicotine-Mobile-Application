@@ -100,7 +100,7 @@ class _TodayActivityState extends State<TodayActivity> {
                             width: 90.w,
                             // color: Colors.purple,
                             child: Text(
-                              "How Much Glass of Esyer You Drink Today",
+                              "How many glasses of water did you drink today?",
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w400,
@@ -168,7 +168,7 @@ class _TodayActivityState extends State<TodayActivity> {
                             width: 90.w,
                             // color: Colors.purple,
                             child: Text(
-                              "What Food You Eat Today",
+                              "What food have you eaten today?",
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w400,
@@ -233,7 +233,7 @@ class _TodayActivityState extends State<TodayActivity> {
                             width: 90.w,
                             // color: Colors.purple,
                             child: Text(
-                              "How Much Steps You Walk Today",
+                              "How many steps have you walked today?",
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w400,

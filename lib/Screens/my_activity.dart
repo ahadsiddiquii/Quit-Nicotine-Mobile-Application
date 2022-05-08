@@ -96,7 +96,7 @@ class _MyActivityState extends State<MyActivity> {
                                   height: 1.3),
                             ),
                             Text(
-                              "example@email.com",
+                              "info@quitnicotine4life.com",
                               style: TextStyle(
                                   color: kSigninColor,
                                   fontSize: 11.sp,
@@ -163,7 +163,7 @@ class _MyActivityState extends State<MyActivity> {
                           height: 2),
                     ),
                     Text(
-                      "I drink ${thisActivity.glassesOfWater!.toString()} glass water",
+                      "I drank ${thisActivity.glassesOfWater!.toString()} glasses of water",
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w300,
@@ -220,7 +220,7 @@ class _MyActivityState extends State<MyActivity> {
           // color: Colors.amberAccent,
           child: Center(
               child: Text(
-            "Day ${currentIndex}",
+            "Day ${DateTime.now().difference(thisActivity.activityCreationDate!).inDays + 1}",
             style: TextStyle(
                 color: kSigninColor,
                 fontWeight: FontWeight.w600,

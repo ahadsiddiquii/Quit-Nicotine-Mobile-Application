@@ -50,11 +50,11 @@ class _ServiceProviderState extends State<ServiceProvider> {
         url: "https://www.begin-with-the-end-in-mind.com/",
         itemName: "Begin with the end in mind",
         color: kSigninColor),
-    ServiceItem(
-        image: "assets/theBotanicalLife.PNG",
-        url: "http://www.botanical-life.co.uk/",
-        itemName: "The Botanical Life",
-        color: Colors.white),
+    // ServiceItem(
+    //     image: "assets/theBotanicalLife.PNG",
+    //     url: "http://www.botanical-life.co.uk/",
+    //     itemName: "The Botanical Life",
+    //     color: Colors.white),
     ServiceItem(
         image: "assets/botanicalLifeLocal.png",
         url: "https://www.botanicalhairlounge.co.uk/",
@@ -111,9 +111,9 @@ class _ServiceProviderState extends State<ServiceProvider> {
     //     itemName: "No Speak",
     //     color: kSigninColor),
     ServiceItem(
-        image: "assets/salt & lite-1.png",
+        image: "assets/saltLiteLogoV2.jpg",
         url: "http://saltandlite.org/",
-        itemName: "Salt and Lite",
+        itemName: "Salt + Lite",
         color: Colors.white),
     // ServiceItem(
     //     image: "",

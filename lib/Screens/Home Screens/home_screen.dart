@@ -1,3 +1,4 @@
+import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +12,7 @@ import 'package:sizer/sizer.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import '../../blocs/Goal/goal_bloc.dart';
 import '../../utils/goalHelper.dart';
+import '../add_goal_screen.dart';
 import 'components/status_card.dart';
 import 'components/timer.dart';
 
@@ -28,11 +30,44 @@ class _HomeScreenState extends State<HomeScreen> {
   int completeGoals = 0;
   DateTime latestGoalDateTime = DateTime.now();
 
+  void initDynamicLinks() async {
+    final PendingDynamicLinkData? data =
+        await FirebaseDynamicLinks.instance.getInitialLink();
+    final Uri? deepLink = data?.link;
+
+    if (deepLink != null) {
+      print(deepLink);
+      // handleDynamicLink(deepLink);
+    }
+    // FirebaseDynamicLinks.instance.onLink(
+    //     onSuccess: (PendingDynamicLinkData? dynamicLink) async {
+    //   final Uri? deepLink = dynamicLink?.link;
+
+    //   if (deepLink != null) {
+    //     print(deeplink);
+    //     // handleDynamicLink(deepLink);
+    //   }
+    // }, onError: (OnLinkErrorException e) async {
+    //   print(e.message);
+    // });
+  }
+
+  @override
+  void initState() {
+    initDynamicLinks();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GoalBloc, GoalState>(
       builder: (context, state) {
         if (state is UserGoalsRetrieved) {
+          runningGoals = 0;
+          inProcessGoals = 0;
+          cancelGoals = 0;
+          completeGoals = 0;
+          DateTime latestGoalDateTime = DateTime.now();
           if (state.goals.isNotEmpty) {
             UserGoal latestGoal = state.goals[0];
             latestGoalDateTime =
@@ -75,11 +110,20 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Center(
                     child: CountdownTimer(
                         endWidget: Center(
-                          child: Text("Set a Goal",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w800,
-                                  fontSize: 25.sp)),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => AddGoalScreen(),
+                                  ));
+                            },
+                            child: Text("Set a Goal",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w800,
+                                    fontSize: 25.sp)),
+                          ),
                         ),
                         endTime: latestGoalDateTime.millisecondsSinceEpoch,
                         onEnd: () {},
@@ -218,7 +262,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   height: 1.h,
                 ),
-                if (state.goals.isNotEmpty) progressFunction(state.goals[0]),
+                if (state.goals.isNotEmpty)
+                  progressFunction(state.goals[0], context),
                 // GestureDetector(
                 //   onTap: () {
                 //     Navigator.push(

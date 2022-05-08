@@ -245,6 +245,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               textInputAction: TextInputAction.next,
                               obscureText: obscureShow,
                               decoration: InputDecoration(
+                                errorMaxLines: 2,
                                 // contentPadding: EdgeInsets.fromLTRB(20, 10, 0, 30),
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
@@ -367,7 +368,9 @@ class _SignupScreenState extends State<SignupScreen> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
                   color: Colors.white,
-                  onPressed: () {},
+                  onPressed: () {
+                    BlocProvider.of<UserBloc>(context).add(GoogleLogin());
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,

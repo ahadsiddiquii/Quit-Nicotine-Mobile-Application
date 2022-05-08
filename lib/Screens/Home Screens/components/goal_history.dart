@@ -26,13 +26,13 @@ class GoalsHistory extends StatelessWidget {
             child: Column(
               children: state.goals.map((p) {
                 if (tabKey == 1) {
-                  return progressFunction(p);
+                  return progressFunction(p, context);
                 } else if (tabKey == 2) {
                   bool isValidGoal = isGoalRunning(p, DateTime.now());
                   if (isValidGoal) {
                     print(p.goalName!);
                     print(formatterMonDateYear.format(p.goalDate!));
-                    return progressFunction(p);
+                    return progressFunction(p, context);
                   } else {
                     return Container();
                   }
@@ -41,7 +41,7 @@ class GoalsHistory extends StatelessWidget {
                   if (isCompletedGoal) {
                     print(p.goalName!);
                     print(formatterMonDateYear.format(p.goalDate!));
-                    return progressFunction(p);
+                    return progressFunction(p, context);
                   } else {
                     return Container();
                   }

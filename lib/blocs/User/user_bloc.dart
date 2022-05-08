@@ -3,6 +3,7 @@ import 'package:meta/meta.dart';
 import 'package:nicotine/resources/firebase_services/OnBoardingFirestoreService.dart';
 
 import '../../models/User.dart';
+import '../../resources/providers/LoginProvider.dart';
 import '../../utils/local_storage.dart';
 
 part 'user_event.dart';
@@ -40,8 +41,51 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         print(e.toString());
         yield UserInitial();
       }
+    } else if (event is GoogleLogin) {
+      yield UserLoading();
+      try {
+        print("UserBloc: GoogleLogin event");
+
+        Map<String, dynamic> googleCreds =
+            await loginViaGoogle() as Map<String, dynamic>;
+        print("Inside google login event: ${googleCreds}");
+        if (googleCreds["email"] == null) {
+          throw "Google Creds not found";
+        }
+
+        final boolUserExists = await onBoardingFirestoreService
+            .checkIfUserEmailExists(googleCreds["email"]);
+
+        if (boolUserExists) {
+          final user = await onBoardingFirestoreService
+              .withOutPasswordLoginEmail(googleCreds["email"]);
+
+          if ((user.userQuestionsAsked!) == false) {
+            yield UserShowQuestions(user: user);
+          } else {
+            Storage.setValue("userId", user.userId!);
+
+            yield UserLoggedIn(user: user);
+          }
+        } else {
+          User user = await onBoardingFirestoreService.createUser(
+              googleCreds["email"], googleCreds["first_name"], "1234");
+
+          if ((user.userQuestionsAsked!) == false) {
+            yield UserShowQuestions(user: user);
+          } else {
+            Storage.setValue("userId", user.userId!);
+
+            yield UserLoggedIn(user: user);
+          }
+        }
+      } catch (e) {
+        print('error in Signup');
+        yield LogInError(error: e.toString());
+      }
     } else if (event is SignUp) {
       yield UserLoading();
+
       try {
         print("UserBloc: SignUp event");
 
@@ -96,8 +140,13 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       try {
         print("UserBloc: UpdateProfile event");
 
-        User user = await onBoardingFirestoreService.updateProfile(event.user,
-            event.email, event.fullName, event.password, event.mistake);
+        User user = await onBoardingFirestoreService.updateProfile(
+            event.user,
+            event.email,
+            event.fullName,
+            event.password,
+            event.mistake,
+            event.userImage);
 
         yield UserLoggedIn(user: user);
       } catch (e) {

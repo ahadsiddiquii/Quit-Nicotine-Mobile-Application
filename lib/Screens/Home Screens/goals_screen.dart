@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:nicotine/Screens/Components/snackBar.dart';
 import 'package:sizer/sizer.dart';
 
 import 'components/custom_appbar.dart';
@@ -7,8 +8,11 @@ import 'components/tab_bar.dart';
 
 class GoalsScreen extends StatelessWidget {
   final bool show_appbar;
+  final bool from_cancel;
 
-  const GoalsScreen({Key? key, required this.show_appbar}) : super(key: key);
+  const GoalsScreen(
+      {Key? key, required this.show_appbar, this.from_cancel = false})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

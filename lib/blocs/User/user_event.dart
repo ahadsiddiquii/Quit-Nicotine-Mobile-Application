@@ -7,6 +7,8 @@ class InitialStatePush extends UserEvent {}
 
 class CheckIfLoggedIn extends UserEvent {}
 
+class GoogleLogin extends UserEvent {}
+
 class SignIn extends UserEvent {
   final String email, password;
   SignIn({required this.email, required this.password});
@@ -24,7 +26,7 @@ class SignUp extends UserEvent {
 
 class UpdateProfile extends UserEvent {
   final User user;
-  final String email, fullName, password, mistake;
+  final String email, fullName, password, mistake, userImage;
 
   UpdateProfile({
     required this.user,
@@ -32,6 +34,7 @@ class UpdateProfile extends UserEvent {
     required this.fullName,
     required this.password,
     required this.mistake,
+    required this.userImage,
   });
 }
 

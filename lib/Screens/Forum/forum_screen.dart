@@ -65,54 +65,65 @@ class _ForumScreenState extends State<ForumScreen> {
           style: TextStyle(fontSize: 16.sp, color: Colors.black),
         ),
         actions: [
-          GestureDetector(
-              onTap: () {
-                learnMoreDialogBox(
-                    context: context,
-                    heading: 'Create a Post',
-                    content: 'Do you want to create a post?',
-                    function: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => UploadPostScreen(
-                                  isEditPost: false,
-                                )),
-                      );
+          BlocBuilder<UserBloc, UserState>(
+            builder: (context, userState) {
+              if (userState is UserLoggedIn &&
+                  userState.user.userEmail == "admin@nico4life.com") {
+                return GestureDetector(
+                    onTap: () {
+                      learnMoreDialogBox(
+                        context: context,
+                        heading: 'Create a Post',
+                        content: 'Do you want to create a post?',
+                        buttonText: 'Create a post',
+                        function: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => UploadPostScreen(
+                                      isEditPost: false,
+                                    )),
+                          );
 
-                      // final userState =
-                      //     BlocProvider.of<UserBloc>(context).state;
-                      // if (userState is UserLoggedIn) {
-                      //   print("creating a post");
-                      //   BlocProvider.of<ForumBloc>(context).add(CreateAPost(
-                      //     user: User(
-                      //         userId: userState.user.userId,
-                      //         userEmail: userState.user.userEmail,
-                      //         userName: userState.user.userName,
-                      //         userPassword: userState.user.userPassword,
-                      //         userImage: userState.user.userImage,
-                      //         userPoints: userState.user.userPoints,
-                      //         userMistakes: userState.user.userMistakes,
-                      //         userQuestionsAsked:
-                      //             userState.user.userQuestionsAsked),
-                      //     postDescription: "Welcome",
-                      //     postImage:
-                      //         "https://images.unsplash.com/photo-1592743263126-bb241ee76ac7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXRpZnVsJTIwc2NlbmVyeXxlbnwwfHwwfHw%3D&w=1000&q=80",
-                      //   ));
-                      //   // "https://images.unsplash.com/photo-1592743263126-bb241ee76ac7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXRpZnVsJTIwc2NlbmVyeXxlbnwwfHwwfHw%3D&w=1000&q=80"));
+                          // final userState =
+                          //     BlocProvider.of<UserBloc>(context).state;
+                          // if (userState is UserLoggedIn) {
+                          //   print("creating a post");
+                          //   BlocProvider.of<ForumBloc>(context).add(CreateAPost(
+                          //     user: User(
+                          //         userId: userState.user.userId,
+                          //         userEmail: userState.user.userEmail,
+                          //         userName: userState.user.userName,
+                          //         userPassword: userState.user.userPassword,
+                          //         userImage: userState.user.userImage,
+                          //         userPoints: userState.user.userPoints,
+                          //         userMistakes: userState.user.userMistakes,
+                          //         userQuestionsAsked:
+                          //             userState.user.userQuestionsAsked),
+                          //     postDescription: "Welcome",
+                          //     postImage:
+                          //         "https://images.unsplash.com/photo-1592743263126-bb241ee76ac7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXRpZnVsJTIwc2NlbmVyeXxlbnwwfHwwfHw%3D&w=1000&q=80",
+                          //   ));
+                          //   // "https://images.unsplash.com/photo-1592743263126-bb241ee76ac7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXRpZnVsJTIwc2NlbmVyeXxlbnwwfHwwfHw%3D&w=1000&q=80"));
+                        },
+                      );
                       //   Navigator.of(context).pop();
                       // } else {
                       //   Navigator.of(context).pop();
                       //   ScaffoldMessenger.of(context)
                       //       .showSnackBar(showSnackbar("Please login to post"));
                       // }
-                    });
-              },
-              child: Icon(
-                Icons.more_horiz,
-                size: 24.sp,
-                color: Colors.black,
-              )),
+                    },
+                    child: Icon(
+                      Icons.more_horiz,
+                      size: 24.sp,
+                      color: Colors.black,
+                    ));
+              } else {
+                return Container();
+              }
+            },
+          ),
           SizedBox(
             width: 5.sp,
           ),

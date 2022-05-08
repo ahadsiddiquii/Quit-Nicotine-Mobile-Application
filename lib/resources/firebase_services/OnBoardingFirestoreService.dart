@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:nicotine/blocs/User/user_bloc.dart';
 import 'package:nicotine/utils/globals.dart';
@@ -153,6 +156,88 @@ class OnBoardingFirestoreService {
     }
   }
 
+  Future<User> withOutPasswordLoginEmail(String userEmail) async {
+    print("OnBoardingFirestoreService: withOutPasswordLogin Function");
+
+    bool emailFound = false;
+    User user = emptyUser;
+
+    try {
+      await FirebaseFirestore.instance
+          .collection(collectionName)
+          .where("userEmail", isEqualTo: userEmail)
+          .get()
+          .then((QuerySnapshot querySnapshot) {
+        querySnapshot.docs.forEach((doc) {
+          emailFound = true;
+          print("Email found");
+
+          Map<String, dynamic> userMap = {
+            "userId": doc["userId"],
+            "userEmail": doc["userEmail"],
+            "userName": doc["userName"],
+            "userPassword": doc["userPassword"],
+            "userImage": doc["userImage"],
+            "userPoints": doc["userPoints"],
+            "userMistakes": doc["userMistakes"],
+            "userQuestionsAsked": doc["userQuestionsAsked"]
+          };
+
+          user = User.fromJson(userMap);
+        });
+      });
+      if (!emailFound) {
+        print("Email not found");
+        throw "Email not found";
+      }
+
+      return user;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
+  Future<bool> checkIfUserEmailExists(String userId) async {
+    print("OnBoardingFirestoreService: checkIfUserExists Function");
+
+    bool emailFound = false;
+    User user = emptyUser;
+
+    try {
+      await FirebaseFirestore.instance
+          .collection(collectionName)
+          .where("userEmail", isEqualTo: userId)
+          .get()
+          .then((QuerySnapshot querySnapshot) {
+        querySnapshot.docs.forEach((doc) {
+          emailFound = true;
+          print("Email found");
+
+          Map<String, dynamic> userMap = {
+            "userId": doc["userId"],
+            "userEmail": doc["userEmail"],
+            "userName": doc["userName"],
+            "userPassword": doc["userPassword"],
+            "userImage": doc["userImage"],
+            "userPoints": doc["userPoints"],
+            "userMistakes": doc["userMistakes"],
+            "userQuestionsAsked": doc["userQuestionsAsked"]
+          };
+
+          user = User.fromJson(userMap);
+        });
+      });
+      if (!emailFound) {
+        print("Email not found");
+        return false;
+      }
+
+      return true;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
   Future<User> questionsSubmitted(String userId) async {
     print("OnBoardingFirestoreService: questionsSubmitted Function");
 
@@ -204,10 +289,14 @@ class OnBoardingFirestoreService {
   }
 
   Future<User> updateProfile(User user, String email, String fullName,
-      String password, String mistake) async {
+      String password, String mistake, String userImage) async {
     print("OnBoardingFirestoreService: updateProfile Function");
 
     user.userMistakes!.add(mistake);
+    final image = File(userImage);
+    List<int> imageBytes = await image.readAsBytes();
+
+    final base64Image = base64Encode(imageBytes);
 
     try {
       Map<String, dynamic> userMap = {
@@ -215,7 +304,7 @@ class OnBoardingFirestoreService {
         "userEmail": email,
         "userName": fullName,
         "userPassword": user.userPassword,
-        "userImage": user.userImage,
+        "userImage": base64Image,
         "userPoints": user.userPoints,
         "userMistakes": user.userMistakes,
         "userQuestionsAsked": user.userQuestionsAsked
