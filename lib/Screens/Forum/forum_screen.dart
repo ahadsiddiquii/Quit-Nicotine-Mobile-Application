@@ -67,8 +67,10 @@ class _ForumScreenState extends State<ForumScreen> {
         actions: [
           BlocBuilder<UserBloc, UserState>(
             builder: (context, userState) {
-              if (userState is UserLoggedIn &&
-                  userState.user.userEmail == "admin@nico4life.com") {
+              if (userState is UserLoggedIn
+                  //  &&
+                  //     userState.user.userEmail == "admin@nico4life.com"
+                  ) {
                 return GestureDetector(
                     onTap: () {
                       learnMoreDialogBox(

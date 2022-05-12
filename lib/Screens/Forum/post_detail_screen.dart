@@ -122,22 +122,22 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                       color: Colors.black, fontSize: 11.sp, height: 1.6),
                 ),
               ),
-              SizedBox(
-                height: 1.h,
-              ),
-              Container(
-                width: 90.w,
-                child: Text(
-                  widget.thisPost.postDescription!,
-                  // "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
-                  textAlign: TextAlign.justify,
-                  style: TextStyle(
-                    color: Colors.white54,
-                    fontSize: 10.sp,
-                    height: 1.4,
-                  ),
-                ),
-              ),
+              // SizedBox(
+              //   height: 1.h,
+              // ),
+              // Container(
+              //   width: 90.w,
+              //   child: Text(
+              //     widget.thisPost.postDescription!,
+              //     // "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+              //     textAlign: TextAlign.justify,
+              //     style: TextStyle(
+              //       color: Colors.white54,
+              //       fontSize: 10.sp,
+              //       height: 1.4,
+              //     ),
+              //   ),
+              // ),
               Container(
                 margin: EdgeInsets.only(top: 5.h, left: 5.w, right: 5.w),
                 decoration: BoxDecoration(

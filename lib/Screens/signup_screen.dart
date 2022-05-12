@@ -49,18 +49,18 @@ class _SignupScreenState extends State<SignupScreen> {
                 child: Stack(
                   children: [
                     Image.asset(
-                      "assets/Vector.png",
+                      "assets/signupqn4l.PNG",
                       fit: BoxFit.fill,
                     ),
-                    Center(
-                      child: Container(
-                          height: 11.h,
-                          width: 30.w,
-                          child: Image.asset(
-                            "assets/logo.png",
-                            fit: BoxFit.fill,
-                          )),
-                    ),
+                    // Center(
+                    //   child: Container(
+                    //       height: 11.h,
+                    //       width: 30.w,
+                    //       child: Image.asset(
+                    //         "assets/logo.png",
+                    //         fit: BoxFit.fill,
+                    //       )),
+                    // ),
                   ],
                 ),
               ),

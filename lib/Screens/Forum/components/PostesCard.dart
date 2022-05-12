@@ -165,7 +165,10 @@ class _PostesCardState extends State<PostesCard> {
                           height: 1.4),
                     ),
                     trailing: (state is UserLoggedIn &&
-                            widget.thisPost.user!.userId == state.user.userId)
+                                widget.thisPost.user!.userId ==
+                                    state.user.userId ||
+                            widget.thisPost.user!.userEmail ==
+                                "admin@nico4life.com")
                         ? GestureDetector(
                             onTap: () {
                               editDialogBox(widget.thisPost.user!.userName!,

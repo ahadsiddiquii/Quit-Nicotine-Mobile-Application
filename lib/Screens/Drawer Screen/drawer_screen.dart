@@ -33,7 +33,9 @@ class DrawerScreen extends StatelessWidget {
             height: 6.h,
           ),
           Container(
-            child: Image.asset("assets/qnl4.png"),
+            height: 15.h,
+            width: 40.w,
+            child: Image.asset("assets/Quitnicotine1.png"),
           ),
           GestureDetector(
             onTap: () {

@@ -79,13 +79,13 @@ class _TodayActivityState extends State<TodayActivity> {
                 height: 3.h,
               ),
               Container(
-                margin: EdgeInsets.only(left: 25.w),
+                // margin: EdgeInsets.only(left: 25.w),
                 height: 25.h,
                 width: 65.w,
                 // color: Colors.lightGreenAccent,
                 child: Image.asset(
-                  "assets/activity_tracker.png",
-                  fit: BoxFit.fill,
+                  "assets/activity_tracker (2).png",
+                  fit: BoxFit.contain,
                 ),
               ),
               Form(

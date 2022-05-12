@@ -129,3 +129,9 @@ int goalPercentage(UserGoal goal, DateTime currentDate) {
     return 0;
   }
 }
+
+int numberDay(DateTime creationDate, DateTime firstCreationDate) {
+  int currentDay = 1;
+  currentDay = creationDate.difference(firstCreationDate).inDays + 1;
+  return currentDay;
+}

@@ -48,18 +48,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Stack(
                   children: [
                     Image.asset(
-                      "assets/Vector1.png",
+                      "assets/loginqn4l.PNG",
                       fit: BoxFit.fill,
                     ),
-                    Center(
-                      child: Container(
-                          height: 11.h,
-                          width: 30.w,
-                          child: Image.asset(
-                            "assets/logo.png",
-                            fit: BoxFit.fill,
-                          )),
-                    ),
+                    // Center(
+                    //   child: Container(
+                    //       height: 11.h,
+                    //       width: 30.w,
+                    //       child: Image.asset(
+                    //         "assets/logo.png",
+                    //         fit: BoxFit.fill,
+                    //       )),
+                    // ),
                   ],
                 ),
               ),

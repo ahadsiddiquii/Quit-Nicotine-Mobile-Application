@@ -5,9 +5,9 @@ import 'package:sizer/sizer.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class MyHomeScreen extends StatefulWidget {
-  final waterCount;
-  final stepsCount;
-  final foodCount;
+  final int waterCount;
+  final int stepsCount;
+  final int foodCount;
   const MyHomeScreen(
       {Key? key,
       required this.waterCount,
@@ -20,46 +20,50 @@ class MyHomeScreen extends StatefulWidget {
 }
 
 class _MyHomeScreenState extends State<MyHomeScreen> {
-  final List<ChartData> chartData = [];
+  final List<ChartData> chartData = [
+    // ChartData('', 25),
+    // ChartData('', 22),
+    // ChartData('', 11),
+  ];
   final List<ChartData> chartData2 = [
-    //   ChartData('', 11),
-    //   ChartData('', 12),
-    //   ChartData('', 8),
+    ChartData('', 0),
+    // ChartData('', 12),
+    // ChartData('', 8),
   ];
   final List<ChartData> chartData3 = [
-    //   ChartData('', 5),
-    //   ChartData('', 2),
-    //   ChartData('', 1),
+    ChartData('', 0),
+    ChartData('', 0),
+    // ChartData('', 1),
   ];
   @override
   void initState() {
     super.initState();
     chartData.add(
-      ChartData('', widget.waterCount),
+      ChartData('', widget.waterCount.toDouble()),
     );
     chartData.add(
-      ChartData('', 2),
+      ChartData('', 0),
     );
     chartData.add(
-      ChartData('', 4),
+      ChartData('', 0),
+    );
+    // chartData2.add(
+    //   ChartData('', 0),
+    // );
+    chartData2.add(
+      ChartData('', widget.foodCount.toDouble()),
     );
     chartData2.add(
       ChartData('', 0),
     );
-    chartData.add(
-      ChartData('', widget.foodCount),
-    );
-    chartData2.add(
-      ChartData('', 0),
-    );
+    // chartData3.add(
+    //   ChartData('', 0),
+    // );
+    // chartData3.add(
+    //   ChartData('', 0),
+    // );
     chartData3.add(
-      ChartData('', 0),
-    );
-    chartData3.add(
-      ChartData('', 0),
-    );
-    chartData.add(
-      ChartData('', widget.stepsCount),
+      ChartData('', widget.stepsCount.toDouble()),
     );
   }
 
@@ -85,7 +89,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                               // majorGridLines: ,
                               // minorTickLines: null,
                               // Axis will be rendered based on the index values
-                              arrangeByIndex: false),
+                              arrangeByIndex: true),
                           series: <ChartSeries<ChartData, String>>[
                             ColumnSeries<ChartData, String>(
                               color: kSignupColor,
@@ -95,13 +99,13 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                             ),
                             ColumnSeries<ChartData, String>(
                               color: kSigninColor,
-                              dataSource: chartData,
+                              dataSource: chartData2,
                               xValueMapper: (ChartData sales, _) => sales.x,
                               yValueMapper: (ChartData sales, _) => sales.y,
                             ),
                             ColumnSeries<ChartData, String>(
                               color: Colors.yellow,
-                              dataSource: chartData,
+                              dataSource: chartData3,
                               xValueMapper: (ChartData sales, _) => sales.x,
                               yValueMapper: (ChartData sales, _) => sales.y,
                             )

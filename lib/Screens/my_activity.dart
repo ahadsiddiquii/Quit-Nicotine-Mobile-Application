@@ -8,6 +8,7 @@ import 'package:nicotine/utils/date_util.dart';
 import 'package:sizer/sizer.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 import '../blocs/Activity/activity_bloc.dart';
+import '../utils/goalHelper.dart';
 import '30_days_progress.dart';
 import 'today_activity.dart';
 
@@ -31,7 +32,8 @@ class _MyActivityState extends State<MyActivity> {
 
   @override
   Widget build(BuildContext context) {
-    Widget oneTimelineTile(UserActivity thisActivity, int currentIndex) {
+    Widget oneTimelineTile(UserActivity thisActivity, int currentIndex,
+        DateTime activityFirstDate) {
       return TimelineTile(
         indicatorStyle: IndicatorStyle(
           color: kSigninColor,
@@ -220,7 +222,8 @@ class _MyActivityState extends State<MyActivity> {
           // color: Colors.amberAccent,
           child: Center(
               child: Text(
-            "Day ${DateTime.now().difference(thisActivity.activityCreationDate!).inDays + 1}",
+            "Day ${numberDay(thisActivity.activityCreationDate!, activityFirstDate)}",
+            // "Day ${DateTime.now().difference(thisActivity.activityCreationDate!).inDays + 1}",
             style: TextStyle(
                 color: kSigninColor,
                 fontWeight: FontWeight.w600,
@@ -392,6 +395,8 @@ class _MyActivityState extends State<MyActivity> {
             BlocBuilder<ActivityBloc, ActivityState>(
               builder: (context, state) {
                 if (state is UserActivitiesRetrieved) {
+                  DateTime dateTimeFirstActivity =
+                      state.activities[0].activityCreationDate!;
                   return Container(
                     height: 80.h,
                     padding: EdgeInsets.only(bottom: 60),
@@ -407,7 +412,8 @@ class _MyActivityState extends State<MyActivity> {
                             }
                           });
 
-                          return oneTimelineTile(p, currentCount);
+                          return oneTimelineTile(
+                              p, currentCount, dateTimeFirstActivity);
                         }).toList(),
                       ),
                     ),
