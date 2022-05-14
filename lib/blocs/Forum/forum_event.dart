@@ -5,6 +5,8 @@ abstract class ForumEvent {}
 
 class GetAllForumPosts extends ForumEvent {}
 
+class GetCurrentPost extends ForumEvent {}
+
 // class UpdateAffirmation extends AffirmationsEvent {
 //   final Affirmation affirmation;
 //   UpdateAffirmation({
@@ -46,14 +48,36 @@ class LikeAPost extends ForumEvent {
   });
 }
 
+class RemoveLikeFromAPost extends ForumEvent {
+  final User user;
+  final Post post;
+
+  RemoveLikeFromAPost({
+    required this.user,
+    required this.post,
+  });
+}
+
 class CommentAPost extends ForumEvent {
   final User user;
-  final String postId;
+  final Post post;
   final String comment;
 
   CommentAPost({
     required this.user,
-    required this.postId,
+    required this.post,
+    required this.comment,
+  });
+}
+
+class RemoveCommentOnAPost extends ForumEvent {
+  final User user;
+  final Post post;
+  final String comment;
+
+  RemoveCommentOnAPost({
+    required this.user,
+    required this.post,
     required this.comment,
   });
 }

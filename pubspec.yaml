@@ -50,7 +50,10 @@ dependencies:
   http: ^0.13.4
   image_picker: ^0.8.5
   overlay_support: ^1.2.1
+  path_provider: ^2.0.10
   percent_indicator: ^4.0.0
+  screenshot: ^1.2.3
+  share: ^2.0.4
   shared_preferences: ^2.0.13
   sizer: ^2.0.15
   syncfusion_flutter_charts: ^19.4.52
@@ -60,10 +63,10 @@ dependencies:
   url_launcher: ^6.0.20
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.9.2
   flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: ^0.9.2
 
 flutter_icons:
   image_path: "assets/ql4nlogo.jpeg"

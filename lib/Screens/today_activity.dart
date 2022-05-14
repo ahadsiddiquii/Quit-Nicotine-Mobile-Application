@@ -24,6 +24,8 @@ class _TodayActivityState extends State<TodayActivity> {
   TextEditingController drink = TextEditingController();
   TextEditingController eat = TextEditingController();
   TextEditingController walk = TextEditingController();
+  TextEditingController cigrettes = TextEditingController();
+  TextEditingController herbalMix = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -54,7 +56,7 @@ class _TodayActivityState extends State<TodayActivity> {
         // ),
         backgroundColor: Colors.white,
         title: Text(
-          "Today Activity",
+          "Today's Activity",
           style: TextStyle(fontSize: 16.sp, color: Colors.black),
         ),
         actions: [
@@ -290,11 +292,150 @@ class _TodayActivityState extends State<TodayActivity> {
                         ],
                       ),
                     ),
+                    SizedBox(
+                      height: 3.h,
+                    ),
+                    Container(
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 3.h,
+                            width: 90.w,
+                            // color: Colors.purple,
+                            child: Text(
+                              "How many cigarettes have I smoked today?",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 15),
+                            ),
+                          ),
+                          Container(
+                            // height: 7.h,
+                            width: 90.w,
+                            // margin: EdgeInsets.symmetric(horizontal: 5.w),
+                            // color: Colors.pink,
+                            child: TextFormField(
+                              controller: cigrettes,
+                              cursorColor: Colors.black,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w400),
+                              textInputAction: TextInputAction.next,
+                              keyboardType: TextInputType.number,
+                              // maxLines: 5,
+                              // validator: ,
+                              decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  hintText: "5",
+                                  hintStyle: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w300),
+                                  // contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide: BorderSide(
+                                        width: 0.6.sp,
+                                        color: kSignupColor,
+                                      )),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      color: kSignupColor,
+                                      width: 0.5.sp,
+                                    ),
+                                  ),
+                                  prefixIcon: Padding(
+                                    padding: const EdgeInsets.all(12.0),
+                                    child: Container(
+                                      height: 2.h,
+                                      child: Image.asset(
+                                        "assets/cigretteRed.png",
+                                        color: kSignupColor,
+                                      ),
+                                    ),
+                                  )),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 3.h,
+                    ),
+                    Container(
+                      child: Column(
+                        children: [
+                          Container(
+                            // height: 3.h,
+                            width: 90.w,
+                            // color: Colors.purple,
+                            child: Text(
+                              "How much Herbal Smoking Mix have I added to my tobacco? (in grams)",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 15),
+                            ),
+                          ),
+                          Container(
+                            // height: 7.h,
+                            width: 90.w,
+                            // margin: EdgeInsets.symmetric(horizontal: 5.w),
+                            // color: Colors.pink,
+                            child: TextFormField(
+                              controller: herbalMix,
+                              cursorColor: Colors.black,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w400),
+                              textInputAction: TextInputAction.next,
+                              keyboardType: TextInputType.number,
+                              // maxLines: 5,
+                              // validator: ,
+                              decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  hintText: "100",
+                                  hintStyle: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w300),
+                                  // contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide: BorderSide(
+                                        width: 0.6.sp,
+                                        color: kSignupColor,
+                                      )),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                      color: kSignupColor,
+                                      width: 0.5.sp,
+                                    ),
+                                  ),
+                                  prefixIcon: Container(
+                                    height: 7.h,
+                                    child: Image.asset(
+                                      "assets/herbalRed.png",
+                                      color: kSignupColor,
+                                    ),
+                                  )),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
               SizedBox(
-                height: 10.h,
+                height: 5.h,
               ),
               BlocListener<ActivityBloc, ActivityState>(
                 listener: (context, state) {
@@ -315,7 +456,9 @@ class _TodayActivityState extends State<TodayActivity> {
                     onPressed: () {
                       if (drink.text.isEmpty ||
                           eat.text.isEmpty ||
-                          walk.text.isEmpty) {
+                          walk.text.isEmpty ||
+                          cigrettes.text.isEmpty ||
+                          herbalMix.text.isEmpty) {
                         ScaffoldMessenger.of(context).showSnackBar(
                             showSnackbar("Please don't leave any field empty"));
                       } else {
@@ -334,6 +477,8 @@ class _TodayActivityState extends State<TodayActivity> {
                               foodAte: eat.text,
                               glassesOfWater: int.parse(drink.text),
                               stepsWalked: int.parse(walk.text),
+                              cigarettesSmoked: int.parse(cigrettes.text),
+                              herbalMix: int.parse(herbalMix.text),
                               activityPoints: 10));
                         }
 
@@ -406,6 +551,9 @@ class _TodayActivityState extends State<TodayActivity> {
                     ),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 5.h,
               ),
             ],
           ),

@@ -49,68 +49,68 @@ class _MyActivityState extends State<MyActivity> {
           padding: EdgeInsets.all(6.sp),
           child: GestureDetector(
             onTap: () {
-              showDialog<String>(
-                context: context,
-                builder: (BuildContext context) => AlertDialog(
-                    // alignment: Alignment.bottomCenter,
-                    backgroundColor: Colors.white,
-                    //  kLightColor,
-                    titlePadding: EdgeInsets.all(0),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20))),
-                    title: GestureDetector(
-                      onTap: () => Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MyActivity())),
-                      child: Container(
-                        height: 22.h,
-                        width: 40.w,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            // kLightColor,
-                            borderRadius: BorderRadius.circular(10),
-                            border:
-                                Border.all(color: kSignupColor, width: 1.sp)),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              height: 8.h,
-                              width: 16.w,
-                              child: Image.asset(
-                                "assets/Haircut.png",
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 1.h,
-                            ),
-                            Text(
-                              "Perform hairtest and send\nreport at",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  // Color(0xffF8DB08),
-                                  fontSize: 11.sp,
-                                  fontWeight: FontWeight.w500,
-                                  height: 1.3),
-                            ),
-                            Text(
-                              "info@quitnicotine4life.com",
-                              style: TextStyle(
-                                  color: kSigninColor,
-                                  fontSize: 11.sp,
-                                  decoration: TextDecoration.underline,
-                                  fontWeight: FontWeight.w400,
-                                  height: 2),
-                            ),
-                          ],
-                        ),
-                      ),
-                    )),
-              );
+              // showDialog<String>(
+              //   context: context,
+              //   builder: (BuildContext context) => AlertDialog(
+              //       // alignment: Alignment.bottomCenter,
+              //       backgroundColor: Colors.white,
+              //       //  kLightColor,
+              //       titlePadding: EdgeInsets.all(0),
+              //       shape: RoundedRectangleBorder(
+              //           borderRadius: BorderRadius.all(Radius.circular(20))),
+              //       title: GestureDetector(
+              //         onTap: () => Navigator.pushReplacement(
+              //             context,
+              //             MaterialPageRoute(
+              //                 builder: (context) => MyActivity())),
+              //         child: Container(
+              //           height: 22.h,
+              //           width: 40.w,
+              //           decoration: BoxDecoration(
+              //               color: Colors.white,
+              //               // kLightColor,
+              //               borderRadius: BorderRadius.circular(10),
+              //               border:
+              //                   Border.all(color: kSignupColor, width: 1.sp)),
+              //           child: Column(
+              //             mainAxisAlignment: MainAxisAlignment.center,
+              //             crossAxisAlignment: CrossAxisAlignment.center,
+              //             children: [
+              //               Container(
+              //                 height: 8.h,
+              //                 width: 16.w,
+              //                 child: Image.asset(
+              //                   "assets/Haircut.png",
+              //                   fit: BoxFit.fill,
+              //                 ),
+              //               ),
+              //               SizedBox(
+              //                 height: 1.h,
+              //               ),
+              //               Text(
+              //                 "Perform hairtest and send\nreport at",
+              //                 textAlign: TextAlign.center,
+              //                 style: TextStyle(
+              //                     color: Colors.black,
+              //                     // Color(0xffF8DB08),
+              //                     fontSize: 11.sp,
+              //                     fontWeight: FontWeight.w500,
+              //                     height: 1.3),
+              //               ),
+              //               Text(
+              //                 "info@quitnicotine4life.com",
+              //                 style: TextStyle(
+              //                     color: kSigninColor,
+              //                     fontSize: 11.sp,
+              //                     decoration: TextDecoration.underline,
+              //                     fontWeight: FontWeight.w400,
+              //                     height: 2),
+              //               ),
+              //             ],
+              //           ),
+              //         ),
+              //       )),
+              // );
               // _animationController.reset();
               // _animationController.forward();
             },
@@ -183,6 +183,22 @@ class _MyActivityState extends State<MyActivity> {
                     ),
                     Text(
                       "I walked ${thisActivity.stepsWalked!.toString()} steps.",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w300,
+                          fontSize: 10.sp,
+                          height: 1.3),
+                    ),
+                    Text(
+                      "Number of cigarettes I have smoked today is ${thisActivity.cigarettesSmoked?.toString() ?? 0}.",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w300,
+                          fontSize: 10.sp,
+                          height: 1.3),
+                    ),
+                    Text(
+                      "${thisActivity.herbalMix?.toString() ?? 0} grams of Herbal Smoking Mix I have added to my tobacco.",
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w300,
@@ -312,7 +328,7 @@ class _MyActivityState extends State<MyActivity> {
             );
           },
           child: Text(
-            "Upload Today Activity",
+            "Upload Today's Activity",
             style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,

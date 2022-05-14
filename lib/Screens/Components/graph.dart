@@ -163,7 +163,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                                 borderRadius: BorderRadius.circular(10)),
                           ),
                           Text(
-                            "  Walk Steps",
+                            "  Steps walked",
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 11.sp,

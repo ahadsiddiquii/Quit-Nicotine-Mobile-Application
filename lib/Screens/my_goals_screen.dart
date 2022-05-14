@@ -762,7 +762,7 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
                   );
                 },
                 child: Text(
-                  "Uplaod Today Activity",
+                  "Upload Today's Activity",
                   style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w600,

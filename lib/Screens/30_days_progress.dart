@@ -114,25 +114,25 @@ class _DaysProgressState extends State<DaysProgress> {
                   // "  483",
                   hading: "Glasses in 30 days\n",
                   description:
-                      "Lorem ipsum is simply dummy text is that readable",
+                      "Good hydration helps to flush out toxins, deliver nutrients and oxygen around the body, and boost energy levels",
                 ),
                 ProgressCard(
                   img: "assets/Vector (7).png",
-                  type: "  Walk Steps",
+                  type: "  Steps walked",
                   score: " ${stepsCount.toString()}",
                   // "  58,483",
-                  hading: "Walked Steps in 30 days\n",
+                  hading: "Steps walked in 30 days\n",
                   description:
-                      "Lorem ipsum is simply dummy text is that readable",
+                      "Walking increases cardiovascular fitness, strengthens bones, reduces body fat, and boosts muscle power and endurance",
                 ),
                 ProgressCard(
                   img: "assets/watergreen.png",
                   type: "  Food",
                   score: " ${foodCount.toString()}",
                   // "  8,976",
-                  hading: "Mineral in 30 days\n",
+                  hading: "Minerals in 30 days\n",
                   description:
-                      "Lorem ipsum is simply dummy text is that readable",
+                      "Healthy eating improves gut health, boosts immunity, and lowers the risk of disease, while strengthening muscles and bones",
                 ),
               ],
             ),

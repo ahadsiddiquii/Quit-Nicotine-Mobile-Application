@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nicotine/blocs/Forum/forum_bloc.dart';
 import 'package:nicotine/models/Post.dart';
+import 'package:nicotine/models/PostComment.dart';
 import 'package:nicotine/models/PostLike.dart';
 
 import 'dart:convert';
@@ -103,7 +105,7 @@ class ForumFirestoreService {
         "postDescription": postDescription,
         "postImage": base64Image,
         "postLikes": post.postLikes,
-        "postComments": post.postLikes,
+        "postComments": post.postComments,
         "postCreated": post.postCreated!.toIso8601String(),
       };
       FirebaseFirestore.instance
@@ -173,28 +175,168 @@ class ForumFirestoreService {
           List<PostLike> postLikes = post.postLikes!;
 
           postLikes.add(postLike);
-          print("Post found");
-          print(jsonEncode(postLikes));
-          print("Post found");
+          List<Map<String, dynamic>> postLikesUpload = [];
+          postLikes.forEach((element) {
+            postLikesUpload.add(element.toJson(element));
+          });
+
+          List<Map<String, dynamic>> postCommentsUpload = [];
+          post.postComments!.forEach((element) {
+            postCommentsUpload.add(element.toJson(element));
+          });
+
           final Map<String, dynamic> postMap = {
             "postId": post.postId,
-            "user": user.toJson(user),
+            "user": post.user!.toJson(post.user!),
             "postDescription": post.postDescription,
             "postImage": post.postImage,
-            "postLikes": jsonEncode(postLikes),
-            "postComments": post.postComments,
+            "postLikes": postLikesUpload,
+            "postComments": postCommentsUpload,
             "postCreated": DateTime.now().toIso8601String(),
           };
 
-          // FirebaseFirestore.instance
-          //     .collection(collectionName)
-          //     .doc(post.postId)
-          //     .set(postMap)
-          //     .catchError((e) {
-          //   print(e.toString());
-          // });
+          FirebaseFirestore.instance
+              .collection(collectionName)
+              .doc(post.postId)
+              .set(postMap)
+              .catchError((e) {
+            print(e.toString());
+          });
         });
       });
+      if (!postFound) {
+        print("Email not found");
+        throw "Email not found";
+      }
+
+      return true;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
+  Future<bool> removeLikeFromAPost(User user, Post post) async {
+    print("ForumFirestoreService: removeLikeFromAPost Function");
+
+    bool postFound = false;
+
+    try {
+      await FirebaseFirestore.instance
+          .collection(collectionName)
+          .where("postId", isEqualTo: post.postId)
+          .get()
+          .then((QuerySnapshot querySnapshot) {
+        querySnapshot.docs.forEach((doc) {
+          postFound = true;
+
+          PostLike postLike =
+              PostLike(userLikeId: user.userId, postId: post.postId);
+          List<PostLike> postLikes = post.postLikes!;
+
+          List<Map<String, dynamic>> postLikesUpload = [];
+          postLikes.forEach((element) {
+            if (element.userLikeId != user.userId) {
+              postLikesUpload.add(element.toJson(element));
+            }
+          });
+
+          List<Map<String, dynamic>> postCommentsUpload = [];
+          post.postComments!.forEach((element) {
+            postCommentsUpload.add(element.toJson(element));
+          });
+
+          final Map<String, dynamic> postMap = {
+            "postId": post.postId,
+            "user": post.user!.toJson(post.user!),
+            "postDescription": post.postDescription,
+            "postImage": post.postImage,
+            "postLikes": postLikesUpload,
+            "postComments": postCommentsUpload,
+            "postCreated": DateTime.now().toIso8601String(),
+          };
+
+          FirebaseFirestore.instance
+              .collection(collectionName)
+              .doc(post.postId)
+              .set(postMap)
+              .catchError((e) {
+            print(e.toString());
+          });
+        });
+      });
+      if (!postFound) {
+        print("Email not found");
+        throw "Email not found";
+      }
+
+      return true;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
+  Future<bool> commentAPost(User user, Post post, String comment) async {
+    print("ForumFirestoreService: commentAPost Function");
+
+    bool postFound = false;
+
+    try {
+      await FirebaseFirestore.instance
+          .collection(collectionName)
+          .where("postId", isEqualTo: post.postId)
+          .get()
+          .then((QuerySnapshot querySnapshot) {
+        querySnapshot.docs.forEach((doc) {
+          postFound = true;
+          String commentId =
+              DateTime.now().toIso8601String() + "_" + user.userEmail!;
+          PostComment postComment = PostComment(
+            postCommentId: commentId,
+            userWhoCommentedId: user.userId,
+            postId: post.postId,
+            postCommentText: comment,
+            commentByUserEmail: user.userEmail,
+            commentByUserName: user.userName,
+            commentTime: DateTime.now().toIso8601String(),
+          );
+          List<PostLike> postLikes = post.postLikes!;
+
+          List<Map<String, dynamic>> postLikesUpload = [];
+          postLikes.forEach((element) {
+            postLikesUpload.add(element.toJson(element));
+          });
+
+          List<PostComment> postComments = post.postComments!;
+
+          postComment.postCommentId = commentId;
+          postComments.add(postComment);
+
+          List<Map<String, dynamic>> postCommentsUpload = [];
+
+          postComments.forEach((element) {
+            postCommentsUpload.add(element.toJson(element));
+          });
+
+          final Map<String, dynamic> postMap = {
+            "postId": post.postId,
+            "user": post.user!.toJson(post.user!),
+            "postDescription": post.postDescription,
+            "postImage": post.postImage,
+            "postLikes": postLikesUpload,
+            "postComments": postCommentsUpload,
+            "postCreated": DateTime.now().toIso8601String(),
+          };
+
+          FirebaseFirestore.instance
+              .collection(collectionName)
+              .doc(post.postId)
+              .set(postMap)
+              .catchError((e) {
+            print(e.toString());
+          });
+        });
+      });
+
       if (!postFound) {
         print("Email not found");
         throw "Email not found";

@@ -7,6 +7,8 @@ class UserActivity {
   int? glassesOfWater;
   String? foodAte;
   int? stepsWalked;
+  int? cigarettesSmoked;
+  int? herbalMix;
   DateTime? activityCreationDate;
   int? activityPoints;
 
@@ -17,6 +19,8 @@ class UserActivity {
     required this.glassesOfWater,
     required this.foodAte,
     required this.stepsWalked,
+    required this.cigarettesSmoked,
+    required this.herbalMix,
     required this.activityCreationDate,
     required this.activityPoints,
   });
@@ -31,6 +35,11 @@ class UserActivity {
     this.foodAte = json['foodAte'] ?? '';
     this.stepsWalked =
         json['stepsWalked'] != null ? (json['stepsWalked']).toInt() : 0;
+    this.cigarettesSmoked = json['cigarettesSmoked'] != null
+        ? (json['cigarettesSmoked']).toInt()
+        : 0;
+    this.herbalMix =
+        json['herbalMix'] != null ? (json['herbalMix']).toInt() : 0;
 
     this.activityCreationDate = json['activityCreationDate'] != null
         ? DateTime.parse(json['activityCreationDate'])

@@ -23,7 +23,7 @@ class ProgressCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 2.h),
-      height: 20.h,
+      // height: 20.h,
       width: 90.w,
       decoration: BoxDecoration(
         color: Colors.white,
