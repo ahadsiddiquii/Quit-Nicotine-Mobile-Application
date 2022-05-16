@@ -35,6 +35,8 @@ class ActivityBloc extends Bloc<ActivityEvent, ActivityState> {
             event.activityName,
             event.foodAte,
             event.glassesOfWater,
+            event.cigarettesSmoked,
+            event.herbalMix,
             event.stepsWalked,
             event.activityPoints);
 

@@ -236,7 +236,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                   return 'Please enter Password';
                                 }
                                 if (!validateStructurePassword(value)) {
-                                  return "Correct format: at least 1 uppercase, 1 number and 1 special character";
+                                  return "Correct format: Minimum length: 8, at least 1 uppercase, 1 number and 1 special character";
                                 }
                                 return null;
                               },

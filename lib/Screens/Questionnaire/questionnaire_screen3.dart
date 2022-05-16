@@ -1136,7 +1136,7 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                             borderRadius: BorderRadius.circular(15)),
                         color: kSignupColor,
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {
+                          if (_formKey.currentState!.validate() && val3 != -1) {
                             // print(Storage.getValue("userId"));
                             final userState =
                                 BlocProvider.of<UserBloc>(context).state;
@@ -1149,8 +1149,19 @@ class _QuestionnaireScreen3State extends State<QuestionnaireScreen3> {
                                   QuestionsSubmitted(
                                       userId: userState.user.userId!));
                             }
+                            if (userState is UserLoggedIn) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SubscriptionScreen(),
+                                ),
+                              );
+                            }
                           } else {
                             print("validation failed");
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                showSnackbar(
+                                    "Please fill all the required fields"));
                           }
                         },
                         child: Text(

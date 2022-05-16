@@ -201,7 +201,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           goal: runningGoals.toString(),
                         ),
                         StatusCard(
-                          status: "In process",
+                          status: "In Progress",
                           goal: inProcessGoals.toString(),
                         ),
                       ]),

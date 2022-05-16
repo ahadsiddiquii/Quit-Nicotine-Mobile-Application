@@ -411,29 +411,44 @@ class _MyActivityState extends State<MyActivity> {
             BlocBuilder<ActivityBloc, ActivityState>(
               builder: (context, state) {
                 if (state is UserActivitiesRetrieved) {
-                  DateTime dateTimeFirstActivity =
-                      state.activities[0].activityCreationDate!;
-                  return Container(
-                    height: 80.h,
-                    padding: EdgeInsets.only(bottom: 60),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: state.activities.map((p) {
-                          int count = 0;
-                          int currentCount = 0;
-                          state.activities.forEach((element) {
-                            count++;
-                            if (element.activityId == p.activityId) {
-                              currentCount = count;
-                            }
-                          });
+                  if (state.activities.isNotEmpty) {
+                    DateTime dateTimeFirstActivity =
+                        state.activities[0].activityCreationDate!;
+                    return Container(
+                      height: 80.h,
+                      padding: EdgeInsets.only(bottom: 60),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: state.activities.map((p) {
+                            int count = 0;
+                            int currentCount = 0;
+                            state.activities.forEach((element) {
+                              count++;
+                              if (element.activityId == p.activityId) {
+                                currentCount = count;
+                              }
+                            });
 
-                          return oneTimelineTile(
-                              p, currentCount, dateTimeFirstActivity);
-                        }).toList(),
+                            return oneTimelineTile(
+                                p, currentCount, dateTimeFirstActivity);
+                          }).toList(),
+                        ),
                       ),
-                    ),
-                  );
+                    );
+                  } else {
+                    return Container(
+                      height: 50.h,
+                      child: Center(
+                        child: Text(
+                          "No activity has been added",
+                          style: TextStyle(
+                            fontWeight: FontWeight.normal,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    );
+                  }
                 } else {
                   return Container(
                     height: 50.h,

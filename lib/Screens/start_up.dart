@@ -87,7 +87,8 @@ class _StartUpState extends State<StartUp> {
             Align(
               alignment: Alignment.bottomCenter,
               child: Text(
-                'Black is the new Red 4 Green to get yourself clean',
+                // 'Black is the new Red 4 Green to get yourself clean',
+                'RED 4 GREEN TO MAKE YOU CLEAN.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color.fromRGBO(255, 255, 255, 1),

@@ -85,7 +85,7 @@ class ShopCard extends StatelessWidget {
           Container(
             width: 80.w,
             child: Text(
-              "£ ${shopItem.amount.toString()}",
+              "£ ${shopItem.amount.toStringAsFixed(2)}",
               // "£120.00",
               style: TextStyle(
                   color: kSigninColor,

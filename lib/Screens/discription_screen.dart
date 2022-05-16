@@ -33,26 +33,26 @@ class DiscriptionScreen extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.only(top: 2.h, left: 3.w),
                       child: Image.asset(
-                        "assets/Vector2.png",
+                        "assets/loginqn4l.PNG",
                         fit: BoxFit.fill,
                       ),
                     ),
-                    Center(
-                      child: Container(
-                          height: 10.h,
-                          width: 30.w,
-                          child: Image.asset(
-                            "assets/logo.png",
-                            fit: BoxFit.fill,
-                          )),
-                    ),
+                    // Center(
+                    //   child: Container(
+                    //       height: 10.h,
+                    //       width: 30.w,
+                    //       child: Image.asset(
+                    //         "assets/logo.png",
+                    //         fit: BoxFit.fill,
+                    //       )),
+                    // ),
                   ],
                 ),
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 15.sp),
                 child: Text(
-                  "Out with the old and in with the new.\nThe brand new way to Let your nicotine addiction go. It’s a unique Solution that can take 120 days to reduce the nicotine you smoke by 100%. This is a solution to your nicotine cravings. It’s an on line programme for those who want to give up smoking nicotine, but feel the need to continue to smoke until they are ready to let go. There’s no need to go cold Turkey. There’s no need to feel anxious, or depressed at the thought of losing your personality. QN4L is a brand new habit. It’s a lifestyle change that helps with your health wealth and self. And helps you release the nicotine addiction. That has  become a curse and taken over your life.",
+                  "Out with the old and in with the new.\nThe brand new way to Let your nicotine addiction go. It’s a unique Solution that can take 120 days to reduce the nicotine you smoke by 100%. This is a solution to your nicotine cravings. It’s an on line programme for those who want to give up smoking nicotine, but feel the need to continue to smoke until they are ready to let go. There’s no need to go cold Turkey. There’s no need to feel anxious, or depressed at the thought of losing your best friend. QN4L is a brand new habit. It’s a lifestyle change that helps with your health wealth and self. And helps you release the nicotine addiction. That has  become a curse and taken over your life.",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.black,

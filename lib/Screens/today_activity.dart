@@ -98,7 +98,7 @@ class _TodayActivityState extends State<TodayActivity> {
                       child: Column(
                         children: [
                           Container(
-                            height: 3.h,
+                            // height: 3.h,
                             width: 90.w,
                             // color: Colors.purple,
                             child: Text(
@@ -166,7 +166,7 @@ class _TodayActivityState extends State<TodayActivity> {
                       child: Column(
                         children: [
                           Container(
-                            height: 3.h,
+                            // height: 3.h,
                             width: 90.w,
                             // color: Colors.purple,
                             child: Text(
@@ -231,7 +231,7 @@ class _TodayActivityState extends State<TodayActivity> {
                       child: Column(
                         children: [
                           Container(
-                            height: 3.h,
+                            // height: 3.h,
                             width: 90.w,
                             // color: Colors.purple,
                             child: Text(
@@ -299,7 +299,7 @@ class _TodayActivityState extends State<TodayActivity> {
                       child: Column(
                         children: [
                           Container(
-                            height: 3.h,
+                            // height: 3.h,
                             width: 90.w,
                             // color: Colors.purple,
                             child: Text(

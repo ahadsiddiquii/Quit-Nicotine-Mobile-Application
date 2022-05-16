@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:nicotine/Screens/Components/snackBar.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../Constant.dart';
@@ -1157,13 +1158,19 @@ class _QuestionnaireScreen2State extends State<QuestionnaireScreen2> {
                       borderRadius: BorderRadius.circular(15)),
                   color: kSignupColor,
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {
+                    if (_formKey.currentState!.validate() &&
+                        val != -1 &&
+                        val2 != -1 &&
+                        val3 != -1) {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => QuestionnaireScreen3(),
                         ),
                       );
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          showSnackbar("Please fill all the required fields"));
                     }
                   },
                   child: Text(

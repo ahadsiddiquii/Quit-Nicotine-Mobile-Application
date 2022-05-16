@@ -8,8 +8,15 @@ import '../../models/User.dart';
 class MyActivityFirestoreService {
   final String collectionName = "activity";
 
-  Future<bool> addActivity(User user, String activityName, String foodAte,
-      int glassesOfWater, int stepsWalked, int activityPoints) async {
+  Future<bool> addActivity(
+      User user,
+      String activityName,
+      String foodAte,
+      int glassesOfWater,
+      int stepsWalked,
+      int cigarettesSmoked,
+      int herbalMixed,
+      int activityPoints) async {
     print("MyActivityFirestoreService: addActivity Function");
     String activityId =
         DateTime.now().toIso8601String() + "_" + user.userEmail!;
@@ -23,6 +30,8 @@ class MyActivityFirestoreService {
         "foodAte": foodAte,
         "stepsWalked": stepsWalked,
         "glassesOfWater": glassesOfWater,
+        "cigarettesSmoked": collectionName,
+        "herbalMix": herbalMixed,
         "activityCreationDate": DateTime.now().toIso8601String(),
         "activityPoints": activityPoints,
       };

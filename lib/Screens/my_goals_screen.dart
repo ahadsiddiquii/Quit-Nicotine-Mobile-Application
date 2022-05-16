@@ -694,7 +694,7 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
                             ),
                           ),
                           Text(
-                            "In Process",
+                            "In Progress",
                             style: TextStyle(
                                 color: kSigninColor,
                                 fontWeight: FontWeight.w300,

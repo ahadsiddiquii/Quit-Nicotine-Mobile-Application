@@ -39,7 +39,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
               child: Column(
                 children: [
                   if (widget.show_appbar == true)
-                    CustomAppBar(title: "Calender", icon: Icons.more_horiz),
+                    CustomAppBar(title: "Calendar", icon: Icons.more_horiz),
                   TableCalendar(
                     onDaySelected: (selectedDay, focusedDay) {
                       // print(selectedDay);

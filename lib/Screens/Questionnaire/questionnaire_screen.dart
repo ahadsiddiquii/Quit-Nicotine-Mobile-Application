@@ -645,12 +645,17 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
                                   // margin: EdgeInsets.only(top: 5.sp),
                                   // color: Colors.pink,
                                   child: TextFormField(
-                                    validator: (value) {
-                                      if (value == null || value.isEmpty) {
-                                        return 'Please enter phone noumber';
-                                      }
-                                      return null;
-                                    },
+                                    validator: (val) => val != null
+                                        ? val.trim().length < 11
+                                            ? "Enter valid phone number length greater than equals 10"
+                                            : null
+                                        : null,
+                                    inputFormatters: [
+                                      LengthLimitingTextInputFormatter(11),
+                                      FilteringTextInputFormatter.allow(
+                                        RegExp(r'^\d+(?:\d+)?$'),
+                                      ),
+                                    ],
                                     controller: phone,
                                     cursorColor: Colors.black,
                                     style: TextStyle(color: Colors.black),
