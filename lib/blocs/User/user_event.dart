@@ -9,6 +9,8 @@ class CheckIfLoggedIn extends UserEvent {}
 
 class GoogleLogin extends UserEvent {}
 
+class FacebookLogin extends UserEvent {}
+
 class SignIn extends UserEvent {
   final String email, password;
   SignIn({required this.email, required this.password});

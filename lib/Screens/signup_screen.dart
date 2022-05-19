@@ -407,7 +407,9 @@ class _SignupScreenState extends State<SignupScreen> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
                   color: Colors.white,
-                  onPressed: () {},
+                  onPressed: () {
+                    BlocProvider.of<UserBloc>(context).add(FacebookLogin());
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,

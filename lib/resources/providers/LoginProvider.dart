@@ -1,9 +1,10 @@
+import 'dart:convert';
 import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
+import 'package:http/http.dart' as http;
 import '../../models/User.dart';
 
 GoogleSignIn _googleSignIn = GoogleSignIn(
@@ -51,8 +52,12 @@ Future<Map<String, dynamic>> loginViaGoogle() async {
   return googleLoginCreds;
 }
 
-Future<void> loginViaFacebook() async {
+Future<Map<String, dynamic>> loginViaFacebook() async {
   // User user = User();
+  Map<String, dynamic> facebookLoginCreds = {
+    "email": null,
+    "first_name": null,
+  };
   try {
     final FacebookAuth _facebookAuth = FacebookAuth.instance;
     final LoginResult result = await _facebookAuth.login();
@@ -60,43 +65,49 @@ Future<void> loginViaFacebook() async {
     // print("login start");
     // final LoginResult result = await FacebookAuth.login();
     // print("login start 2");
-    // if (result.status == LoginStatus.success) {
-    //   // you are logged
-    //   final AccessToken accessToken = result.accessToken!;
-    //   // print(accessToken);
-    //   // print(accessToken.token);
+    if (result.status == LoginStatus.success) {
+      // you are logged
+      final AccessToken accessToken = result.accessToken!;
+      // print(accessToken);
+      // print(accessToken.token);
 
-    //   // print(accessToken);
-    //   // print(accessToken.token);
-    //   // print(accessToken.expires);
-    //   // print(accessToken.grantedPermissions);
-    //   // print(accessToken.userId);
-    //   // print(accessToken.isExpired);
+      // print(accessToken);
+      // print(accessToken.token);
+      // print(accessToken.expires);
+      // print(accessToken.grantedPermissions);
+      // print(accessToken.userId);
+      // print(accessToken.isExpired);
 
-    //   final token = accessToken.token;
+      final token = accessToken.token;
 
-    //   final url = Uri.parse(
-    //       'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email,picture&access_token=$token');
+      final url = Uri.parse(
+          'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email,picture&access_token=$token');
 
-    //   /// for profile details also use the below code
-    //   final graphResponse = await http.get(url);
-    //   // final profile = json.decode(graphResponse.body);
-    //   // print(profile);
-    //   // print(profile['picture']['data']['url']);
+      /// for profile details also use the below code
+      final graphResponse = await http.get(url);
+      final profile = json.decode(graphResponse.body);
+      print("Here is your profile");
+      print(profile);
+      print(profile['picture']['data']['url']);
+      Map<String, dynamic> facebookLoginNewCreds = {
+        "email": profile['email'],
+        "first_name": profile['name'],
+      };
+      facebookLoginCreds = facebookLoginNewCreds;
 
-    //   // user.email = profile['email'];
-    //   // user.name = profile['name'];
-    //   // user.image = profile['picture']['data']['url'];
-    //   // print(user.image);
-
-    // } else {
-    //   print("Login Failed");
-    // }
+      // user.email = profile['email'];
+      // user.name = profile['name'];
+      // user.image = profile['picture']['data']['url'];
+      // print(user.image);
+    } else {
+      print("Login Failed");
+    }
   } catch (e) {
     print("Error in login via facebook");
     print(e.toString());
     throw Exception(e.toString());
   }
+  return facebookLoginCreds;
   // print('FB login done');
   // return user;
 }

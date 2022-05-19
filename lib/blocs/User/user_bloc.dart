@@ -83,6 +83,48 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         print('error in Signup');
         yield LogInError(error: e.toString());
       }
+    } else if (event is FacebookLogin) {
+      yield UserLoading();
+      try {
+        print("UserBloc: GoogleLogin event");
+
+        Map<String, dynamic> facebookCreds =
+            await loginViaGoogle() as Map<String, dynamic>;
+        print("Inside facebook login event: ${facebookCreds}");
+        if (facebookCreds["email"] == null) {
+          throw "Google Creds not found";
+        }
+
+        final boolUserExists = await onBoardingFirestoreService
+            .checkIfUserEmailExists(facebookCreds["email"]);
+
+        if (boolUserExists) {
+          final user = await onBoardingFirestoreService
+              .withOutPasswordLoginEmail(facebookCreds["email"]);
+
+          if ((user.userQuestionsAsked!) == false) {
+            yield UserShowQuestions(user: user);
+          } else {
+            Storage.setValue("userId", user.userId!);
+
+            yield UserLoggedIn(user: user);
+          }
+        } else {
+          User user = await onBoardingFirestoreService.createUser(
+              facebookCreds["email"], facebookCreds["first_name"], "1234");
+
+          if ((user.userQuestionsAsked!) == false) {
+            yield UserShowQuestions(user: user);
+          } else {
+            Storage.setValue("userId", user.userId!);
+
+            yield UserLoggedIn(user: user);
+          }
+        }
+      } catch (e) {
+        print('error in Signup');
+        yield LogInError(error: e.toString());
+      }
     } else if (event is SignUp) {
       yield UserLoading();
 

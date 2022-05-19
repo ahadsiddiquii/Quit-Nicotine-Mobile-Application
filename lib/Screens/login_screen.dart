@@ -356,7 +356,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.circular(10)),
                   color: Colors.white,
                   onPressed: () {
-                    loginViaFacebook();
+                    BlocProvider.of<UserBloc>(context).add(FacebookLogin());
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
