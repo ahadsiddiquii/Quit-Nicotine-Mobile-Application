@@ -22,6 +22,7 @@ class CalenderScreen extends StatefulWidget {
 }
 
 class _CalenderScreenState extends State<CalenderScreen> {
+  CalendarFormat cFormat = CalendarFormat.month;
   DateTime focusedDaySelected = DateTime.now();
   @override
   Widget build(BuildContext context) {
@@ -39,13 +40,23 @@ class _CalenderScreenState extends State<CalenderScreen> {
               child: Column(
                 children: [
                   if (widget.show_appbar == true)
-                    CustomAppBar(title: "Calendar", icon: Icons.more_horiz),
+                    const CustomAppBar(
+                        title: "Calendar", icon: Icons.more_horiz),
                   TableCalendar(
                     onDaySelected: (selectedDay, focusedDay) {
                       // print(selectedDay);
                       // print(focusedDay);
                       focusedDaySelected = selectedDay;
                       setState(() {});
+                    },
+                    availableCalendarFormats: const {
+                      CalendarFormat.month: "Show Month"
+                    },
+                    calendarFormat: cFormat,
+                    onFormatChanged: (CalendarFormat format) {
+                      setState(() {
+                        cFormat = format;
+                      });
                     },
                     calendarStyle: CalendarStyle(
                         defaultTextStyle: TextStyle(color: Colors.black),

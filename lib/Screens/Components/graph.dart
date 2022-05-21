@@ -8,11 +8,15 @@ class MyHomeScreen extends StatefulWidget {
   final int waterCount;
   final int stepsCount;
   final int foodCount;
+  final int cigrettes;
+  final int herbalMix;
   const MyHomeScreen(
       {Key? key,
       required this.waterCount,
       required this.stepsCount,
-      required this.foodCount})
+      required this.foodCount,
+      required this.cigrettes,
+      required this.herbalMix})
       : super(key: key);
 
   @override
@@ -20,51 +24,28 @@ class MyHomeScreen extends StatefulWidget {
 }
 
 class _MyHomeScreenState extends State<MyHomeScreen> {
-  final List<ChartData> chartData = [
-    // ChartData('', 25),
-    // ChartData('', 22),
-    // ChartData('', 11),
-  ];
-  final List<ChartData> chartData2 = [
-    ChartData('', 0),
-    // ChartData('', 12),
-    // ChartData('', 8),
-  ];
-  final List<ChartData> chartData3 = [
-    ChartData('', 0),
-    ChartData('', 0),
-    // ChartData('', 1),
-  ];
+  late List<ChartData> data;
+  late List<ChartData> data2;
+  late TooltipBehavior _tooltip;
+
   @override
   void initState() {
     super.initState();
-    chartData.add(
-      ChartData('', widget.waterCount.toDouble()),
-    );
-    chartData.add(
-      ChartData('', 0),
-    );
-    chartData.add(
-      ChartData('', 0),
-    );
-    // chartData2.add(
-    //   ChartData('', 0),
-    // );
-    chartData2.add(
-      ChartData('', widget.foodCount.toDouble()),
-    );
-    chartData2.add(
-      ChartData('', 0),
-    );
-    // chartData3.add(
-    //   ChartData('', 0),
-    // );
-    // chartData3.add(
-    //   ChartData('', 0),
-    // );
-    chartData3.add(
-      ChartData('', widget.stepsCount.toDouble()),
-    );
+    data = [
+      ChartData('Water', 216 / 270 * 100),
+      ChartData('Food', 42144 / 52680 * 100),
+      ChartData('Steps Walked', 300000 / 330000 * 100),
+      ChartData('Cigrettes', 0),
+      ChartData('Herbal Mix', 160 / 200 * 100)
+    ];
+    data2 = [
+      ChartData('Water', widget.waterCount.toDouble() / 270 * 100),
+      ChartData('Food', widget.foodCount.toDouble() / 52680 * 100),
+      ChartData('Steps Walked', widget.stepsCount.toDouble() / 300000 * 100),
+      ChartData('Cigrettes', widget.cigrettes.toDouble()),
+      ChartData('Herbal Mix', widget.herbalMix.toDouble() / 200 * 100)
+    ];
+    _tooltip = TooltipBehavior(enable: true);
   }
 
   @override
@@ -78,6 +59,14 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                 ),
                 child: Column(
                   children: [
+                    Text(
+                      "Note: This graph is shows comparison of your consumption percentage and healthy consumption percentage of all the activity elements",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 8.sp,
+                          fontWeight: FontWeight.w400),
+                    ),
                     Container(
                       color: kLightColor,
                       height: 25.h,
@@ -85,30 +74,23 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                           plotAreaBorderColor: Colors.white,
                           borderColor: Colors.white,
                           backgroundColor: Colors.white,
-                          primaryXAxis: CategoryAxis(
-                              // majorGridLines: ,
-                              // minorTickLines: null,
-                              // Axis will be rendered based on the index values
-                              arrangeByIndex: true),
+                          primaryXAxis: CategoryAxis(),
+                          primaryYAxis: NumericAxis(
+                              minimum: 0, maximum: 110, interval: 10),
+                          tooltipBehavior: _tooltip,
                           series: <ChartSeries<ChartData, String>>[
-                            ColumnSeries<ChartData, String>(
-                              color: kSignupColor,
-                              dataSource: chartData,
-                              xValueMapper: (ChartData sales, _) => sales.x,
-                              yValueMapper: (ChartData sales, _) => sales.y,
-                            ),
-                            ColumnSeries<ChartData, String>(
-                              color: kSigninColor,
-                              dataSource: chartData2,
-                              xValueMapper: (ChartData sales, _) => sales.x,
-                              yValueMapper: (ChartData sales, _) => sales.y,
-                            ),
-                            ColumnSeries<ChartData, String>(
-                              color: Colors.yellow,
-                              dataSource: chartData3,
-                              xValueMapper: (ChartData sales, _) => sales.x,
-                              yValueMapper: (ChartData sales, _) => sales.y,
-                            )
+                            BarSeries<ChartData, String>(
+                                dataSource: data,
+                                xValueMapper: (ChartData data, _) => data.x,
+                                yValueMapper: (ChartData data, _) => data.y,
+                                name: 'Healthy Consumption',
+                                color: Colors.yellow),
+                            BarSeries<ChartData, String>(
+                                dataSource: data2,
+                                xValueMapper: (ChartData data2, _) => data2.x,
+                                yValueMapper: (ChartData data2, _) => data2.y,
+                                name: 'Your Consumption',
+                                color: Color.fromRGBO(8, 142, 255, 1))
                           ]),
                     ),
                     Container(
@@ -117,58 +99,48 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
                       color: Colors.white,
                       // color: Colors.black26,
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
+                            width: 1.w,
+                          ),
+                          Container(
+                            height: 2.h,
                             width: 4.w,
-                          ),
-                          Container(
-                            height: 4.h,
-                            width: 8.w,
                             decoration: BoxDecoration(
-                                color: kSignupColor,
+                                color: Colors.blue,
                                 borderRadius: BorderRadius.circular(10)),
                           ),
                           Text(
-                            "  Water",
+                            " Your Consumption",
                             style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 11.sp,
+                                fontSize: 8.sp,
                                 fontWeight: FontWeight.w700),
                           ),
                           SizedBox(
                             width: 5.w,
                           ),
                           Container(
-                            height: 4.h,
-                            width: 8.w,
-                            decoration: BoxDecoration(
-                                color: kSigninColor,
-                                borderRadius: BorderRadius.circular(10)),
-                          ),
-                          Text(
-                            "  Food",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 11.sp,
-                                fontWeight: FontWeight.w700),
-                          ),
-                          SizedBox(
-                            width: 5.w,
-                          ),
-                          Container(
-                            height: 4.h,
-                            width: 8.w,
+                            height: 2.h,
+                            width: 4.w,
                             decoration: BoxDecoration(
                                 color: Colors.yellow,
                                 borderRadius: BorderRadius.circular(10)),
                           ),
                           Text(
-                            "  Steps walked",
+                            " Healthy Consumption",
                             style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 11.sp,
+                                fontSize: 8.sp,
                                 fontWeight: FontWeight.w700),
-                          )
+                          ),
+                          SizedBox(
+                            width: 1.w,
+                          ),
+                          SizedBox(
+                            width: 1.w,
+                          ),
                         ],
                       ),
                     ),

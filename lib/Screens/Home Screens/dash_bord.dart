@@ -59,7 +59,7 @@ class _DashBordState extends State<DashBord>
     );
     curve = CurvedAnimation(
       parent: _animationController,
-      curve: Interval(
+      curve: const Interval(
         0.5,
         1.0,
         curve: Curves.fastOutSlowIn,
@@ -71,7 +71,7 @@ class _DashBordState extends State<DashBord>
     ).animate(curve);
 
     Future.delayed(
-      Duration(seconds: 1),
+      const Duration(seconds: 1),
       () => _animationController.forward(),
     );
   }

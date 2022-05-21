@@ -44,7 +44,7 @@ class ProgressCard extends StatelessWidget {
             Container(
               child: Row(
                 children: [
-                  Image.asset(img),
+                  Container(height: 7.h, width: 7.w, child: Image.asset(img)),
                   Text(
                     type,
                     style: TextStyle(
@@ -59,13 +59,18 @@ class ProgressCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    score,
-                    style: TextStyle(
-                        color: Color(0xffF8DB08), fontSize: 25.sp, height: 2.5),
+                  Container(
+                    width: 25.w,
+                    child: Text(
+                      score,
+                      style: TextStyle(
+                        color: Color(0xffF8DB08),
+                        fontSize: 18.sp,
+                      ),
+                    ),
                   ),
                   Container(
-                    width: 45.w,
+                    width: 55.w,
                     child: RichText(
                       text: TextSpan(
                         text: hading,

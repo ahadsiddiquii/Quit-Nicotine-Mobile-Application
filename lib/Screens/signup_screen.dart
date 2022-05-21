@@ -442,7 +442,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       MaterialPageRoute(builder: (context) => LoginScreen()));
                 },
                 child: RichText(
-                  text: TextSpan(
+                  text: const TextSpan(
                     text: 'You have an account? ',
                     style: TextStyle(fontSize: 18, color: Colors.black),
                     children: [
