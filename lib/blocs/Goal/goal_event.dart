@@ -25,6 +25,16 @@ class AddGoal extends GoalEvent {
   });
 }
 
+class AddGoalToCancelList extends GoalEvent {
+  final User user;
+  final UserGoal goalToCancel;
+
+  AddGoalToCancelList({
+    required this.user,
+    required this.goalToCancel,
+  });
+}
+
 class DeleteAGoal extends GoalEvent {
   final String goalId;
 

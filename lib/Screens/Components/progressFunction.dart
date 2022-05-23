@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nicotine/Screens/Components/dialog_box.dart';
+import 'package:nicotine/blocs/User/user_bloc.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:sizer/sizer.dart';
 
@@ -58,9 +59,20 @@ Widget progressFunction(UserGoal userGoal, BuildContext context) {
                                     content: 'Do you want to delete this goal?',
                                     buttonText: "Delete Goal",
                                     function: () {
-                                      BlocProvider.of<GoalBloc>(context).add(
-                                          DeleteAGoal(
-                                              goalId: userGoal.goalId!));
+                                      final userState =
+                                          BlocProvider.of(context).state;
+                                      if (userState is UserLoggedIn) {
+                                        BlocProvider.of<GoalBloc>(context).add(
+                                            AddGoalToCancelList(
+                                                user: userState.user,
+                                                goalToCancel: userGoal));
+                                        BlocProvider.of<GoalBloc>(context).add(
+                                            DeleteAGoal(
+                                                goalId: userGoal.goalId!));
+                                      } else {
+                                        print("Something went wrong");
+                                      }
+
                                       // Navigator.push(
                                       //   context,
                                       //   MaterialPageRoute(

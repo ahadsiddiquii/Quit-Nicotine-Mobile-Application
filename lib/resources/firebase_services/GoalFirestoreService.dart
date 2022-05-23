@@ -11,6 +11,7 @@ import '../../utils/local_storage.dart';
 
 class GoalFirestoreService {
   final String collectionName = "goal";
+  final String cancelCollectionName = "cancelGoal";
 
   Future<bool> createGoal(
     User user,
@@ -61,6 +62,35 @@ class GoalFirestoreService {
       FirebaseFirestore.instance
           .collection(collectionName)
           .doc(goalId)
+          .set(goalMap)
+          .catchError((e) {
+        print(e.toString());
+      });
+
+      return true;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
+  Future<bool> addToCancelGoal(User user, UserGoal goal) async {
+    print("GoalFirestoreService: addToCancelGoal Function");
+
+    try {
+      final Map<String, dynamic> goalMap = {
+        "goalId": goal.goalId,
+        "userId": user.userId,
+        "goalName": goal.goalName,
+        "goalDays": goal.goalDays,
+        "goalDate": goal.goalDate!.toIso8601String(),
+        "running": goal.running,
+        "inProcess": goal.inProcess,
+        "complete": goal.complete,
+        "cancel": goal.cancel,
+      };
+      FirebaseFirestore.instance
+          .collection(cancelCollectionName)
+          .doc(goal.goalId)
           .set(goalMap)
           .catchError((e) {
         print(e.toString());
