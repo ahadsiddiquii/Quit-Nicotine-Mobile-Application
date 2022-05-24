@@ -60,7 +60,8 @@ Widget progressFunction(UserGoal userGoal, BuildContext context) {
                                     buttonText: "Delete Goal",
                                     function: () {
                                       final userState =
-                                          BlocProvider.of(context).state;
+                                          BlocProvider.of<UserBloc>(context)
+                                              .state;
                                       if (userState is UserLoggedIn) {
                                         BlocProvider.of<GoalBloc>(context).add(
                                             AddGoalToCancelList(

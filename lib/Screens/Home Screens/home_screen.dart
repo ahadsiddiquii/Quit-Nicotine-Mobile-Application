@@ -74,12 +74,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 latestGoal.goalDate!.add(Duration(days: latestGoal.goalDays!));
           }
           state.goals.forEach((element) {
-            if (isGoalInProcess(element, DateTime.now())) {
+            if (isGoalInProcess(element, DateTime.now()) &&
+                element.cancel != true) {
               inProcessGoals += 1;
-            } else if (isGoalCompleted(element, DateTime.now())) {
+            } else if (isGoalCompleted(element, DateTime.now()) &&
+                element.cancel != true) {
               completeGoals += 1;
-            } else if (isGoalRunning(element, DateTime.now())) {
+            } else if (isGoalRunning(element, DateTime.now()) &&
+                element.cancel != true) {
               runningGoals += 1;
+            } else if (element.cancel == true) {
+              cancelGoals += 1;
             }
             print(runningGoals);
             print(inProcessGoals);

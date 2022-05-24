@@ -107,7 +107,7 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => CalenderScreen(
+                          builder: (context) => const CalenderScreen(
                                 show_appbar: true,
                               )));
                 },
@@ -116,7 +116,7 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
                   height: 5.h,
                   width: 11.w,
                   decoration: BoxDecoration(
-                      color: Color(0xffF8DB08),
+                      color: const Color(0xffF8DB08),
                       borderRadius: BorderRadius.circular(100)),
                   child: Image.asset(
                     "assets/Calendar2.png",
@@ -135,8 +135,8 @@ class _MyGoalsScreenState extends State<MyGoalsScreen> {
                     iconData: Icons.circle,
                     fontSize: 11.sp),
               ),
-              afterLineStyle: LineStyle(color: kSigninColor),
-              beforeLineStyle: LineStyle(color: kSigninColor),
+              afterLineStyle: const LineStyle(color: kSigninColor),
+              beforeLineStyle: const LineStyle(color: kSigninColor),
               alignment: TimelineAlign.manual,
               lineXY: 0.25,
               hasIndicator: true,

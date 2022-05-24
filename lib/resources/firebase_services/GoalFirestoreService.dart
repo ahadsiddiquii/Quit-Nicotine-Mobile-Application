@@ -86,7 +86,7 @@ class GoalFirestoreService {
         "running": goal.running,
         "inProcess": goal.inProcess,
         "complete": goal.complete,
-        "cancel": goal.cancel,
+        "cancel": true,
       };
       FirebaseFirestore.instance
           .collection(cancelCollectionName)
@@ -128,6 +128,28 @@ class GoalFirestoreService {
           allGoals.add(UserGoal.fromJson(affirm));
         }
       });
+
+      var mapTwo = await FirebaseFirestore.instance
+          .collection(cancelCollectionName)
+          .doc()
+          .snapshots();
+      CollectionReference _collectionRefTwo =
+          FirebaseFirestore.instance.collection(cancelCollectionName);
+
+      QuerySnapshot querySnapshotTwo = await _collectionRefTwo.get();
+      final allDataTwo = querySnapshotTwo.docs.map((doc) {
+        return doc.data();
+      }).toList();
+
+      print(allDataTwo);
+
+      allDataTwo.forEach((item) {
+        final affirm = item as Map<String, dynamic>;
+        if (affirm["userId"] == Storage.getValue("userId")) {
+          allGoals.add(UserGoal.fromJson(affirm));
+        }
+      });
+
       print("All Goals: ${allGoals.length}");
 
       return allGoals.reversed.toList();

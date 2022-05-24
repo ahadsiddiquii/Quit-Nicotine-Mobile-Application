@@ -5,6 +5,7 @@ import 'package:nicotine/Screens/Components/snackBar.dart';
 import 'package:sizer/sizer.dart';
 
 import '../goals_screen.dart';
+import 'cancel_goal_screen.dart';
 
 class StatusCard extends StatelessWidget {
   final String status;
@@ -18,8 +19,15 @@ class StatusCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if (status == "Cancel") {
-          ScaffoldMessenger.of(context).showSnackBar(showSnackbar(
-              "Please click on the delete icon on your goals to cancel a goal."));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => CancelGoalsScreen(
+                        show_appbar: true,
+                        from_cancel: status == "Cancel" ? true : false,
+                      )));
+          // ScaffoldMessenger.of(context).showSnackBar(showSnackbar(
+          //     "Please click on the delete icon on your goals to cancel a goal."));
         } else {
           Navigator.push(
               context,
@@ -49,10 +57,11 @@ class StatusCard extends StatelessWidget {
             ),
           ),
           subtitle: Text(
-            status != "Cancel" ? "${goal} Goals" : " ",
+            "$goal Goals",
+            // status != "Cancel" ? "${goal} Goals" : " ",
             style: TextStyle(color: Colors.white, fontSize: 12.sp, height: 2),
           ),
-          trailing: Icon(
+          trailing: const Icon(
             Icons.arrow_forward,
             color: Colors.white,
           ),
